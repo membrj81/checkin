@@ -446,6 +446,20 @@ $("camBtn").onclick=async()=>{if(typeof Html5Qrcode==="undefined"){alert("카메
 function stopCam(){if(cam){cam.stop().then(()=>cam.clear()).catch(()=>{});}camOn=false;$("reader").classList.remove("on");$("camBtn").textContent="📷 카메라";focusBarcode();}
 
 updateBadges();renderRecent();focusBarcode();save();
+
+/* ---------- 안드로이드 뒤로가기: 앱 밖으로 안 나가게 ---------- */
+function anyModalOpen(){return [...document.querySelectorAll('.modal-bg')].some(m=>m.classList.contains('on'));}
+function closeAllModals(){document.querySelectorAll('.modal-bg').forEach(m=>m.classList.remove('on'));}
+function activeView(){const b=document.querySelector('nav button.active');return b?b.dataset.view:'scan';}
+try{history.pushState({app:1},'');}catch(e){}
+window.addEventListener('popstate',()=>{
+  if(anyModalOpen()){closeAllModals();}
+  else if(camOn){stopCam();}
+  else if(pending){closePending();focusBarcode();}
+  else if(activeView()!=='scan'){goView('scan');}
+  // 항상 히스토리 항목 하나를 유지해서 앱 밖으로 나가지 않게
+  try{history.pushState({app:1},'');}catch(e){}
+});
 $("view-scan").addEventListener("click",e=>{if(camOn)return;if(!pending&&!e.target.closest("input,button,textarea"))focusBarcode();});
 </script>
 </body>
