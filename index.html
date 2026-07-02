@@ -95,6 +95,12 @@
   .toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);margin-top:14px}
   .toggle input{width:20px;height:20px}
   .filepick{display:block;text-align:center;padding:14px;border:1.5px dashed var(--accent);border-radius:10px;color:var(--accent);font-size:15px;font-weight:700;margin-top:8px;cursor:pointer}
+  #fileList{margin:8px 0 0}
+  .filechip{display:flex;align-items:center;gap:8px;background:#eef2f7;border:1px solid #d8dee6;border-radius:8px;padding:7px 10px;margin-bottom:6px}
+  .filechip .fn{flex:1;min-width:0;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .filechip .fc{font-size:11px;color:#6b7683;flex:0 0 auto}
+  .filechip .fx{border:none;background:#dbe2ea;color:#3a4756;width:26px;height:26px;border-radius:7px;font-size:17px;font-weight:700;cursor:pointer;flex:0 0 auto;line-height:1}
+  .filesum{font-size:12px;color:var(--accent);font-weight:700;margin:2px 0 0}
   .danger{color:var(--bad)}
   .menu-item{display:block;width:100%;text-align:left;padding:15px 8px;font-size:15px;background:none;border:none;border-bottom:1px solid var(--line);cursor:pointer;color:var(--text)}
   .menu-item:last-child{border-bottom:none}
@@ -186,12 +192,13 @@
 <div class="modal-bg" id="invModal">
   <div class="modal">
     <h2>인보이스 불러오기</h2>
-    <p class="hint">공급업체를 고르고, Global Beauty 엑셀 파일을 바로 선택하면 바코드·품목명·수량을 자동으로 잡습니다.</p>
+    <p class="hint">공급업체를 고르고, 인보이스 파일을 선택하세요. <b>여러 장이면 한꺼번에 골라도 되고, 버튼을 다시 눌러 하나씩 더 담아도</b> 됩니다. 같은 아이템은 자동 합산돼요.</p>
     <label>공급업체</label>
     <select id="vendorSelect"></select>
     <input type="text" id="newVendorName" placeholder="새 업체 이름 (예: Model Model)" style="display:none;margin-top:8px">
-    <label class="filepick" for="csvFile">📎 엑셀/CSV 파일 선택 (여러 장 한꺼번에 선택 가능)</label>
+    <label class="filepick" for="csvFile">📎 인보이스 파일 선택 / 더 담기</label>
     <input type="file" id="csvFile" accept=".csv,.txt,.tsv,.xlsx,.xls" multiple style="display:none">
+    <div id="fileList"></div>
     <label>또는 붙여넣기 (엑셀에서 셀 복사)</label>
     <textarea id="invText" placeholder="파일 선택이 더 편해요. 붙여넣어도 됩니다."></textarea>
     <div id="mapArea"></div>
@@ -329,7 +336,7 @@ function isHeaderRow(cols){const j=cols.join(" ").toLowerCase();return /(barcode
 let pendingFiles=[]; // 여러 파일: [{name, rows, hdr}]
 function stripHeader(rows){rows=rows.map(normCols).filter(r=>r.some(c=>c!==""));let hdr=null;if(rows.length&&isHeaderRow(rows[0])){hdr=rows[0];rows=rows.slice(1);}return{rows,hdr};}
 function loadRows(rows){pendingFiles=[];const s=stripHeader(rows);headerRow=s.hdr;dataRows=s.rows;
-  colCount=Math.max(1,...dataRows.map(r=>r.length),headerRow?headerRow.length:0);renderMapping();}
+  colCount=Math.max(1,...dataRows.map(r=>r.length),headerRow?headerRow.length:0);renderMapping();if($("fileList"))$("fileList").innerHTML="";}
 function headerMap(){if(!headerRow)return null;const h=headerRow.map(x=>x.toLowerCase());
   const find=t=>{for(let i=0;i<h.length;i++){if(t.some(x=>h[i].includes(x)))return i;}return -1;};
   const b=find(["barcode","upc","item lookup","바코드"]);const q=find(["qty","quantity","수량","units"]);
@@ -375,16 +382,21 @@ function readOneFile(f){return new Promise(resolve=>{const ext=(f.name.split("."
     r.onload=()=>{try{const wb=XLSX.read(new Uint8Array(r.result),{type:"array"});const ws=wb.Sheets[wb.SheetNames[0]];const rows=XLSX.utils.sheet_to_json(ws,{header:1,raw:false,defval:""});const s=stripHeader(rows);resolve({name:f.name,rows:s.rows,hdr:s.hdr});}catch(err){alert("엑셀 오류 ("+f.name+"): "+err);resolve(null);}};
     r.readAsArrayBuffer(f);}
   else{r.onload=()=>{const s=stripHeader(rowsFromText(r.result));resolve({name:f.name,rows:s.rows,hdr:s.hdr});};r.readAsText(f,"utf-8");}});}
-$("csvFile").addEventListener("change",async e=>{const files=[...e.target.files];if(!files.length)return;
-  const results=[];for(const f of files){const r=await readOneFile(f);if(r)results.push(r);}
-  if(!results.length)return;
-  pendingFiles=results;
-  headerRow=results[0].hdr;dataRows=results[0].rows;
-  colCount=Math.max(1,...results.flatMap(x=>x.rows.map(r=>r.length)),headerRow?headerRow.length:0);
+function renderFileList(){const el=$("fileList");if(!el)return;if(!pendingFiles.length){el.innerHTML="";return;}
+  const totRows=pendingFiles.reduce((a,x)=>a+x.rows.length,0);
+  el.innerHTML=pendingFiles.map((f,i)=>`<div class="filechip"><span class="fn">📄 ${esc(f.name)}</span><span class="fc">${f.rows.length}줄</span><button class="fx" data-i="${i}">×</button></div>`).join("")
+    +`<div class="filesum">파일 ${pendingFiles.length}개 · 총 ${totRows}줄 · 아래에서 칸 확인 후 불러오기</div>`;
+  el.querySelectorAll(".fx").forEach(b=>b.onclick=()=>{pendingFiles.splice(parseInt(b.dataset.i,10),1);
+    if(pendingFiles.length){headerRow=pendingFiles[0].hdr;dataRows=pendingFiles[0].rows;colCount=Math.max(1,...pendingFiles.flatMap(x=>x.rows.map(r=>r.length)),headerRow?headerRow.length:0);}
+    else{dataRows=[];headerRow=null;}
+    renderFileList();renderMapping();});}
+$("csvFile").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";if(!files.length)return;
+  for(const f of files){if(pendingFiles.some(p=>p.name===f.name))continue;const r=await readOneFile(f);if(r)pendingFiles.push(r);}
+  if(!pendingFiles.length)return;
+  headerRow=pendingFiles[0].hdr;dataRows=pendingFiles[0].rows;
+  colCount=Math.max(1,...pendingFiles.flatMap(x=>x.rows.map(r=>r.length)),headerRow?headerRow.length:0);
   if($("vendorSelect").value==="")$("vendorSelect").value="Global Beauty";
-  renderMapping();
-  const total=results.reduce((a,x)=>a+x.rows.length,0);
-  $("invText").value=`(파일 ${results.length}개 불러옴 · 총 ${total}줄: ${results.map(x=>x.name).join(", ")})`;});
+  renderFileList();renderMapping();});
 $("invSave").onclick=()=>{const map=readMapping();
   if(map.b<0){alert("바코드 칸을 지정해 주세요.");return;}if(map.q<0){alert("수량 칸을 지정해 주세요.");return;}
   S.ignoreZero=$("ignoreZero").checked;
@@ -409,7 +421,7 @@ $("invCancel").onclick=()=>closeModal("invModal");
 /* ---------- 메뉴 ---------- */
 $("menuBtn").onclick=()=>{const ic=Object.keys(S.invoice).length;$("menuSub").textContent=`${S.vendor?S.vendor+" · ":""}인보이스 ${S.invCount&&ic?S.invCount+"장 ":""}${ic}품목 · 스캔 ${Object.keys(S.scanned).length}품목`;openModal("menuModal");};
 $("menuClose").onclick=()=>closeModal("menuModal");
-$("miInvoice").onclick=()=>{closeModal("menuModal");refreshVendorSelect();$("ignoreZero").checked=S.ignoreZero;$("mergeInvoice").checked=Object.keys(S.invoice).length>0;$("invText").value="";$("mapArea").innerHTML="";dataRows=[];headerRow=null;pendingFiles=[];$("newVendorName").style.display="none";openModal("invModal");};
+$("miInvoice").onclick=()=>{closeModal("menuModal");refreshVendorSelect();$("ignoreZero").checked=S.ignoreZero;$("mergeInvoice").checked=Object.keys(S.invoice).length>0;$("invText").value="";$("mapArea").innerHTML="";$("fileList").innerHTML="";dataRows=[];headerRow=null;pendingFiles=[];$("newVendorName").style.display="none";openModal("invModal");};
 $("miRename").onclick=()=>{const n=prompt("세션 이름",S.name);if(n){S.name=n.trim()||S.name;save();updateBadges();}closeModal("menuModal");};
 $("miNew").onclick=()=>{if(confirm("새 세션을 시작하면 현재 검수 내용이 사라집니다(업체 형식은 유지). 필요하면 먼저 CSV로 내보내세요. 계속할까요?")){const kv=S.vendors;S=blank();S.vendors=kv;save();updateBadges();renderRecent();closeModal("menuModal");goView("scan");}};
 $("miClear").onclick=()=>{if(confirm("검수 기록(스캔한 수량)만 초기화합니다. 인보이스는 유지됩니다. 계속할까요?")){S.scanned={};S.recent=[];save();updateBadges();renderRecent();closeModal("menuModal");goView("scan");}};
