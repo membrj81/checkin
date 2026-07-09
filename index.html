@@ -325,7 +325,8 @@ const VENDOR_PROFILES = [
   {name:"KISS", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
-  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"}
+  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"},
+  {name:"Annie", map:{b:2,n:-1,q:3}, group:"annie"}
 ];
 
 const $ = (id)=>document.getElementById(id);
@@ -648,7 +649,7 @@ function parseDelimited(text, delimiter){
 function normRows(rows){return rows.map(r=>r.map(c=>c==null?"":String(c).trim())).filter(r=>r.some(Boolean));}
 function headerScore(row){
   const text=row.join(" ").toLowerCase();
-  const words=["barcode","upc","item lookup","item name","description","desc","qty","quantity","shipped","수량","품목","바코드","cantidad","codigo","código"];
+  const words=["barcode","bar code","deal free","upc","item lookup","item name","description","desc","qty","quantity","shipped","수량","품목","바코드","cantidad","codigo","código"];
   let score=words.reduce((a,w)=>a+(text.includes(w)?1:0),0);
   const numberCells=row.filter(c=>/^\d{6,}$/.test(String(c).replace(/\D/g,""))).length;
   return score*3-numberCells;
@@ -696,7 +697,7 @@ function headerMap(header){
   if(!header) return null;
   const h=header.map(x=>String(x).toLowerCase());
   const find=(arr)=>h.findIndex(v=>arr.some(a=>v.includes(a)));
-  const b=find(["barcode","upc","item lookup","ean","바코드","codigo","código"]);
+  const b=find(["barcode","bar code","upc","item lookup","ean","바코드","codigo","código"]);
   const q=find(["shipped qty","qtyshipped","quantity","qty","수량","cant"]);
   let n=find(["item name","description","desc","product","품목","name","nombre"]);
   if(n===b || n===q) n=-1;
@@ -754,6 +755,11 @@ function detectVendor(){
       if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
     } else if(p.group==="gb"){
       if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
+    } else if(p.group==="annie"){
+      if(!(hjoin.includes("bar code") && (hjoin.includes("item no")||hjoin.includes("deal free")))) continue;  // ANNIE header gate
+      const bc=_col(rows,2).filter(Boolean);
+      const pref = bc.length ? bc.filter(v=>/^705372/.test(v.replace(/\D/g,""))).length/bc.length : 0;
+      if(pref>0.6) sc+=3;                // ANNIE UPC prefix 705372
     }
     if(sc>bestScore){bestScore=sc;best=p;}
   }
