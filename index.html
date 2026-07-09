@@ -2,692 +2,953 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#141a22">
-<meta name="apple-mobile-web-app-title" content="901 Check-In">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
-<link id="manifest" rel="manifest">
-<title>901 Check-In · US BEAUTY LLC</title>
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-title" content="901 Check-In Pro">
+<title>901 Check-In Pro · US BEAUTY LLC</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   :root{
-    --ink:#141a22; --surface:#ffffff; --bg:#eef1f5; --line:#d8dee6; --muted:#6b7683; --text:#1a222c;
-    --accent:#2563eb; --accent-d:#1d4ed8;
-    --ok:#15803d; --ok-bg:#e7f6ec; --warn:#b45309; --warn-bg:#fdf3e3;
-    --over:#7c3aed; --over-bg:#f1e9fd; --bad:#c02626; --bad-bg:#fbeaea; --extra:#0e7490; --extra-bg:#e3f4f8;
+    --bg:#eef2f7;--surface:#ffffff;--surface-2:#f7f9fc;--ink:#0f172a;--text:#182230;--muted:#667085;--line:#d7dee9;
+    --accent:#2563eb;--accent-2:#1d4ed8;--accent-soft:#e8f0ff;--green:#15803d;--green-bg:#e8f7ee;
+    --amber:#b45309;--amber-bg:#fff3df;--purple:#6d28d9;--purple-bg:#f1e9ff;--red:#c02626;--red-bg:#feecec;
+    --cyan:#0e7490;--cyan-bg:#e3f6fb;--shadow:0 18px 55px rgba(15,23,42,.13);--radius:18px;
+    --safe-bottom:env(safe-area-inset-bottom,0px);
+  }
+  [data-theme="dark"]{
+    --bg:#0b1220;--surface:#111827;--surface-2:#172033;--ink:#e5edf7;--text:#eef4ff;--muted:#9aa7b7;--line:#263349;
+    --accent:#60a5fa;--accent-2:#3b82f6;--accent-soft:#12284a;--green:#7ee2a0;--green-bg:#113721;
+    --amber:#f4c07a;--amber-bg:#3a2910;--purple:#c4a5f5;--purple-bg:#2c1d46;--red:#f2a0a0;--red-bg:#3d1518;--cyan:#8fd6e6;--cyan-bg:#123340;
+    --shadow:0 18px 55px rgba(0,0,0,.38);
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;height:100%}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;height:100dvh;overflow:hidden}
-  header{background:var(--ink);color:#fff;padding:9px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0}
-  header .title{font-weight:700;font-size:15px;line-height:1.1}
-  header .session{font-size:12px;color:#9fb0c2;margin-top:2px;max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  header .badge{margin-left:auto;background:var(--accent);color:#fff;font-weight:700;font-size:13px;padding:5px 11px;border-radius:999px}
-  header .menu-btn{background:#2b3644;border:none;color:#fff;width:38px;height:38px;border-radius:10px;font-size:19px;cursor:pointer}
-  .langsw{display:flex;gap:3px;background:#0e141b;border-radius:9px;padding:3px}
-  .langsw button{border:none;background:none;color:#8ea0b2;font-size:11px;font-weight:700;padding:5px 7px;border-radius:6px;cursor:pointer}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif}
+  body{height:100dvh;overflow:hidden}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer}
+  .app{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+  .topbar{background:var(--ink);color:#fff;padding:10px 12px calc(10px + env(safe-area-inset-top,0px));display:flex;gap:10px;align-items:center;box-shadow:0 1px 0 rgba(255,255,255,.08);z-index:8}
+  [data-theme="dark"] .topbar{color:var(--text)}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+  .mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#2563eb 55%,#7c3aed);display:grid;place-items:center;color:#fff;font-weight:900;letter-spacing:-1px;box-shadow:0 8px 18px rgba(37,99,235,.25)}
+  .brand-title{font-size:15px;font-weight:800;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-sub{font-size:11px;color:#9fb0c2;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px}
+  .top-actions{display:flex;align-items:center;gap:6px}
+  .pill{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:7px 10px;font-weight:800;font-size:12px;min-width:38px;text-align:center}
+  [data-theme="dark"] .pill{color:var(--text)}
+  .icon-btn{border:none;background:rgba(255,255,255,.09);color:#fff;width:38px;height:38px;border-radius:12px;font-size:17px;font-weight:800;display:grid;place-items:center}
+  [data-theme="dark"] .icon-btn{color:var(--text)}
+  .langsw{display:flex;gap:2px;background:rgba(0,0,0,.22);border-radius:11px;padding:3px}
+  .langsw button{border:none;background:transparent;color:#9fb0c2;border-radius:8px;padding:6px 7px;font-size:11px;font-weight:900}
   .langsw button.on{background:var(--accent);color:#fff}
-  main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .view{display:none;padding:12px}
+  main{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:12px 12px 96px}
+  .view{display:none;max-width:980px;margin:0 auto}
   .view.active{display:block}
-  .scanbar{display:flex;flex-direction:column;gap:8px}
-  .scanbar input{width:100%;padding:15px 14px;font-size:17px;border:2px solid var(--accent);border-radius:12px;background:#fff;font-family:ui-monospace,monospace}
-  .scanbar input:focus{outline:none;border-color:var(--accent-d)}
-  .ctlrow{display:flex;gap:8px}
-  .cam-btn{flex:1;background:var(--ink);color:#fff;border:none;border-radius:11px;padding:12px;font-size:14px;font-weight:600;cursor:pointer}
-  .scn-btn{flex:1;background:#eef2f7;color:#3a4756;border:2px solid var(--line);border-radius:11px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
-  .scn-btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .scn-btn .dot{width:9px;height:9px;border-radius:50%;background:#b7c2ce}
-  .scn-btn.on .dot{background:#7ee2a0;box-shadow:0 0 0 3px rgba(126,226,160,.25)}
-  #reader{display:none;margin-top:10px;border-radius:12px;overflow:hidden}
+  .hero{background:linear-gradient(135deg,var(--ink),#1e3a8a 55%,#3730a3);color:#fff;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:12px}
+  .hero:after{content:"";position:absolute;right:-50px;top:-70px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .hero .label{font-size:12px;color:#b9c7d8;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+  .hero .big{font-size:36px;font-weight:900;letter-spacing:-1.2px;margin-top:5px;line-height:1}
+  .hero .sub{font-size:13px;color:#c9d5e4;margin-top:7px;line-height:1.35}
+  .progress{height:10px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden;margin-top:14px}
+  .progress span{display:block;height:100%;width:0%;background:#7ee2a0;border-radius:999px;transition:width .25s ease}
+  .mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .mini{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px;text-align:center}
+  .mini b{display:block;font-size:20px}.mini span{font-size:11px;color:#bfd0e3;font-weight:700}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 18px rgba(15,23,42,.05);padding:14px;margin-bottom:12px}
+  .card-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .card-title h2,.card-title h3{margin:0;font-size:15px;font-weight:900;letter-spacing:-.2px}
+  .hint{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+  .scan-input{display:flex;gap:8px;align-items:center}
+  .scan-input input{flex:1;min-width:0;border:2px solid var(--accent);background:var(--surface);border-radius:15px;padding:15px 14px;font-size:18px;font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2px;outline:none}
+  .scan-input input:focus{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+  .scan-input button{border:none;background:var(--accent);color:#fff;border-radius:14px;padding:0 16px;height:56px;font-weight:900;min-width:72px}
+  .toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+  .tool-btn{border:1px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px 10px;font-size:13px;font-weight:900;color:var(--text);display:flex;align-items:center;justify-content:center;gap:7px}
+  .tool-btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tool-btn.danger{color:var(--red);background:var(--red-bg);border-color:transparent}
+  .dot{width:9px;height:9px;border-radius:50%;background:#b8c4d3;display:inline-block}.on .dot{background:#7ee2a0;box-shadow:0 0 0 4px rgba(126,226,160,.2)}
+  #reader{display:none;margin-top:10px;border-radius:16px;overflow:hidden;background:#000}
   #reader.on{display:block}
-  .flash{display:none;margin-top:10px;padding:12px 14px;border-radius:11px;font-weight:700;font-size:15px;text-align:center}
-  .flash.on{display:block}
-  .flash.ok{background:var(--ok-bg);color:var(--ok)}.flash.warn{background:var(--warn-bg);color:var(--warn)}.flash.bad{background:var(--bad-bg);color:var(--bad)}
-  .pending{display:none;margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
-  .pending.on{display:block}
-  .pending .pname{font-size:16px;font-weight:700}
-  .pending .pcode{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace;margin-top:2px}
-  .prow{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
-  .prow b{font-size:22px;margin-left:6px}
-  .chip{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
-  .chip.inv{background:#eef2f7;color:#3a4756}.chip.new{background:var(--extra-bg);color:var(--extra)}
-  .qtyrow{display:flex;gap:10px;align-items:center;margin:8px 0}
-  .qtyrow input{flex:1;text-align:center;font-size:26px;font-weight:700;padding:8px;border:2px solid var(--line);border-radius:12px;min-width:0}
-  .qtyrow input:focus{outline:none;border-color:var(--accent)}
-  .qtyrow button.step{width:52px;height:52px;font-size:26px;border:2px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;font-weight:700;color:var(--ink)}
-  .actions{display:flex;gap:10px;margin-top:4px}
-  .btn{flex:1;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer}
-  .btn.primary{background:var(--accent);color:#fff}.btn.ghost{background:#eef2f7;color:#3a4756;flex:0 0 96px}
-  .recent h3{font-size:13px;color:var(--muted);margin:16px 0 8px;font-weight:600}
-  .searchbar input{width:100%;padding:12px 14px;font-size:15px;border:1px solid var(--line);border-radius:11px;background:#fff}
-  .row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:8px;cursor:pointer}
-  .row .info{flex:1;min-width:0}
-  .row .rname{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .row .rcode{font-size:11px;color:var(--muted);font-family:ui-monospace,monospace;margin-top:2px}
-  .row .nums{text-align:right;font-size:12px;color:var(--muted);white-space:nowrap}
-  .row .nums b{font-size:17px;color:var(--text);display:block}
-  .status{font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;white-space:nowrap}
-  .s-ok{background:var(--ok-bg);color:var(--ok)}.s-short{background:var(--warn-bg);color:var(--warn)}.s-over{background:var(--over-bg);color:var(--over)}.s-miss{background:var(--bad-bg);color:var(--bad)}.s-extra{background:var(--extra-bg);color:var(--extra)}
-  .empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:14px;line-height:1.6}
-  .empty b{display:block;color:var(--text);font-size:15px;margin-bottom:6px}
-  .summary{background:var(--ink);color:#fff;border-radius:14px;padding:16px;margin-bottom:14px}
-  .summary .units .n{font-size:30px;font-weight:800}.summary .units .sub{font-size:13px;color:#9fb0c2}
-  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-  .stat{background:#1e2731;border-radius:10px;padding:10px;text-align:center}
-  .stat .sn{font-size:20px;font-weight:800}.stat .sl{font-size:11px;color:#9fb0c2;margin-top:2px}
-  .stat.g .sn{color:#7ee2a0}.stat.w .sn{color:#f4c07a}.stat.o .sn{color:#c4a5f5}.stat.b .sn{color:#f2a0a0}.stat.e .sn{color:#8fd6e6}
-  .secttl{font-size:13px;font-weight:700;color:var(--muted);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.5px}
-  nav{display:flex;background:#fff;border-top:1px solid var(--line);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom)}
-  nav button{flex:1;border:none;background:none;padding:10px 0 12px;cursor:pointer;color:var(--muted);font-size:11px;font-weight:600;position:relative}
-  nav button .ico{display:block;font-size:20px;margin-bottom:2px}
-  nav button.active{color:var(--accent)}
-  nav button .ndot{position:absolute;top:6px;left:50%;margin-left:8px;background:var(--bad);color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;line-height:16px;border-radius:999px;padding:0 3px;display:none}
-  nav button .ndot.on{display:block}
-  .foot{background:var(--ink);color:#7b8896;text-align:center;font-size:10px;padding:7px 10px;flex-shrink:0;line-height:1.5}
-  .foot b{color:#aab6c4}
-  .modal-bg{position:fixed;inset:0;background:rgba(10,15,20,.55);display:none;align-items:flex-end;z-index:50}
-  .modal-bg.on{display:flex}
-  .modal{background:#fff;width:100%;max-height:90dvh;overflow-y:auto;border-radius:18px 18px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
-  .modal h2{margin:0 0 6px;font-size:18px}
-  .modal p.hint{font-size:12px;color:var(--muted);margin:0 0 6px;line-height:1.5}
-  .modal label{font-size:12px;font-weight:600;color:var(--muted);display:block;margin:14px 0 5px}
-  .modal select,.modal input[type=text],.modal textarea{width:100%;padding:11px;font-size:15px;border:1px solid var(--line);border-radius:10px;background:#fff}
-  .modal textarea{height:70px;font-family:ui-monospace,monospace;font-size:12px}
-  .toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);margin-top:14px}
-  .mrow{display:flex;gap:10px;margin-top:18px}
-  .filepick{display:block;text-align:center;padding:14px;border:1.5px dashed var(--accent);border-radius:10px;color:var(--accent);font-size:15px;font-weight:700;margin-top:8px;cursor:pointer}
-  .filechip{display:flex;align-items:center;gap:8px;background:#f4f6f9;border-radius:9px;padding:8px 10px;margin-top:6px}
-  .filechip .fn{flex:1;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .filechip .fc{font-size:11px;color:#6b7683}
-  .filechip .fx{border:none;background:#dbe2ea;color:#3a4756;width:26px;height:26px;border-radius:7px;font-size:17px;font-weight:700;cursor:pointer;line-height:1}
-  .filesum{font-size:12px;color:var(--accent);font-weight:700;margin:6px 0 0}
-  .danger{color:var(--bad)}
-  .menu-item{display:block;width:100%;text-align:left;padding:15px 8px;font-size:15px;background:none;border:none;border-bottom:1px solid var(--line);cursor:pointer;color:var(--text)}
-  .detbadge{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
-  .detbadge.ok{background:var(--ok-bg);color:var(--ok)}
-  .detbadge.no{background:var(--warn-bg);color:var(--warn)}
-  .mapcol{display:flex;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px solid var(--line)}
-  .mapcol .sample{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mapcol .sample b{color:var(--accent)}.mapcol .sample span{font-family:ui-monospace,monospace;color:var(--muted)}
-  .mapcol select{width:104px;flex:0 0 104px;padding:8px;font-size:13px}
-  .mapnote{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
-  .maphead{font-size:12px;font-weight:700;color:var(--muted);margin-top:12px}
-  /* PIN gate */
-  #pinGate{position:fixed;inset:0;background:var(--ink);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:24px}
-  #pinGate.on{display:flex}
-  #pinGate .plogo{font-size:34px;font-weight:800;letter-spacing:1px}
-  #pinGate .psub{color:#9fb0c2;font-size:13px;margin:6px 0 22px}
-  #pinGate input{width:200px;text-align:center;font-size:28px;letter-spacing:8px;padding:12px;border-radius:12px;border:2px solid #2b3644;background:#0e141b;color:#fff;font-family:ui-monospace,monospace}
-  #pinGate .perr{color:#f2a0a0;font-size:13px;height:18px;margin-top:10px}
-  #pinGate .pbtn{margin-top:16px;background:var(--accent);color:#fff;border:none;padding:13px 30px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer}
-  #pinGate .pcopy{position:absolute;bottom:16px;font-size:10px;color:#5b6874;text-align:center;line-height:1.5}
+  .pending{display:none;border-color:color-mix(in srgb,var(--accent) 38%,var(--line));box-shadow:0 14px 36px rgba(37,99,235,.14)}
+  .pending.on{display:block;animation:rise .18s ease-out}
+  @keyframes rise{from{transform:translateY(7px);opacity:.5}to{transform:translateY(0);opacity:1}}
+  .p-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.p-name{font-weight:900;font-size:17px;line-height:1.25}.p-code{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace;margin-top:3px}
+  .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;white-space:nowrap}.chip.ok{background:var(--green-bg);color:var(--green)}.chip.warn{background:var(--amber-bg);color:var(--amber)}.chip.over{background:var(--purple-bg);color:var(--purple)}.chip.bad{background:var(--red-bg);color:var(--red)}.chip.extra{background:var(--cyan-bg);color:var(--cyan)}.chip.neutral{background:var(--surface-2);color:var(--muted)}
+  .qty-panel{display:grid;grid-template-columns:54px 1fr 54px;gap:10px;align-items:center;margin-top:10px}.qty-panel button{height:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface-2);font-size:26px;font-weight:900}.qty-panel input{text-align:center;border:2px solid var(--line);border-radius:16px;background:var(--surface);padding:10px;font-size:27px;font-weight:900;outline:none}.qty-panel input:focus{border-color:var(--accent)}
+  .actions{display:flex;gap:9px;margin-top:10px}.btn{border:none;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:900;background:var(--surface-2);color:var(--text);flex:1}.btn.primary{background:var(--accent);color:#fff}.btn.danger{background:var(--red-bg);color:var(--red)}.btn.green{background:var(--green-bg);color:var(--green)}.btn.line{border:1px solid var(--line);background:var(--surface)}.btn.small{padding:9px 12px;border-radius:12px;font-size:12px;flex:0 0 auto}
+  .section-title{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:16px 2px 8px}
+  .row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:12px;margin-bottom:8px;min-height:62px}.row.clickable{cursor:pointer}.row-info{flex:1;min-width:0}.row-name{font-size:14px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row-code{margin-top:3px;font-size:11px;color:var(--muted);font-family:ui-monospace,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row-num{text-align:right;font-size:11px;color:var(--muted);min-width:54px}.row-num b{display:block;color:var(--text);font-size:18px;line-height:1.05}.empty{text-align:center;color:var(--muted);padding:34px 18px;line-height:1.6}.empty b{display:block;color:var(--text);font-size:15px;margin-bottom:5px}
+  .searchbar{display:flex;gap:8px;margin-bottom:10px}.searchbar input,.searchbar select{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;font-size:14px;outline:none}.searchbar input{flex:1;min-width:0}.searchbar select{width:132px}
+  .filters{display:flex;gap:7px;overflow:auto;padding-bottom:7px;margin-bottom:8px}.filter{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 11px;font-weight:850;font-size:12px;color:var(--muted)}.filter.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .invoice-drop{position:relative;border:1.5px dashed color-mix(in srgb,var(--accent) 55%,var(--line));border-radius:18px;background:var(--accent-soft);padding:18px;text-align:center;margin-bottom:10px}.invoice-drop input{position:absolute;inset:0;opacity:0;cursor:pointer}.invoice-drop b{display:block;color:var(--accent);font-size:16px}.invoice-drop span{display:block;margin-top:5px;color:var(--muted);font-size:12px;line-height:1.4}
+  .file-list{display:grid;gap:6px}.file-chip{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:9px 10px}.file-chip .fn{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;font-weight:800}.file-chip .meta{font-size:11px;color:var(--muted);white-space:nowrap}.file-chip button{border:none;background:var(--line);border-radius:9px;width:28px;height:28px;font-weight:900;color:var(--text)}
+  .form-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.field label{display:block;font-size:12px;color:var(--muted);font-weight:900;margin:0 0 5px}.field input,.field select{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:13px;padding:12px;font-size:14px;outline:none}.checkline{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.35;color:var(--text);font-weight:750}.checkline input{width:18px;height:18px;flex:0 0 auto;margin-top:0}
+  .detect{display:none;margin:10px 0}.detect.on{display:block}.map-table{display:grid;gap:6px;margin-top:10px}.map-row{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:8px;border-bottom:1px solid var(--line)}.map-sample{min-width:0;font-size:12px;line-height:1.35}.map-sample b{display:block;color:var(--accent);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-sample span{font-family:ui-monospace,monospace;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-row select{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px;font-size:12px}
+  .toast-wrap{position:fixed;left:12px;right:12px;bottom:calc(78px + var(--safe-bottom));z-index:90;display:grid;gap:8px;pointer-events:none}.toast{pointer-events:auto;max-width:980px;width:100%;margin:0 auto;border-radius:16px;padding:13px 14px;color:#fff;background:#1f2937;box-shadow:var(--shadow);font-weight:850;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}.toast.ok{background:#166534}.toast.warn{background:#92400e}.toast.bad{background:#991b1b}.toast.info{background:#1e40af}.toast button{border:none;background:rgba(255,255,255,.16);color:#fff;border-radius:10px;padding:7px 9px;font-size:12px;font-weight:900}
+  nav{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:5px 6px calc(7px + var(--safe-bottom));z-index:20}nav button{position:relative;border:none;background:transparent;border-radius:14px;padding:8px 2px 6px;color:var(--muted);font-size:11px;font-weight:850}nav button .ico{display:block;font-size:20px;margin-bottom:2px}nav button.active{background:var(--accent-soft);color:var(--accent)}.nav-dot{display:none;position:absolute;top:5px;left:50%;margin-left:9px;min-width:17px;height:17px;border-radius:999px;background:var(--red);color:#fff;font-size:9px;line-height:17px;font-weight:900;padding:0 3px}.nav-dot.on{display:block}
+  .modal-bg{position:fixed;inset:0;background:rgba(4,10,20,.62);z-index:60;display:none;align-items:flex-end}.modal-bg.on{display:flex}.modal{background:var(--surface);border-radius:22px 22px 0 0;width:100%;max-height:88dvh;overflow:auto;padding:18px 16px calc(18px + var(--safe-bottom));box-shadow:var(--shadow)}.modal h2{margin:0 0 4px;font-size:18px}.modal .hint{margin-bottom:12px}.modal-menu button.item{width:100%;display:flex;align-items:center;gap:10px;background:transparent;border:none;border-bottom:1px solid var(--line);padding:15px 4px;text-align:left;font-weight:850}.modal-menu button.item span{font-size:20px}.modal-menu button.item.danger{color:var(--red)}
+  .pin-gate{position:fixed;inset:0;background:radial-gradient(circle at top,#1e3a8a 0,#0f172a 45%,#020617 100%);z-index:200;color:#fff;display:none;align-items:center;justify-content:center;padding:24px}.pin-gate.on{display:flex}.pin-card{width:min(360px,100%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);border-radius:28px;padding:26px 22px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.36)}.pin-logo{width:60px;height:60px;border-radius:20px;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(135deg,#60a5fa,#2563eb 55%,#7c3aed);font-size:22px;font-weight:900}.pin-card h1{margin:0;font-size:24px;letter-spacing:-.5px}.pin-card p{margin:7px 0 18px;color:#cbd5e1;font-size:13px}.pin-card input{width:100%;border:2px solid rgba(255,255,255,.18);background:rgba(0,0,0,.28);color:#fff;border-radius:17px;text-align:center;padding:13px;font-size:28px;font-family:ui-monospace,monospace;letter-spacing:8px;outline:none}.pin-card input:focus{border-color:#60a5fa}.pin-err{height:20px;margin-top:9px;color:#fecaca;font-size:13px}.pin-card .btn{margin-top:7px}.copyright{margin-top:16px;color:#94a3b8;font-size:10px;line-height:1.45}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media (min-width:760px){main{padding:18px 18px 104px}.two-col{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:12px;align-items:start}.toolbar{grid-template-columns:repeat(4,1fr)}.form-grid{grid-template-columns:1fr 1fr}.mini-grid{grid-template-columns:repeat(6,1fr)}.modal{max-width:620px;margin:0 auto;border-radius:22px 22px 0 0}.view{max-width:1080px}.brand-sub{max-width:420px}}
 </style>
 </head>
 <body>
-
-<div id="pinGate">
-  <div class="plogo">901 CHECK-IN</div>
-  <div class="psub" data-i18n="pin_sub">US BEAUTY LLC · 직원 전용</div>
-  <input id="pinInput" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
-  <div class="perr" id="pinErr"></div>
-  <button class="pbtn" id="pinBtn" data-i18n="pin_enter">입장</button>
-  <div class="pcopy">&copy; 2026 US BEAUTY LLC. All Rights Reserved.<br>Unauthorized use is strictly prohibited.</div>
+<div class="pin-gate" id="pinGate" aria-modal="true" role="dialog">
+  <div class="pin-card">
+    <div class="pin-logo">901</div>
+    <h1>Check-In Pro</h1>
+    <p data-i18n="pin_sub">US BEAUTY LLC · 직원 전용</p>
+    <input id="pinInput" type="password" inputmode="numeric" maxlength="10" autocomplete="off" aria-label="PIN">
+    <div id="pinErr" class="pin-err"></div>
+    <button class="btn primary" id="pinBtn" data-i18n="pin_enter">입장</button>
+    <div class="copyright">© 2026 US BEAUTY LLC. All Rights Reserved.<br>Unauthorized use is strictly prohibited.</div>
+  </div>
 </div>
 
-<header>
-  <div>
-    <div class="title" data-i18n="app_title">입고 검수</div>
-    <div class="session" id="sessName">-</div>
-  </div>
-  <div class="langsw" id="langSw">
-    <button data-lang="en">EN</button><button data-lang="ko">한</button><button data-lang="es">ES</button>
-  </div>
-  <div class="badge" id="hdrBadge">0</div>
-  <button class="menu-btn" id="menuBtn">&#9776;</button>
-</header>
-
-<main>
-  <section class="view active" id="view-scan">
-    <div class="scanbar">
-      <input id="barcodeInput" inputmode="numeric" autocomplete="off" data-i18n-ph="ph_scan" placeholder="바코드 스캔 또는 입력 후 Enter">
-      <div class="ctlrow">
-        <button class="scn-btn" id="scnBtn"><span class="dot"></span><span data-i18n="scanner_mode">스캐너 모드</span></button>
-        <button class="cam-btn" id="camBtn" data-i18n="cam_on">&#128247; 카메라</button>
+<div class="app" id="app" hidden>
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">901</div>
+      <div class="brand-text">
+        <div class="brand-title" data-i18n="app_title">입고 검수 Pro</div>
+        <div class="brand-sub" id="sessionLine">-</div>
       </div>
     </div>
-    <div id="reader"></div>
-    <div class="flash" id="flash"></div>
-    <div class="pending" id="pending">
-      <div class="pname" id="pName">-</div>
-      <div class="pcode" id="pCode">-</div>
-      <div class="prow"><div><span id="pInvChip"></span></div><div><span data-i18n="cur_scan">현재 검수</span><b id="pCur">0</b></div></div>
-      <div class="qtyrow">
-        <button class="step" id="minusBtn">&minus;</button>
-        <input id="qtyInput" type="number" inputmode="numeric" min="1" value="1">
-        <button class="step" id="plusBtn">+</button>
+    <div class="top-actions">
+      <div class="langsw" id="langSw" aria-label="language">
+        <button data-lang="ko">한</button><button data-lang="en">EN</button><button data-lang="es">ES</button>
       </div>
-      <div class="actions"><button class="btn ghost" id="cancelBtn" data-i18n="cancel">취소</button><button class="btn primary" id="addBtn" data-i18n="add">추가</button></div>
+      <button class="icon-btn" id="themeBtn" title="Theme">◐</button>
+      <div class="pill" id="scanBadge">0</div>
+      <button class="icon-btn" id="menuBtn" title="Menu">☰</button>
     </div>
-    <div class="recent"><h3 data-i18n="recent">최근 스캔</h3><div id="recentList"></div></div>
-  </section>
+  </header>
 
-  <section class="view" id="view-list">
-    <div class="searchbar"><input id="searchInput" data-i18n-ph="search_ph" placeholder="품목명 또는 바코드 검색"></div>
-    <div id="fullList" style="margin-top:12px"></div>
-  </section>
+  <main>
+    <section class="view active" id="view-scan">
+      <div class="two-col">
+        <div>
+          <div class="hero">
+            <div class="label" data-i18n="today_progress">오늘 진행률</div>
+            <div class="big"><span id="progressPct">0</span>%</div>
+            <div class="sub" id="progressSub">인보이스를 불러오고 스캔을 시작하세요.</div>
+            <div class="progress"><span id="progressBar"></span></div>
+            <div class="mini-grid">
+              <div class="mini"><b id="miniReceived">0</b><span data-i18n="recv">검수</span></div>
+              <div class="mini"><b id="miniExpected">0</b><span data-i18n="expected">예정</span></div>
+              <div class="mini"><b id="miniShort">0</b><span data-i18n="short">부족</span></div>
+              <div class="mini"><b id="miniOver">0</b><span data-i18n="over">초과</span></div>
+              <div class="mini"><b id="miniExtra">0</b><span data-i18n="extra">외품</span></div>
+              <div class="mini"><b id="miniOk">0</b><span data-i18n="match">일치</span></div>
+            </div>
+          </div>
 
-  <section class="view" id="view-recon">
-    <div class="summary">
-      <div class="units"><span class="n" id="uRecv">0</span><span class="sub"> / <span id="uExp">0</span> <span data-i18n="recv_of"></span></span></div>
-      <div class="grid">
-        <div class="stat g"><div class="sn" id="cOk">0</div><div class="sl" data-i18n="st_ok">일치</div></div>
-        <div class="stat w"><div class="sn" id="cShort">0</div><div class="sl" data-i18n="st_short">부족</div></div>
-        <div class="stat o"><div class="sn" id="cOver">0</div><div class="sl" data-i18n="st_over">초과</div></div>
-        <div class="stat b"><div class="sn" id="cMiss">0</div><div class="sl" data-i18n="st_miss">누락</div></div>
-        <div class="stat e"><div class="sn" id="cExtra">0</div><div class="sl" data-i18n="st_extra">인보이스외</div></div>
-        <div class="stat"><div class="sn" id="cTotal">0</div><div class="sl" data-i18n="st_total">전체품목</div></div>
+          <div class="card">
+            <div class="card-title"><h2 data-i18n="scan_title">바코드 스캔</h2><span class="chip neutral" id="modeChip">수동</span></div>
+            <div class="scan-input">
+              <input id="barcodeInput" autocomplete="off" inputmode="numeric" placeholder="바코드 스캔 또는 입력 후 Enter" aria-label="Barcode">
+              <button id="manualAddBtn" data-i18n="go">확인</button>
+            </div>
+            <div class="toolbar">
+              <button class="tool-btn" id="scannerModeBtn"><span class="dot"></span><span data-i18n="scanner_mode">스캐너 모드</span></button>
+              <button class="tool-btn on" id="quickModeBtn"><span>＋1</span><span data-i18n="quick_mode">연속 추가</span></button>
+              <button class="tool-btn" id="cameraBtn"><span>📷</span><span data-i18n="camera">카메라</span></button>
+              <button class="tool-btn danger" id="undoBtn"><span>↶</span><span data-i18n="undo">마지막 취소</span></button>
+            </div>
+            <p class="hint" style="margin-top:9px" data-i18n="scan_hint">핸드 스캐너는 “스캐너 모드 + 연속 추가”로 두면 스캔마다 자동으로 1개씩 누적됩니다.</p>
+            <div id="reader"></div>
+          </div>
+
+          <div class="card pending" id="pendingCard">
+            <div class="p-head">
+              <div class="row-info">
+                <div class="p-name" id="pendingName">-</div>
+                <div class="p-code" id="pendingCode">-</div>
+              </div>
+              <span class="chip" id="pendingStatus">-</span>
+            </div>
+            <div class="mini-grid" style="grid-template-columns:repeat(3,1fr);margin:0">
+              <div class="mini" style="background:var(--surface-2);border-color:var(--line);color:var(--text)"><b id="pendingInv">0</b><span data-i18n="invoice_qty">인보이스</span></div>
+              <div class="mini" style="background:var(--surface-2);border-color:var(--line);color:var(--text)"><b id="pendingCur">0</b><span data-i18n="counted_qty">현재</span></div>
+              <div class="mini" style="background:var(--surface-2);border-color:var(--line);color:var(--text)"><b id="pendingRemain">0</b><span data-i18n="remain_qty">남음</span></div>
+            </div>
+            <div class="qty-panel">
+              <button id="qtyMinus" aria-label="minus">−</button>
+              <input id="qtyInput" type="number" min="1" inputmode="numeric" value="1" aria-label="quantity">
+              <button id="qtyPlus" aria-label="plus">+</button>
+            </div>
+            <div class="actions">
+              <button class="btn line" id="pendingCancel" data-i18n="cancel">취소</button>
+              <button class="btn primary" id="pendingSave" data-i18n="add_qty">수량 추가</button>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <div class="card-title"><h3 data-i18n="recent_scans">최근 스캔</h3><button class="btn small line" id="jumpRecon" data-i18n="review">대조 보기</button></div>
+            <div id="recentList"></div>
+          </div>
+        </aside>
       </div>
-    </div>
-    <button class="btn primary" id="exportBtn" style="width:100%;margin-bottom:6px" data-i18n="export_csv">CSV 내보내기</button>
-    <div id="reconList"></div>
-  </section>
-</main>
+    </section>
 
-<nav>
-  <button class="active" data-view="scan"><span class="ico">&#9095;</span><span data-i18n="nav_scan">스캔</span></button>
-  <button data-view="list"><span class="ico">&#8803;</span><span data-i18n="nav_list">목록</span></button>
-  <button data-view="recon"><span class="ico">&#10003;</span><span data-i18n="nav_recon">대조</span><span class="ndot" id="navDot"></span></button>
-</nav>
+    <section class="view" id="view-invoice">
+      <div class="card">
+        <div class="card-title"><h2 data-i18n="invoice_title">인보이스 불러오기</h2><span class="chip neutral" id="invoiceLoadedChip">0 items</span></div>
+        <p class="hint" data-i18n="invoice_hint">CSV, TSV, TXT, XLS, XLSX 파일을 여러 개 한 번에 넣을 수 있습니다. 같은 바코드는 자동 합산됩니다.</p>
+        <label class="invoice-drop" for="invoiceFiles">
+          <input id="invoiceFiles" type="file" accept=".csv,.txt,.tsv,.xlsx,.xls" multiple>
+          <b data-i18n="pick_invoice">📎 파일 선택 / 추가</b>
+          <span data-i18n="pick_invoice_sub">여러 장의 인보이스도 한 번에 선택하세요.</span>
+        </label>
+        <div class="file-list" id="fileList"></div>
+        <div id="detectBox" class="detect"></div>
+        <div class="form-grid">
+          <div class="field"><label data-i18n="vendor">공급업체</label><select id="vendorSelect"></select></div>
+          <div class="field"><label data-i18n="new_vendor">새 업체명</label><input id="newVendorName" type="text" placeholder="새 업체 이름" disabled></div>
+        </div>
+        <div id="mappingBox" class="map-table"></div>
+        <div class="form-grid">
+          <label class="checkline"><input id="mergeInvoice" type="checkbox"><span data-i18n="merge_invoice">현재 인보이스에 합치기</span></label>
+          <label class="checkline"><input id="ignoreZero" type="checkbox" checked><span data-i18n="ignore_zero">바코드 앞자리 0 무시</span></label>
+          <label class="checkline"><input id="checkDigit" type="checkbox" checked><span data-i18n="check_digit">UPC/EAN 체크디지트 검증</span></label>
+          <label class="checkline"><input id="saveVendorMap" type="checkbox" checked><span data-i18n="save_vendor_map">업체별 칸 설정 저장</span></label>
+        </div>
+        <div class="actions">
+          <button class="btn line" id="clearFilesBtn" data-i18n="clear_files">파일 비우기</button>
+          <button class="btn primary" id="loadInvoiceBtn" data-i18n="load_invoice">인보이스 적용</button>
+        </div>
+      </div>
+    </section>
 
-<div class="foot">&copy; 2026 <b>US BEAUTY LLC</b> &middot; All Rights Reserved &middot; <span data-i18n="foot_note">무단 사용 금지</span></div>
+    <section class="view" id="view-list">
+      <div class="card">
+        <div class="card-title"><h2 data-i18n="list_title">전체 목록</h2><span class="chip neutral" id="listCountChip">0</span></div>
+        <div class="searchbar">
+          <input id="searchInput" type="search" placeholder="품목명 또는 바코드 검색">
+          <select id="sortSelect">
+            <option value="problem" data-i18n="sort_problem">문제 우선</option>
+            <option value="name" data-i18n="sort_name">이름순</option>
+            <option value="recent" data-i18n="sort_recent">최근순</option>
+          </select>
+        </div>
+        <div class="filters" id="statusFilters"></div>
+        <div id="listRows"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-recon">
+      <div class="hero">
+        <div class="label" data-i18n="recon_title">대조 리포트</div>
+        <div class="big"><span id="problemCountBig">0</span></div>
+        <div class="sub" id="problemSub">확인이 필요한 품목</div>
+        <div class="mini-grid">
+          <div class="mini"><b id="rOk">0</b><span data-i18n="match">일치</span></div>
+          <div class="mini"><b id="rShort">0</b><span data-i18n="short">부족</span></div>
+          <div class="mini"><b id="rOver">0</b><span data-i18n="over">초과</span></div>
+          <div class="mini"><b id="rMiss">0</b><span data-i18n="missing">누락</span></div>
+          <div class="mini"><b id="rExtra">0</b><span data-i18n="extra">외품</span></div>
+          <div class="mini"><b id="rTotal">0</b><span data-i18n="total">전체</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="actions" style="margin-top:0">
+          <button class="btn primary" id="exportCsvBtn" data-i18n="export_csv">CSV 내보내기</button>
+          <button class="btn green" id="exportXlsxBtn" data-i18n="export_xlsx">Excel 내보내기</button>
+        </div>
+      </div>
+      <div id="reconRows"></div>
+    </section>
+  </main>
+
+  <nav aria-label="Main navigation">
+    <button class="active" data-view="scan"><span class="ico">⌕</span><span data-i18n="nav_scan">스캔</span></button>
+    <button data-view="invoice"><span class="ico">▤</span><span data-i18n="nav_invoice">인보이스</span></button>
+    <button data-view="list"><span class="ico">☷</span><span data-i18n="nav_list">목록</span><span class="nav-dot" id="listDot"></span></button>
+    <button data-view="recon"><span class="ico">✓</span><span data-i18n="nav_recon">대조</span><span class="nav-dot" id="reconDot"></span></button>
+  </nav>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
 
 <div class="modal-bg" id="menuModal">
-  <div class="modal">
+  <div class="modal modal-menu">
     <h2 data-i18n="menu">메뉴</h2>
-    <p class="hint" id="menuSub"></p>
-    <button class="menu-item" id="miInvoice" data-i18n="mi_invoice">📄 인보이스 불러오기 / 수정</button>
-    <button class="menu-item" id="miRename" data-i18n="mi_rename">✏️ 세션 이름 변경</button>
-    <button class="menu-item" id="miNew" data-i18n="mi_new">➕ 새 세션 시작</button>
-    <button class="menu-item danger" id="miClear" data-i18n="mi_clear">🗑️ 검수 기록 초기화</button>
-    <div class="mrow"><button class="btn ghost" style="flex:1" id="menuClose" data-i18n="close">닫기</button></div>
-  </div>
-</div>
-
-<div class="modal-bg" id="invModal">
-  <div class="modal">
-    <h2 data-i18n="inv_title">인보이스 불러오기</h2>
-    <p class="hint" data-i18n="inv_hint">공급업체를 고르고 인보이스 파일을 선택하세요. 여러 장이면 한꺼번에 골라도 됩니다.</p>
-    <label class="filepick" for="csvFile" data-i18n="pick_file">📎 인보이스 파일 선택 / 더 담기</label>
-    <input type="file" id="csvFile" accept=".csv,.txt,.tsv,.xlsx,.xls" multiple style="display:none">
-    <div id="fileList"></div>
-    <div id="detBadge"></div>
-    <label data-i18n="supplier">공급업체</label>
-    <select id="vendorSelect"></select>
-    <input type="text" id="newVendorName" data-i18n-ph="new_supplier_ph" placeholder="새 업체 이름" style="display:none;margin-top:8px">
-    <div id="mapArea"></div>
-    <label class="toggle"><input type="checkbox" id="mergeInvoice"> <b data-i18n="merge">기존 인보이스에 합치기 (나눠 온 여러 장)</b></label>
-    <label class="toggle"><input type="checkbox" id="ignoreZero" checked> <span data-i18n="ignore_zero">바코드 앞자리 0 무시 (UPC/EAN 권장)</span></label>
-    <label class="toggle"><input type="checkbox" id="chkDigit" checked> <span data-i18n="chk_digit">바코드 검증 (오독 자동 차단)</span></label>
-    <div class="mrow"><button class="btn ghost" id="invCancel" data-i18n="cancel">취소</button><button class="btn primary" id="invSave" data-i18n="load_btn">불러오기</button></div>
+    <p class="hint" id="menuSub">-</p>
+    <button class="item" id="renameSessionBtn"><span>✏️</span><div><b data-i18n="rename_session">세션 이름 변경</b><p class="hint" data-i18n="rename_hint">작업일/공급업체명으로 구분하세요.</p></div></button>
+    <button class="item" id="backupBtn"><span>⬇️</span><div><b data-i18n="backup_json">백업 파일 저장</b><p class="hint" data-i18n="backup_hint">현재 세션 전체를 JSON으로 저장합니다.</p></div></button>
+    <button class="item" id="restoreBtn"><span>⬆️</span><div><b data-i18n="restore_json">백업 불러오기</b><p class="hint" data-i18n="restore_hint">저장했던 JSON 세션을 복원합니다.</p></div></button>
+    <input id="restoreFile" type="file" accept="application/json,.json" style="display:none">
+    <button class="item" id="clearCountsBtn"><span>🧹</span><div><b data-i18n="clear_counts">검수 수량만 초기화</b><p class="hint" data-i18n="clear_counts_hint">인보이스는 유지됩니다.</p></div></button>
+    <button class="item danger" id="newSessionBtn"><span>🗑️</span><div><b data-i18n="new_session">새 세션 시작</b><p class="hint" data-i18n="new_session_hint">현재 검수/인보이스를 비웁니다. 업체 설정은 유지됩니다.</p></div></button>
+    <div class="actions"><button class="btn line" id="menuCloseBtn" data-i18n="close">닫기</button></div>
   </div>
 </div>
 
 <div class="modal-bg" id="editModal">
   <div class="modal">
     <h2 id="editName">-</h2>
-    <p class="hint" id="editCode"></p>
-    <label data-i18n="edit_qty">검수 수량 (정확한 값으로 수정)</label>
-    <div class="qtyrow" style="margin-top:6px">
-      <button class="step" id="eMinus">&minus;</button>
-      <input id="editQty" type="number" inputmode="numeric" min="0" value="0">
-      <button class="step" id="ePlus">+</button>
+    <p class="hint" id="editCode">-</p>
+    <div class="qty-panel">
+      <button id="editMinus">−</button>
+      <input id="editQty" type="number" min="0" inputmode="numeric" value="0">
+      <button id="editPlus">+</button>
     </div>
-    <div class="mrow"><button class="btn ghost danger" style="flex:0 0 96px" id="editDelete" data-i18n="delete">삭제</button><button class="btn primary" id="editSave" data-i18n="save">저장</button></div>
+    <div class="actions">
+      <button class="btn danger" id="editDelete" data-i18n="delete">삭제</button>
+      <button class="btn primary" id="editSave" data-i18n="save">저장</button>
+    </div>
   </div>
 </div>
 
 <script>
-const IC512="data:image/png;base64,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PgQGAKEIAAAIRQAAQCgCAABCEQAAEIoAAIBQBAAAhCIAACAUAQAAoQgAAAhFAABAKAIAAEIRAAAQigAAgFAEAACEIgAAIBQBAAChCAAACEUAAEAoAgAAQhEAABCKAACAUAQAAIQiAAAgFAEAAKEIAAAIRQAAQCgCAABCEQAAEIoAAIBQBAAAhCIAACAUAQAAoQgAAAhFAABAKAIAAEIRAAAQigAAgFAEAACEIgAAIBQBAAChCAAACEUAAEAoAgAAQhEAABCKAACAUAQAAIQiAAAgFAEAAKEIAAAIRQAAQCgCAABCEQAAEIoAAIBQBAAAhCIAACAUAQAAoQgAAAhFAABAKAIAAEIRAAAQigAAgFAEAACEIgAAIBQBAAChCAAACEUAAEAoAgAAQhEAABCKAACAUAQAAIQiAAAgFAEAAKEIAAAIRQAAQCgCAABCEQAAEIoAAIBQBAAAhCIAACAUAQAAoQgAAAhFAABAKAIAAEIRAAAQigAAgFAEAACEIgAAIBQBAAChCAAACEUAAEAoAgAAQhEAABCKAACAUAQAAIQiAAAgFAEAAKEIAAAIRQAAQCgCAABCEQAAEIoAAIBQBAAAhCIAACAUAQAAoQgAAAhFAABAKAIAAEL9D66/icu3udMCAAAAAElFTkSuQmCC",IC192="data:image/png;base64,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";
-/* =================== PIN (매장 접근코드) =================== */
-/* 코드 변경: 아래 STORE_PIN 값을 바꾸세요. 비활성화하려면 "" 로 두세요. */
-const STORE_PIN="901901";
-</script>
-<script id="appjs">
+/* 901 Check-In Pro · Single-file warehouse receiving app
+   PIN 변경: STORE_PIN 값을 바꾸세요. PIN을 끄려면 빈 문자열("")로 두면 됩니다. */
+const STORE_PIN = "901901";
+const KEY = "recv_pro_session_v2";
+const OLD_KEY = "recv_session_v4";
 
-/* =================== i18n =================== */
-const I18N={
- en:{app_title:"Receiving",nav_scan:"Scan",nav_list:"List",nav_recon:"Verify",
-  ph_scan:"Scan or type barcode, then Enter",ph_scanner:"Ready \u2014 fire scanner",
-  scanner_mode:"Scanner",cam_on:"\uD83D\uDCF7 Camera",cam_off:"\u25A0 Stop camera",
-  cur_scan:"Counted",add:"Add",cancel:"Cancel",save:"Save",delete:"Delete",close:"Close",
-  recent:"Recent scans",empty_recent:"No items scanned yet.<br>Scan or type a barcode.",
-  search_ph:"Search name or barcode",empty_list_t:"List is empty",empty_list_b:"Load an invoice or start scanning.",
-  recv_of:"received (vs invoice qty)",st_ok:"Match",st_short:"Short",st_over:"Over",st_miss:"Missing",st_extra:"Not on inv.",st_total:"All items",
-  export_csv:"Export CSV",need_review:"Needs review",matched:"Matched",empty_recon_t:"Nothing to verify",empty_recon_b:"Load an invoice and start scanning.",
-  lbl_ok:"Match",lbl_short:"Short {n}",lbl_over:"Over +{n}",lbl_miss:"Missing",lbl_extra:"Not on inv.",
-  menu:"Menu",mi_invoice:"\uD83D\uDCC4 Load / edit invoice",mi_rename:"\u270F\uFE0F Rename session",mi_new:"\u2795 New session",mi_clear:"\uD83D\uDDD1\uFE0F Reset counts",
-  inv_title:"Load invoice",inv_hint:"Pick the file \u2014 the app auto-detects the supplier and columns. Multiple files OK; same items are summed.",
-  pick_file:"\uD83D\uDCCE Choose invoice file / add more",supplier:"Supplier",new_supplier_ph:"New supplier name",
-  merge:"Merge into current invoice (split shipments)",ignore_zero:"Ignore leading zeros (UPC/EAN)",chk_digit:"Barcode check (auto-block misreads)",
-  load_btn:"Load",edit_qty:"Counted qty (set exact value)",
-  det_ok:"Detected: {v}",det_no:"Not auto-detected \u2014 check columns below",
-  rows_n:"{n} rows",files_n:"{c} files \u00B7 ",map_note:"Blue text = Excel header. Column choice applies to all files.",
-  role_ignore:"ignore",role_b:"Barcode",role_n:"Name",role_q:"Qty",vendor_custom:"Custom (not saved)",vendor_new:"+ Add new supplier\u2026",
-  fl_match:"\u2713 Match ({n}/{e})",fl_short:"Short {n}/{e} ({r} left)",fl_over:"Over {n}/{e} (+{d})",fl_extra:"Not on invoice \u00B7 total {n}",fl_add:"+{a} \u00B7 total {n}",
-  fl_bad:"\u26A0 Bad barcode read \u2014 ignored ({c})",fl_loaded:"{v}invoice: {i} items {q} pcs",fl_merged:"Merged {c} invoices \u00B7 {i} items {q} pcs",
-  a_needb:"Please choose the Barcode column.",a_needq:"Please choose the Qty column.",a_noread:"Could not read barcode/qty. Check the columns.",a_noexport:"Nothing to export.",a_xlsxlib:"Excel library not loaded. Check your connection.",
-  cf_new:"Start a new session? Current counts will be cleared (supplier formats kept). Export first if needed. Continue?",
-  cf_clear:"This only resets scanned counts. Invoice stays. Continue?",pr_rename:"Session name",
-  foot_note:"Unauthorized use prohibited",pin_sub:"US BEAUTY LLC \u00B7 Staff only",pin_enter:"Enter",pin_wrong:"Wrong code",
-  new_item:"New item (not on invoice)",not_in_inv:"Not on invoice",inv_n:"Invoice {n}",sess_new:"Receiving {d}"},
- ko:{app_title:"\uC785\uACE0 \uAC80\uC218",nav_scan:"\uC2A4\uCE94",nav_list:"\uBAA9\uB85D",nav_recon:"\uB300\uC870",
-  ph_scan:"\uBC14\uCF54\uB4DC \uC2A4\uCE94 \uB610\uB294 \uC785\uB825 \uD6C4 Enter",ph_scanner:"\uC900\uBE44\uB428 \u2014 \uC2A4\uCE94\uD558\uC138\uC694",
-  scanner_mode:"\uC2A4\uCE94\uB108 \uBAA8\uB4DC",cam_on:"\uD83D\uDCF7 \uCE74\uBA54\uB77C",cam_off:"\u25A0 \uCE74\uBA54\uB77C \uB044\uAE30",
-  cur_scan:"\uD604\uC7AC \uAC80\uC218",add:"\uCD94\uAC00",cancel:"\uCDE8\uC18C",save:"\uC800\uC7A5",delete:"\uC0AD\uC81C",close:"\uB2EB\uAE30",
-  recent:"\uCD5C\uADFC \uC2A4\uCE94",empty_recent:"\uC544\uC9C1 \uC2A4\uCE94\uD55C \uD488\uBAA9\uC774 \uC5C6\uC5B4\uC694.<br>\uBC14\uCF54\uB4DC\uB97C \uC2A4\uCE94\uD558\uAC70\uB098 \uC785\uB825\uD574 \uBCF4\uC138\uC694.",
-  search_ph:"\uD488\uBAA9\uBA85 \uB610\uB294 \uBC14\uCF54\uB4DC \uAC80\uC0C9",empty_list_t:"\uBAA9\uB85D\uC774 \uBE44\uC5B4 \uC788\uC5B4\uC694",empty_list_b:"\uC778\uBCF4\uC774\uC2A4\uB97C \uBD88\uB7EC\uC624\uAC70\uB098 \uC2A4\uCE94\uC744 \uC2DC\uC791\uD558\uC138\uC694.",
-  recv_of:"\uAC1C \uAC80\uC218 (\uC778\uBCF4\uC774\uC2A4 \uC218\uB7C9 \uB300\uBE44)",st_ok:"\uC77C\uCE58",st_short:"\uBD80\uC871",st_over:"\uCD08\uACFC",st_miss:"\uB204\uB77D",st_extra:"\uC778\uBCF4\uC774\uC2A4\uC678",st_total:"\uC804\uCCB4\uD488\uBAA9",
-  export_csv:"CSV \uB0B4\uBCF4\uB0B4\uAE30",need_review:"\uD655\uC778 \uD544\uC694",matched:"\uC77C\uCE58",empty_recon_t:"\uB300\uC870\uD560 \uB0B4\uC6A9\uC774 \uC5C6\uC5B4\uC694",empty_recon_b:"\uC778\uBCF4\uC774\uC2A4\uB97C \uBD88\uB7EC\uC624\uACE0 \uC2A4\uCE94\uC744 \uC2DC\uC791\uD558\uC138\uC694.",
-  lbl_ok:"\uC77C\uCE58",lbl_short:"\uBD80\uC871 {n}",lbl_over:"\uCD08\uACFC +{n}",lbl_miss:"\uB204\uB77D",lbl_extra:"\uC778\uBCF4\uC774\uC2A4\uC678",
-  menu:"\uBA54\uB274",mi_invoice:"\uD83D\uDCC4 \uC778\uBCF4\uC774\uC2A4 \uBD88\uB7EC\uC624\uAE30 / \uC218\uC815",mi_rename:"\u270F\uFE0F \uC138\uC158 \uC774\uB984 \uBCC0\uACBD",mi_new:"\u2795 \uC0C8 \uC138\uC158 \uC2DC\uC791",mi_clear:"\uD83D\uDDD1\uFE0F \uAC80\uC218 \uAE30\uB85D \uCD08\uAE30\uD654",
-  inv_title:"\uC778\uBCF4\uC774\uC2A4 \uBD88\uB7EC\uC624\uAE30",inv_hint:"\uD30C\uC77C\uB9CC \uACE0\uB974\uBA74 \uC5C5\uCCB4\uC640 \uCE78\uC744 \uC790\uB3D9 \uAC10\uC9C0\uD574\uC694. \uC5EC\uB7EC \uC7A5\uB3C4 \uD55C\uABC8\uC5D0 OK, \uAC19\uC740 \uD488\uBAA9\uC740 \uD569\uC0B0\uB3FC\uC694.",
-  pick_file:"\uD83D\uDCCE \uC778\uBCF4\uC774\uC2A4 \uD30C\uC77C \uC120\uD0DD / \uB354 \uB2F4\uAE30",supplier:"\uACF5\uAE09\uC5C5\uCCB4",new_supplier_ph:"\uC0C8 \uC5C5\uCCB4 \uC774\uB984",
-  merge:"\uAE30\uC874 \uC778\uBCF4\uC774\uC2A4\uC5D0 \uD569\uCE58\uAE30 (\uB098\uB220 \uC628 \uC5EC\uB7EC \uC7A5)",ignore_zero:"\uBC14\uCF54\uB4DC \uC55E\uC790\uB9AC 0 \uBB34\uC2DC (UPC/EAN \uAD8C\uC7A5)",chk_digit:"\uBC14\uCF54\uB4DC \uAC80\uC99D (\uC624\uB3C5 \uC790\uB3D9 \uCC28\uB2E8)",
-  load_btn:"\uBD88\uB7EC\uC624\uAE30",edit_qty:"\uAC80\uC218 \uC218\uB7C9 (\uC815\uD655\uD55C \uAC12\uC73C\uB85C \uC218\uC815)",
-  det_ok:"\uAC10\uC9C0\uB428: {v}",det_no:"\uC790\uB3D9\uAC10\uC9C0 \uC548\uB428 \u2014 \uC544\uB798 \uCE78\uC744 \uD655\uC778\uD558\uC138\uC694",
-  rows_n:"{n}\uC904",files_n:"\uD30C\uC77C {c}\uAC1C \u00B7 ",map_note:"\uD30C\uB780 \uAE00\uC528\uAC00 \uC5D1\uC140 \uD5E4\uB354\uC608\uC694. \uCE78 \uC9C0\uC815\uC740 \uBAA8\uB4E0 \uD30C\uC77C\uC5D0 \uB3D9\uC77C\uD558\uAC8C \uC801\uC6A9\uB3FC\uC694.",
-  role_ignore:"\uBB34\uC2DC",role_b:"\uBC14\uCF54\uB4DC",role_n:"\uD488\uBAA9\uBA85",role_q:"\uC218\uB7C9",vendor_custom:"\uC9C1\uC811 \uC9C0\uC815 (\uC800\uC7A5 \uC548 \uD568)",vendor_new:"+ \uC0C8 \uC5C5\uCCB4 \uCD94\uAC00\u2026",
-  fl_match:"\u2713 \uC77C\uCE58 ({n}/{e})",fl_short:"\uBD80\uC871 {n}/{e} ({r}\uAC1C \uB0A8\uC74C)",fl_over:"\uCD08\uACFC {n}/{e} (+{d})",fl_extra:"\uC778\uBCF4\uC774\uC2A4\uC5D0 \uC5C6\uC74C \u00B7 \uB204\uC801 {n}\uAC1C",fl_add:"+{a} \u00B7 \uB204\uC801 {n}\uAC1C",
-  fl_bad:"\u26A0 \uBC14\uCF54\uB4DC \uC624\uB3C5 \u2014 \uBB34\uC2DC\uB428 ({c})",fl_loaded:"{v}\uC778\uBCF4\uC774\uC2A4 {i}\uD488\uBAA9 {q}\uAC1C \uBD88\uB7EC\uC634",fl_merged:"\uC778\uBCF4\uC774\uC2A4 {c}\uC7A5 \uD569\uCE68 \u00B7 {i}\uD488\uBAA9 {q}\uAC1C",
-  a_needb:"\uBC14\uCF54\uB4DC \uCE78\uC744 \uC9C0\uC815\uD574 \uC8FC\uC138\uC694.",a_needq:"\uC218\uB7C9 \uCE78\uC744 \uC9C0\uC815\uD574 \uC8FC\uC138\uC694.",a_noread:"\uBC14\uCF54\uB4DC/\uC218\uB7C9\uC744 \uC77D\uC9C0 \uBABB\uD588\uC5B4\uC694. \uCE78 \uC9C0\uC815\uC744 \uD655\uC778\uD558\uC138\uC694.",a_noexport:"\uB0B4\uBCF4\uB0BC \uB0B4\uC6A9\uC774 \uC5C6\uC5B4\uC694.",a_xlsxlib:"\uC5D1\uC140 \uB77C\uC774\uBE0C\uB7EC\uB9AC\uB97C \uBABB \uBD88\uB7EC\uC654\uC5B4\uC694. \uC5F0\uACB0\uC744 \uD655\uC778\uD558\uC138\uC694.",
-  cf_new:"\uC0C8 \uC138\uC158\uC744 \uC2DC\uC791\uD558\uBA74 \uD604\uC7AC \uAC80\uC218 \uB0B4\uC6A9\uC774 \uC0AC\uB77C\uC838\uC694(\uC5C5\uCCB4 \uD615\uC2DD\uC740 \uC720\uC9C0). \uD544\uC694\uD558\uBA74 \uBA3C\uC800 CSV\uB85C \uB0B4\uBCF4\uB0B4\uC138\uC694. \uACC4\uC18D\uD560\uAE4C\uC694?",
-  cf_clear:"\uAC80\uC218 \uAE30\uB85D(\uC2A4\uCE94 \uC218\uB7C9)\uB9CC \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4. \uC778\uBCF4\uC774\uC2A4\uB294 \uC720\uC9C0\uB3FC\uC694. \uACC4\uC18D\uD560\uAE4C\uC694?",pr_rename:"\uC138\uC158 \uC774\uB984",
-  foot_note:"\uBB34\uB2E8 \uC0AC\uC6A9 \uAE08\uC9C0",pin_sub:"US BEAUTY LLC \u00B7 \uC9C1\uC6D0 \uC804\uC6A9",pin_enter:"\uC785\uC7A5",pin_wrong:"\uCF54\uB4DC\uAC00 \uD2C0\uB824\uC694",
-  new_item:"\uC0C8 \uD488\uBAA9 (\uC778\uBCF4\uC774\uC2A4\uC5D0 \uC5C6\uC74C)",not_in_inv:"\uC778\uBCF4\uC774\uC2A4\uC5D0 \uC5C6\uC74C",inv_n:"\uC778\uBCF4\uC774\uC2A4 {n}\uAC1C",sess_new:"\uC785\uACE0 {d}"},
- es:{app_title:"Recepci\u00F3n",nav_scan:"Escanear",nav_list:"Lista",nav_recon:"Verificar",
-  ph_scan:"Escanea o escribe el c\u00F3digo y Enter",ph_scanner:"Listo \u2014 dispara el esc\u00E1ner",
-  scanner_mode:"Esc\u00E1ner",cam_on:"\uD83D\uDCF7 C\u00E1mara",cam_off:"\u25A0 Apagar c\u00E1mara",
-  cur_scan:"Contado",add:"A\u00F1adir",cancel:"Cancelar",save:"Guardar",delete:"Borrar",close:"Cerrar",
-  recent:"Escaneos recientes",empty_recent:"A\u00FAn no hay art\u00EDculos.<br>Escanea o escribe un c\u00F3digo.",
-  search_ph:"Buscar nombre o c\u00F3digo",empty_list_t:"La lista est\u00E1 vac\u00EDa",empty_list_b:"Carga una factura o empieza a escanear.",
-  recv_of:"recibidos (vs factura)",st_ok:"Coincide",st_short:"Falta",st_over:"De m\u00E1s",st_miss:"Ausente",st_extra:"Fuera fact.",st_total:"Art\u00EDculos",
-  export_csv:"Exportar CSV",need_review:"Revisar",matched:"Coincide",empty_recon_t:"Nada que verificar",empty_recon_b:"Carga una factura y empieza a escanear.",
-  lbl_ok:"Coincide",lbl_short:"Falta {n}",lbl_over:"De m\u00E1s +{n}",lbl_miss:"Ausente",lbl_extra:"Fuera fact.",
-  menu:"Men\u00FA",mi_invoice:"\uD83D\uDCC4 Cargar / editar factura",mi_rename:"\u270F\uFE0F Renombrar sesi\u00F3n",mi_new:"\u2795 Nueva sesi\u00F3n",mi_clear:"\uD83D\uDDD1\uFE0F Reiniciar conteos",
-  inv_title:"Cargar factura",inv_hint:"Elige el archivo \u2014 la app detecta el proveedor y las columnas. Varios archivos OK; se suman.",
-  pick_file:"\uD83D\uDCCE Elegir archivo / a\u00F1adir m\u00E1s",supplier:"Proveedor",new_supplier_ph:"Nombre del proveedor",
-  merge:"Unir a la factura actual (env\u00EDos divididos)",ignore_zero:"Ignorar ceros iniciales (UPC/EAN)",chk_digit:"Verificaci\u00F3n de c\u00F3digo (bloquea errores)",
-  load_btn:"Cargar",edit_qty:"Cantidad contada (valor exacto)",
-  det_ok:"Detectado: {v}",det_no:"No detectado \u2014 revisa las columnas",
-  rows_n:"{n} filas",files_n:"{c} archivos \u00B7 ",map_note:"Texto azul = encabezado de Excel. La elecci\u00F3n aplica a todos los archivos.",
-  role_ignore:"ignorar",role_b:"C\u00F3digo",role_n:"Nombre",role_q:"Cant.",vendor_custom:"Personalizado (sin guardar)",vendor_new:"+ A\u00F1adir proveedor\u2026",
-  fl_match:"\u2713 Coincide ({n}/{e})",fl_short:"Falta {n}/{e} (faltan {r})",fl_over:"De m\u00E1s {n}/{e} (+{d})",fl_extra:"Fuera de factura \u00B7 total {n}",fl_add:"+{a} \u00B7 total {n}",
-  fl_bad:"\u26A0 Lectura err\u00F3nea \u2014 ignorada ({c})",fl_loaded:"{v}factura: {i} art. {q} pzs",fl_merged:"{c} facturas unidas \u00B7 {i} art. {q} pzs",
-  a_needb:"Elige la columna de C\u00F3digo.",a_needq:"Elige la columna de Cantidad.",a_noread:"No se pudo leer c\u00F3digo/cantidad. Revisa las columnas.",a_noexport:"Nada que exportar.",a_xlsxlib:"Librer\u00EDa Excel no cargada. Revisa la conexi\u00F3n.",
-  cf_new:"\u00BFNueva sesi\u00F3n? Se borrar\u00E1n los conteos actuales (se guardan los formatos). Exporta primero si lo necesitas. \u00BFContinuar?",
-  cf_clear:"Esto solo reinicia los conteos. La factura se mantiene. \u00BFContinuar?",pr_rename:"Nombre de la sesi\u00F3n",
-  foot_note:"Uso no autorizado prohibido",pin_sub:"US BEAUTY LLC \u00B7 Solo personal",pin_enter:"Entrar",pin_wrong:"C\u00F3digo incorrecto",
-  new_item:"Art\u00EDculo nuevo (fuera de factura)",not_in_inv:"Fuera de factura",inv_n:"Factura {n}",sess_new:"Recepci\u00F3n {d}"}
+const I18N = {
+  ko:{app_title:"입고 검수 Pro",pin_sub:"US BEAUTY LLC · 직원 전용",pin_enter:"입장",pin_wrong:"코드가 틀려요",today_progress:"오늘 진행률",recv:"검수",expected:"예정",short:"부족",over:"초과",extra:"외품",match:"일치",missing:"누락",total:"전체",scan_title:"바코드 스캔",scanner_mode:"스캐너 모드",quick_mode:"연속 추가",camera:"카메라",camera_stop:"카메라 끄기",undo:"마지막 취소",scan_hint:"핸드 스캐너는 “스캐너 모드 + 연속 추가”로 두면 스캔마다 자동으로 1개씩 누적됩니다.",invoice_qty:"인보이스",counted_qty:"현재",remain_qty:"남음",cancel:"취소",add_qty:"수량 추가",recent_scans:"최근 스캔",review:"대조 보기",invoice_title:"인보이스 불러오기",invoice_hint:"CSV, TSV, TXT, XLS, XLSX 파일을 여러 개 한 번에 넣을 수 있습니다. 같은 바코드는 자동 합산됩니다.",pick_invoice:"📎 파일 선택 / 추가",pick_invoice_sub:"여러 장의 인보이스도 한 번에 선택하세요.",vendor:"공급업체",new_vendor:"새 업체명",merge_invoice:"현재 인보이스에 합치기",ignore_zero:"바코드 앞자리 0 무시",check_digit:"UPC/EAN 체크디지트 검증",save_vendor_map:"업체별 칸 설정 저장",clear_files:"파일 비우기",load_invoice:"인보이스 적용",list_title:"전체 목록",sort_problem:"문제 우선",sort_name:"이름순",sort_recent:"최근순",recon_title:"대조 리포트",export_csv:"CSV 내보내기",export_xlsx:"Excel 내보내기",nav_scan:"스캔",nav_invoice:"인보이스",nav_list:"목록",nav_recon:"대조",menu:"메뉴",rename_session:"세션 이름 변경",rename_hint:"작업일/공급업체명으로 구분하세요.",backup_json:"백업 파일 저장",backup_hint:"현재 세션 전체를 JSON으로 저장합니다.",restore_json:"백업 불러오기",restore_hint:"저장했던 JSON 세션을 복원합니다.",clear_counts:"검수 수량만 초기화",clear_counts_hint:"인보이스는 유지됩니다.",new_session:"새 세션 시작",new_session_hint:"현재 검수/인보이스를 비웁니다. 업체 설정은 유지됩니다.",close:"닫기",delete:"삭제",save:"저장",go:"확인",manual:"수동",scanner:"스캐너",quick:"연속 +1",detected:"감지됨",not_detected:"자동 감지 안됨 — 아래 칸을 확인하세요",barcode:"바코드",name:"품목명",qty:"수량",ignore:"무시",rows:"{n}줄",files_rows:"파일 {f}개 · {r}줄",custom_vendor:"직접 지정",add_vendor:"+ 새 업체 추가…",empty_recent:"아직 스캔한 품목이 없어요.<br>바코드를 스캔하거나 입력해 보세요.",empty_list:"목록이 비어 있어요.<br>인보이스를 불러오거나 스캔을 시작하세요.",empty_recon:"대조할 내용이 없어요.<br>인보이스를 불러오고 스캔을 시작하세요.",need_review:"확인 필요",matched_items:"일치 품목",all:"전체",problem:"문제",status_ok:"일치",status_short:"부족 {n}",status_over:"초과 +{n}",status_missing:"누락",status_extra:"인보이스외",not_on_invoice:"인보이스에 없음",new_item:"새 품목",toast_added:"+{a} · 누적 {n}",toast_match:"✓ 일치 ({n}/{e})",toast_short:"부족 {n}/{e} ({r}개 남음)",toast_over:"초과 {n}/{e} (+{d})",toast_extra:"인보이스외 · 누적 {n}",bad_barcode:"바코드 오독 의심 — 무시됨",duplicate:"중복 스캔 무시",undo_done:"마지막 스캔을 취소했습니다",nothing_undo:"취소할 스캔이 없습니다",choose_barcode:"바코드 칸을 지정하세요",choose_qty:"수량 칸을 지정하세요",no_rows:"읽을 수 있는 행이 없습니다. 칸 설정을 확인하세요.",loaded:"인보이스 적용 완료 · {i}품목 {q}개",merged:"인보이스 합치기 완료 · {i}품목 {q}개",no_export:"내보낼 내용이 없습니다",xlsx_missing:"Excel 라이브러리를 불러오지 못해 CSV로 저장합니다",rename_prompt:"세션 이름",confirm_clear:"검수 수량만 초기화할까요? 인보이스는 유지됩니다.",confirm_new:"새 세션을 시작할까요? 현재 인보이스와 검수 기록은 비워집니다.",restored:"백업을 복원했습니다",backup_saved:"백업 파일을 저장했습니다",file_error:"파일을 읽지 못했습니다",progress_none:"인보이스를 불러오고 스캔을 시작하세요.",progress_text:"{recv}/{exp}개 검수 · 확인 필요 {p}품목",problem_sub:"확인이 필요한 품목",all_clear:"모든 품목이 일치합니다",session_default:"입고 {d}"},
+  en:{app_title:"Receiving Pro",pin_sub:"US BEAUTY LLC · Staff only",pin_enter:"Enter",pin_wrong:"Wrong code",today_progress:"Today's progress",recv:"Counted",expected:"Expected",short:"Short",over:"Over",extra:"Extra",match:"Match",missing:"Missing",total:"Total",scan_title:"Barcode Scan",scanner_mode:"Scanner mode",quick_mode:"Quick add",camera:"Camera",camera_stop:"Stop camera",undo:"Undo last",scan_hint:"For handheld scanners, turn on Scanner Mode + Quick Add to add 1 automatically per scan.",invoice_qty:"Invoice",counted_qty:"Counted",remain_qty:"Left",cancel:"Cancel",add_qty:"Add qty",recent_scans:"Recent scans",review:"Review",invoice_title:"Load Invoice",invoice_hint:"Load CSV, TSV, TXT, XLS, or XLSX files. Multiple invoices are supported and duplicate barcodes are summed.",pick_invoice:"📎 Choose / add files",pick_invoice_sub:"Select multiple invoice files at once.",vendor:"Supplier",new_vendor:"New supplier",merge_invoice:"Merge into current invoice",ignore_zero:"Ignore leading zeros",check_digit:"UPC/EAN check digit validation",save_vendor_map:"Save vendor column map",clear_files:"Clear files",load_invoice:"Apply invoice",list_title:"All items",sort_problem:"Problems first",sort_name:"Name",sort_recent:"Recent",recon_title:"Reconciliation",export_csv:"Export CSV",export_xlsx:"Export Excel",nav_scan:"Scan",nav_invoice:"Invoice",nav_list:"List",nav_recon:"Verify",menu:"Menu",rename_session:"Rename session",rename_hint:"Use date/vendor to identify this job.",backup_json:"Save backup",backup_hint:"Download the full session as JSON.",restore_json:"Restore backup",restore_hint:"Restore a saved JSON session.",clear_counts:"Clear counted qty",clear_counts_hint:"Invoice stays loaded.",new_session:"New session",new_session_hint:"Clear current invoice and counts. Vendor settings stay.",close:"Close",delete:"Delete",save:"Save",go:"Go",manual:"Manual",scanner:"Scanner",quick:"Quick +1",detected:"Detected",not_detected:"Not detected — review columns below",barcode:"Barcode",name:"Name",qty:"Qty",ignore:"Ignore",rows:"{n} rows",files_rows:"{f} files · {r} rows",custom_vendor:"Custom",add_vendor:"+ Add supplier…",empty_recent:"No scans yet.<br>Scan or type a barcode.",empty_list:"The list is empty.<br>Load an invoice or start scanning.",empty_recon:"Nothing to verify.<br>Load an invoice and start scanning.",need_review:"Needs review",matched_items:"Matched items",all:"All",problem:"Problems",status_ok:"Match",status_short:"Short {n}",status_over:"Over +{n}",status_missing:"Missing",status_extra:"Not on invoice",not_on_invoice:"Not on invoice",new_item:"New item",toast_added:"+{a} · total {n}",toast_match:"✓ Match ({n}/{e})",toast_short:"Short {n}/{e} ({r} left)",toast_over:"Over {n}/{e} (+{d})",toast_extra:"Not on invoice · total {n}",bad_barcode:"Suspicious barcode — ignored",duplicate:"Duplicate scan ignored",undo_done:"Last scan undone",nothing_undo:"Nothing to undo",choose_barcode:"Choose the barcode column",choose_qty:"Choose the qty column",no_rows:"No readable rows. Check the columns.",loaded:"Invoice applied · {i} items {q} pcs",merged:"Invoice merged · {i} items {q} pcs",no_export:"Nothing to export",xlsx_missing:"Excel library missing; saving CSV instead",rename_prompt:"Session name",confirm_clear:"Clear counted quantities only? Invoice stays.",confirm_new:"Start a new session? Current invoice and counts will be cleared.",restored:"Backup restored",backup_saved:"Backup saved",file_error:"Could not read file",progress_none:"Load an invoice and start scanning.",progress_text:"{recv}/{exp} counted · {p} items need review",problem_sub:"Items needing review",all_clear:"All items match",session_default:"Receiving {d}"},
+  es:{app_title:"Recepción Pro",pin_sub:"US BEAUTY LLC · Solo personal",pin_enter:"Entrar",pin_wrong:"Código incorrecto",today_progress:"Progreso de hoy",recv:"Contado",expected:"Esperado",short:"Falta",over:"Sobra",extra:"Extra",match:"Coincide",missing:"Ausente",total:"Total",scan_title:"Escanear código",scanner_mode:"Modo escáner",quick_mode:"Añadir rápido",camera:"Cámara",camera_stop:"Apagar cámara",undo:"Deshacer",scan_hint:"Con escáner manual, usa Modo escáner + Añadir rápido para sumar 1 por lectura.",invoice_qty:"Factura",counted_qty:"Contado",remain_qty:"Falta",cancel:"Cancelar",add_qty:"Añadir",recent_scans:"Recientes",review:"Revisar",invoice_title:"Cargar factura",invoice_hint:"Carga CSV, TSV, TXT, XLS o XLSX. Varias facturas OK; códigos iguales se suman.",pick_invoice:"📎 Elegir / añadir archivos",pick_invoice_sub:"Puedes seleccionar varios archivos.",vendor:"Proveedor",new_vendor:"Nuevo proveedor",merge_invoice:"Unir a factura actual",ignore_zero:"Ignorar ceros iniciales",check_digit:"Validar UPC/EAN",save_vendor_map:"Guardar mapeo",clear_files:"Vaciar archivos",load_invoice:"Aplicar factura",list_title:"Lista completa",sort_problem:"Problemas primero",sort_name:"Nombre",sort_recent:"Reciente",recon_title:"Verificación",export_csv:"Exportar CSV",export_xlsx:"Exportar Excel",nav_scan:"Escanear",nav_invoice:"Factura",nav_list:"Lista",nav_recon:"Verificar",menu:"Menú",rename_session:"Renombrar sesión",rename_hint:"Usa fecha/proveedor.",backup_json:"Guardar respaldo",backup_hint:"Descarga la sesión en JSON.",restore_json:"Restaurar respaldo",restore_hint:"Restaura un JSON guardado.",clear_counts:"Limpiar conteos",clear_counts_hint:"La factura se mantiene.",new_session:"Nueva sesión",new_session_hint:"Borra factura y conteos. Mantiene proveedores.",close:"Cerrar",delete:"Borrar",save:"Guardar",go:"OK",manual:"Manual",scanner:"Escáner",quick:"Rápido +1",detected:"Detectado",not_detected:"No detectado — revisa columnas",barcode:"Código",name:"Nombre",qty:"Cant.",ignore:"Ignorar",rows:"{n} filas",files_rows:"{f} archivos · {r} filas",custom_vendor:"Personalizado",add_vendor:"+ Añadir proveedor…",empty_recent:"Aún no hay escaneos.<br>Escanea o escribe un código.",empty_list:"La lista está vacía.<br>Carga una factura o empieza.",empty_recon:"Nada que verificar.<br>Carga una factura y empieza.",need_review:"Revisar",matched_items:"Coinciden",all:"Todo",problem:"Problemas",status_ok:"Coincide",status_short:"Falta {n}",status_over:"Sobra +{n}",status_missing:"Ausente",status_extra:"Fuera factura",not_on_invoice:"Fuera factura",new_item:"Nuevo artículo",toast_added:"+{a} · total {n}",toast_match:"✓ Coincide ({n}/{e})",toast_short:"Falta {n}/{e} ({r})",toast_over:"Sobra {n}/{e} (+{d})",toast_extra:"Fuera factura · total {n}",bad_barcode:"Código sospechoso — ignorado",duplicate:"Duplicado ignorado",undo_done:"Último escaneo deshecho",nothing_undo:"Nada que deshacer",choose_barcode:"Elige columna de código",choose_qty:"Elige columna de cantidad",no_rows:"No hay filas legibles. Revisa columnas.",loaded:"Factura aplicada · {i} art. {q} pzs",merged:"Factura unida · {i} art. {q} pzs",no_export:"Nada que exportar",xlsx_missing:"Falta librería Excel; guardando CSV",rename_prompt:"Nombre de sesión",confirm_clear:"¿Limpiar conteos? La factura queda.",confirm_new:"¿Nueva sesión? Se borran factura y conteos.",restored:"Respaldo restaurado",backup_saved:"Respaldo guardado",file_error:"No se pudo leer archivo",progress_none:"Carga una factura y empieza.",progress_text:"{recv}/{exp} contado · {p} por revisar",problem_sub:"Artículos por revisar",all_clear:"Todo coincide",session_default:"Recepción {d}"}
 };
-let LANG=localStorage.getItem("recv_lang")||"ko";
-if(!I18N[LANG])LANG="ko";
-function t(k,vars){let s=(I18N[LANG]&&I18N[LANG][k])||(I18N.en[k])||k;if(vars)for(const p in vars)s=s.replace(new RegExp("{"+p+"}","g"),vars[p]);return s;}
-function applyLang(){
-  document.documentElement.lang=LANG;
-  document.querySelectorAll("[data-i18n]").forEach(e=>{e.innerHTML=t(e.getAttribute("data-i18n"));});
-  document.querySelectorAll("[data-i18n-ph]").forEach(e=>{e.placeholder=t(e.getAttribute("data-i18n-ph"));});
-  document.querySelectorAll("#langSw button").forEach(b=>b.classList.toggle("on",b.dataset.lang===LANG));
-  if(scannerMode)$("barcodeInput").placeholder=t("ph_scanner");
-  updateBadges();renderRecent();
-  if(document.querySelector('nav button.active').dataset.view==="list")renderList();
-  if(document.querySelector('nav button.active').dataset.view==="recon")renderRecon();
-}
 
-/* =================== 저장소 =================== */
-const KEY="recv_session_v4";
-const store=(()=>{let mem={},ok=false;try{localStorage.setItem("__t","1");localStorage.removeItem("__t");ok=true;}catch(e){}
-  return{get(){try{return ok?localStorage.getItem(KEY):mem[KEY];}catch(e){return mem[KEY];}},set(v){try{ok?localStorage.setItem(KEY,v):(mem[KEY]=v);}catch(e){mem[KEY]=v;}}};})();
-const $=id=>document.getElementById(id);
-function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-
-/* =================== 업체 자동감지 프로파일 =================== */
-function colVals(rows,i){return rows.slice(0,60).map(r=>String(r[i]||"").trim()).filter(Boolean);}
-function sampleText(rows,cols){return rows.slice(0,60).map(r=>cols.map(c=>String(r[c]||"")).join(" ")).join(" ").toLowerCase();}
-const VENDOR_PROFILES=[
- {name:"Outre",map:{b:8,n:1,q:3},test:(H)=>{const h=H.join("|").toLowerCase();
-   return (h.includes("item")&&h.includes("name")&&h.includes("barcode")&&h.includes("discount")&&h.includes("amount"))?9:0;}},
- {name:"KISS",map:{b:3,n:5,q:9},test:(H,R)=>{const h=H.join("|").toLowerCase();
-   if(!(h.includes("customer number")&&h.includes("shipped qty")&&h.includes("barcode")))return 0;
-   let s=6;const txt=sampleText(R,[4,5]);
-   if(/\bivy\b|ruby|\brk\b|\brbl|\brz\d|\brae|\bgf |\bgfh|kiss|gorgeous/.test(txt))s+=3;return s;}},
- {name:"RED",map:{b:3,n:5,q:9},test:(H,R)=>{const h=H.join("|").toLowerCase();
-   if(!(h.includes("customer number")&&h.includes("shipped qty")&&h.includes("barcode")))return 0;
-   let s=5;const txt=sampleText(R,[4,5]);
-   if(/red premium|\brpm\b|hot beauty|\bhbd|loc & braid|\bhs0|pocket|twist/.test(txt))s+=4;return s;}},
- {name:"Model Model",map:{b:0,n:3,q:1},test:(H,R)=>{const h=H.join("|").toLowerCase();
-   if(!(h.includes("qtyshipped")&&h.includes("styleid")&&h.includes("barcode")))return 0;
-   let s=5;const st=colVals(R,5).concat(colVals(R,7));
-   const m=st.filter(v=>/^m/i.test(v)).length,sc=st.filter(v=>/^s/i.test(v)).length;
-   const txt=sampleText(R,[3]);
-   if(m>sc||/dream weaver|mykxx/.test(txt))s+=5;else s-=3;return s;}},
- {name:"Shake-N-Go",map:{b:0,n:3,q:1},test:(H,R)=>{const h=H.join("|").toLowerCase();
-   if(!(h.includes("qtyshipped")&&h.includes("styleid")&&h.includes("barcode")))return 0;
-   let s=5;const st=colVals(R,5).concat(colVals(R,7));
-   const sc=st.filter(v=>/^s/i.test(v)).length,m=st.filter(v=>/^m/i.test(v)).length;
-   if(sc>=m)s+=4;else s-=2;return s;}},
- {name:"Global Beauty",map:{b:8,n:6,q:10},test:(H,R)=>{
-   if(colCount<11)return 0;const bc=colVals(R,8).filter(v=>/^\d{8,}$/.test(v.replace(/\D/g,""))).length;
-   const qc=colVals(R,10).filter(v=>/^\d{1,4}$/.test(v)).length;
-   return (bc>=3&&qc>=3)?4:0;}}
+const VENDOR_PROFILES = [
+  {name:"Shake-N-Go", map:{b:0,n:3,q:1}, group:"sng_mm"},
+  {name:"Model Model", map:{b:0,n:3,q:1}, group:"sng_mm"},
+  {name:"KISS", map:{b:3,n:5,q:9}, group:"kiss_red"},
+  {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
+  {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
+  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"}
 ];
-function autoDetect(H,R){let best=null,bs=0;
- VENDOR_PROFILES.forEach(p=>{let sc=0;try{sc=p.test(H||[],R||[]);}catch(e){sc=0;}if(sc>bs){bs=sc;best=p;}});
- return bs>=5?best:null;}
 
-/* =================== 세션 =================== */
-let S=load();
-function blank(){return{name:t("sess_new",{d:new Date().toLocaleDateString()}),created:Date.now(),ignoreZero:true,chkDigit:true,vendor:"",vendors:{},invoice:{},scanned:{},recent:[]};}
-function load(){const raw=store.get();let o;if(!raw)o=blank();else{try{o=JSON.parse(raw);}catch(e){o=blank();}}
-  o.recent=o.recent||[];o.vendors=o.vendors||{};if(o.chkDigit===undefined)o.chkDigit=true;
-  VENDOR_PROFILES.forEach(p=>{if(!o.vendors[p.name])o.vendors[p.name]={map:p.map,ignoreZero:true};});
-  return o;}
-function save(){store.set(JSON.stringify(S));}
-function norm(code){code=String(code).trim();if(S.ignoreZero)code=code.replace(/^0+/,"")||"0";return code;}
+const $ = (id)=>document.getElementById(id);
+const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
+const esc = (s)=>String(s ?? "").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (n)=>Number(n||0).toLocaleString();
+let memStore = {};
+const storage = {get(k){try{return localStorage.getItem(k)}catch(e){return memStore[k]||null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){memStore[k]=v}},remove(k){try{localStorage.removeItem(k)}catch(e){delete memStore[k]}}};
+let selectedFiles = [];
+let pending = null;
+let editKey = null;
+let cam = null;
+let camOn = false;
+let lastScan = {code:"", ts:0};
+let activeFilter = "all";
 
-/* =================== 바코드 검증 (체크디지트) =================== */
-function checkDigitValid(code){
-  if(!/^\d+$/.test(code))return true;            // 문자 포함 코드는 통과
-  const len=code.length;
-  if(len!==8&&len!==12&&len!==13)return false;    // 표준 아닌 길이 = 오독 취급
-  const d=code.split("").map(Number),chk=d.pop();let sum=0;
-  if(len===12){d.forEach((n,i)=>sum+=(i%2===0?3:1)*n);}
-  else{d.reverse().forEach((n,i)=>sum+=(i%2===0?3:1)*n);}
-  return (10-(sum%10))%10===chk;
+function t(key, vars={}){
+  const lang = state?.lang || storage.get("recv_lang") || "ko";
+  let s = (I18N[lang] && I18N[lang][key]) || I18N.ko[key] || key;
+  Object.entries(vars).forEach(([k,v])=>{s=s.replaceAll(`{${k}}`, v)});
+  return s;
 }
-function suspiciousRead(raw){ // true면 오독 의심
-  const c=String(raw).replace(/\s/g,"");
-  if(!/^\d+$/.test(c))return false;              // 문자 코드는 검증 안 함
-  return !checkDigitValid(c);
+function todayLabel(){return new Date().toLocaleDateString(undefined,{year:"numeric",month:"2-digit",day:"2-digit"});}
+function blankState(){
+  const vendors = {};
+  VENDOR_PROFILES.forEach(v=>vendors[v.name]={map:{...v.map}, ignoreZero:true});
+  const lang = storage.get("recv_lang") || "ko";
+  return {version:2, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now()};
+}
+function migrateOld(old){
+  const fresh = blankState();
+  try{
+    fresh.sessionName = old.name || fresh.sessionName;
+    fresh.vendor = old.vendor || "";
+    fresh.vendors = {...fresh.vendors, ...(old.vendors||{})};
+    fresh.invoice = old.invoice || {};
+    fresh.scanned = old.scanned || {};
+    fresh.history = (old.recent||[]).map(r=>({key:r.key, code:r.code, name:r.name, delta:r.added||0, ts:r.ts||Date.now(), source:"migrated"}));
+    fresh.options.ignoreZero = old.ignoreZero !== false;
+    fresh.options.checkDigit = old.chkDigit !== false;
+    fresh.invCount = old.invCount || (Object.keys(fresh.invoice).length ? 1 : 0);
+  }catch(e){}
+  return fresh;
+}
+function loadState(){
+  const raw = storage.get(KEY);
+  if(raw){try{return normalizeState(JSON.parse(raw))}catch(e){}}
+  const old = storage.get(OLD_KEY);
+  if(old){try{return normalizeState(migrateOld(JSON.parse(old)))}catch(e){}}
+  return blankState();
+}
+function normalizeState(s){
+  const b = blankState();
+  s = {...b, ...s};
+  s.options = {...b.options, ...(s.options||{})};
+  s.vendors = {...b.vendors, ...(s.vendors||{})};
+  s.invoice = s.invoice || {};
+  s.scanned = s.scanned || {};
+  s.history = Array.isArray(s.history) ? s.history : [];
+  if(!I18N[s.lang]) s.lang = "ko";
+  return s;
+}
+let state = loadState();
+function save(){state.updatedAt=Date.now();storage.set(KEY, JSON.stringify(state));storage.set("recv_lang", state.lang);storage.set("recv_theme", state.theme || "light");}
+
+function applyTheme(){
+  document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
+  $("themeBtn").textContent = state.theme === "dark" ? "☀" : "◐";
+}
+function applyLang(){
+  document.documentElement.lang = state.lang;
+  $$('[data-i18n]').forEach(el=>{el.innerHTML=t(el.dataset.i18n)});
+  $$('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});
+  $$("#langSw button").forEach(b=>b.classList.toggle("on", b.dataset.lang === state.lang));
+  $("barcodeInput").placeholder = state.options.scannerMode ? "Ready — scan now" : (state.lang==="ko" ? "바코드 스캔 또는 입력 후 Enter" : "Scan or type barcode, then Enter");
+  renderEverything();
+}
+function normalizeCode(raw){
+  let code = String(raw ?? "").trim().replace(/\s+/g,"");
+  code = code.replace(/[\u200B-\u200D\uFEFF]/g,"");
+  if(state.options.ignoreZero) code = code.replace(/^0+/,"") || "0";
+  return code;
+}
+function cleanCode(raw){return String(raw ?? "").trim().replace(/[^0-9A-Za-z]/g,"");}
+function isStandardDigitBarcode(code){return /^\d+$/.test(code) && [8,12,13].includes(code.length);}
+function validCheckDigit(raw){
+  const code = String(raw).replace(/\D/g,"");
+  if(!isStandardDigitBarcode(code)) return true;
+  const digits = code.split("").map(Number), check = digits.pop();
+  let sum = 0;
+  if(code.length === 12){ digits.forEach((d,i)=>sum += d * (i%2===0 ? 3 : 1)); }
+  else { digits.reverse().forEach((d,i)=>sum += d * (i%2===0 ? 3 : 1)); }
+  return ((10 - (sum % 10)) % 10) === check;
+}
+function vibrate(pattern){try{if(navigator.vibrate) navigator.vibrate(pattern)}catch(e){}}
+function toast(type, msg, action){
+  const wrap=$("toastWrap");
+  const el=document.createElement("div");
+  el.className=`toast ${type||"info"}`;
+  el.innerHTML=`<span>${msg}</span>${action?`<button>${esc(action.label)}</button>`:""}`;
+  if(action) el.querySelector("button").onclick=()=>{action.onClick(); el.remove();};
+  wrap.appendChild(el);
+  setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(8px)";el.style.transition=".25s";setTimeout(()=>el.remove(),260)}, type==="bad"?3600:2600);
 }
 
-/* =================== 뷰 =================== */
-document.querySelectorAll("nav button").forEach(b=>{b.onclick=()=>{
-  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("view-"+b.dataset.view).classList.add("active");
-  if(b.dataset.view==="list")renderList();if(b.dataset.view==="recon")renderRecon();if(b.dataset.view==="scan")focusBarcode();};});
-function goView(v){document.querySelector('nav button[data-view="'+v+'"]').click();}
-
-/* =================== 스캔 =================== */
-let pending=null,scannerMode=false;
-function focusBarcode(){if(!anyModalOpen())$("barcodeInput").focus();}
-function processBarcode(raw,source){raw=String(raw).trim();if(!raw)return;
-  if(S.chkDigit&&(source==="cam"||source==="scanner")&&suspiciousRead(raw)){
-    if(navigator.vibrate)navigator.vibrate([60,40,60]);showFlash("bad",t("fl_bad",{c:esc(raw)}));return;}
-  const key=norm(raw),inv=S.invoice[key],sc=S.scanned[key];
-  pending={key,code:raw,name:(sc&&sc.name)||(inv&&inv.name)||"",cur:sc?sc.recv:0};
-  $("pName").textContent=pending.name||t("new_item");
-  $("pCode").textContent=raw;$("pCur").textContent=pending.cur;
-  $("pInvChip").outerHTML=inv?'<span id="pInvChip" class="chip inv">'+t("inv_n",{n:inv.exp})+'</span>':'<span id="pInvChip" class="chip new">'+t("not_in_inv")+'</span>';
-  $("qtyInput").value=1;$("pending").classList.add("on");
-  if(!scannerMode){const q=$("qtyInput");q.focus();q.select();}}
-function confirmAdd(){if(!pending)return;let add=parseInt($("qtyInput").value,10);if(isNaN(add)||add<1)add=1;
-  const k=pending.key;if(!S.scanned[k])S.scanned[k]={name:pending.name,recv:0,code:pending.code,last:0};
-  S.scanned[k].recv+=add;S.scanned[k].last=Date.now();if(!S.scanned[k].name&&S.invoice[k])S.scanned[k].name=S.invoice[k].name;
-  S.recent.unshift({key:k,code:pending.code,name:S.scanned[k].name,added:add,ts:Date.now()});S.recent=S.recent.slice(0,12);save();
-  const inv=S.invoice[k],now=S.scanned[k].recv;let cls="ok",msg=t("fl_add",{a:add,n:now});
-  if(inv){if(now===inv.exp){cls="ok";msg=t("fl_match",{n:now,e:inv.exp});}
-    else if(now<inv.exp){cls="warn";msg=t("fl_short",{n:now,e:inv.exp,r:inv.exp-now});}
-    else{cls="warn";msg=t("fl_over",{n:now,e:inv.exp,d:now-inv.exp});}}
-  else{cls="warn";msg=t("fl_extra",{n:now});}
-  showFlash(cls,msg);closePending();updateBadges();renderRecent();focusBarcode();}
-function showFlash(cls,msg){const f=$("flash");f.className="flash on "+cls;f.innerHTML=msg;clearTimeout(f._t);f._t=setTimeout(()=>f.classList.remove("on"),2600);}
-function closePending(){pending=null;$("pending").classList.remove("on");}
-$("barcodeInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const v=e.target.value;e.target.value="";processBarcode(v,scannerMode?"scanner":"manual");}});
-$("addBtn").onclick=confirmAdd;
-$("cancelBtn").onclick=()=>{closePending();focusBarcode();};
-$("qtyInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();confirmAdd();}});
-$("plusBtn").onclick=()=>{$("qtyInput").value=(parseInt($("qtyInput").value,10)||0)+1;};
-$("minusBtn").onclick=()=>{$("qtyInput").value=Math.max(1,(parseInt($("qtyInput").value,10)||1)-1);};
-function renderRecent(){const el=$("recentList");
-  if(!S.recent.length){el.innerHTML='<div class="empty">'+t("empty_recent")+'</div>';return;}
-  el.innerHTML=S.recent.map(r=>{const total=S.scanned[r.key]?S.scanned[r.key].recv:r.added;
-    return '<div class="row"><div class="info"><div class="rname">'+esc(r.name||t("new_item"))+'</div><div class="rcode">'+esc(r.code)+'</div></div><div class="nums">+'+r.added+'<b>'+total+'</b></div></div>';}).join("");}
-
-/* =================== 스캐너 모드 =================== */
-$("scnBtn").onclick=()=>{scannerMode=!scannerMode;const b=$("scnBtn"),inp=$("barcodeInput");
-  b.classList.toggle("on",scannerMode);
-  if(scannerMode){if(camOn)stopCam();inp.setAttribute("inputmode","none");inp.placeholder=t("ph_scanner");$("camBtn").style.display="none";}
-  else{inp.setAttribute("inputmode","numeric");inp.placeholder=t("ph_scan");$("camBtn").style.display="";}
-  inp.blur();setTimeout(()=>inp.focus(),50);};
-
-/* =================== 목록 =================== */
-function statusOf(key){const inv=S.invoice[key],sc=S.scanned[key];const recv=sc?sc.recv:0,exp=inv?inv.exp:null;
-  if(exp===null)return{cls:"s-extra",label:t("lbl_extra"),kind:"extra"};if(recv===0)return{cls:"s-miss",label:t("lbl_miss"),kind:"miss"};
-  if(recv===exp)return{cls:"s-ok",label:t("lbl_ok"),kind:"ok"};if(recv<exp)return{cls:"s-short",label:t("lbl_short",{n:exp-recv}),kind:"short"};
-  return{cls:"s-over",label:t("lbl_over",{n:recv-exp}),kind:"over"};}
-function allKeys(){return[...new Set([...Object.keys(S.invoice),...Object.keys(S.scanned)])];}
-function renderList(){const q=($("searchInput").value||"").toLowerCase().trim();const el=$("fullList");let keys=allKeys();
-  if(!keys.length){el.innerHTML='<div class="empty"><b>'+t("empty_list_t")+'</b>'+t("empty_list_b")+'</div>';return;}
-  if(q)keys=keys.filter(k=>{const nm=((S.scanned[k]&&S.scanned[k].name)||(S.invoice[k]&&S.invoice[k].name)||"").toLowerCase();
-    const cd=((S.scanned[k]&&S.scanned[k].code)||(S.invoice[k]&&S.invoice[k].code)||k).toLowerCase();return nm.includes(q)||cd.includes(q);});
-  const order={miss:0,short:1,over:2,extra:3,ok:4};keys.sort((a,b)=>order[statusOf(a).kind]-order[statusOf(b).kind]);
-  el.innerHTML=keys.map(rowHTML).join("");el.querySelectorAll(".row").forEach(r=>r.onclick=()=>openEdit(r.dataset.key));}
-function rowHTML(k){const inv=S.invoice[k],sc=S.scanned[k];const name=(sc&&sc.name)||(inv&&inv.name)||t("new_item");
-  const code=(sc&&sc.code)||(inv&&inv.code)||k;const recv=sc?sc.recv:0,exp=inv?inv.exp:"\u2013";const st=statusOf(k);
-  return '<div class="row" data-key="'+esc(k)+'"><div class="info"><div class="rname">'+esc(name)+'</div><div class="rcode">'+esc(code)+'</div></div><div class="nums">'+(exp!=="\u2013"?t("inv_n",{n:exp}):"")+'<b>'+recv+'</b></div><span class="status '+st.cls+'">'+st.label+'</span></div>';}
-$("searchInput").addEventListener("input",renderList);
-
-/* =================== 편집 =================== */
-let editKey=null;
-function openEdit(k){editKey=k;const inv=S.invoice[k],sc=S.scanned[k];const name=(sc&&sc.name)||(inv&&inv.name)||t("new_item");
-  const code=(sc&&sc.code)||(inv&&inv.code)||k;$("editName").textContent=name;$("editCode").textContent=code+(inv?"  \u00B7  "+t("inv_n",{n:inv.exp}):"  \u00B7  "+t("not_in_inv"));$("editQty").value=sc?sc.recv:0;openModal("editModal");}
-$("ePlus").onclick=()=>$("editQty").value=(parseInt($("editQty").value,10)||0)+1;
-$("eMinus").onclick=()=>$("editQty").value=Math.max(0,(parseInt($("editQty").value,10)||0)-1);
-$("editSave").onclick=()=>{const v=Math.max(0,parseInt($("editQty").value,10)||0);
-  if(v===0){delete S.scanned[editKey];}else{const inv=S.invoice[editKey];if(!S.scanned[editKey])S.scanned[editKey]={name:(inv&&inv.name)||t("new_item"),code:(inv&&inv.code)||editKey,recv:0,last:0};S.scanned[editKey].recv=v;S.scanned[editKey].last=Date.now();}
-  save();closeModal("editModal");renderList();updateBadges();};
-$("editDelete").onclick=()=>{delete S.scanned[editKey];save();closeModal("editModal");renderList();updateBadges();};
-
-/* =================== 대조 =================== */
-function renderRecon(){let ok=0,short=0,over=0,miss=0,extra=0,expU=0;const keys=allKeys();
-  keys.forEach(k=>{const inv=S.invoice[k];if(inv)expU+=inv.exp;const st=statusOf(k).kind;
-    if(st==="ok")ok++;else if(st==="short")short++;else if(st==="over")over++;else if(st==="miss")miss++;else if(st==="extra")extra++;});
-  let recvOnInv=0;Object.keys(S.invoice).forEach(k=>{if(S.scanned[k])recvOnInv+=S.scanned[k].recv;});
-  $("uExp").textContent=expU;$("uRecv").textContent=recvOnInv;
-  $("cOk").textContent=ok;$("cShort").textContent=short;$("cOver").textContent=over;$("cMiss").textContent=miss;$("cExtra").textContent=extra;$("cTotal").textContent=keys.length;
-  const problem=keys.filter(k=>statusOf(k).kind!=="ok"),good=keys.filter(k=>statusOf(k).kind==="ok");let html="";
-  if(!keys.length){html='<div class="empty"><b>'+t("empty_recon_t")+'</b>'+t("empty_recon_b")+'</div>';}
-  else{if(problem.length){html+='<div class="secttl">'+t("need_review")+' ('+problem.length+')</div>';const order={miss:0,short:1,over:2,extra:3};
-    problem.sort((a,b)=>order[statusOf(a).kind]-order[statusOf(b).kind]);html+=problem.map(rowHTML).join("");}
-    if(good.length){html+='<div class="secttl">'+t("matched")+' ('+good.length+')</div>';html+=good.map(rowHTML).join("");}}
-  const el=$("reconList");el.innerHTML=html;el.querySelectorAll(".row").forEach(r=>r.onclick=()=>openEdit(r.dataset.key));}
-$("exportBtn").onclick=()=>{const keys=allKeys();if(!keys.length){alert(t("a_noexport"));return;}
-  const rows=[["Barcode","Name","InvoiceQty","CountedQty","Diff","Status"]];const order={miss:0,short:1,over:2,extra:3,ok:4};
-  keys.sort((a,b)=>order[statusOf(a).kind]-order[statusOf(b).kind]);
-  keys.forEach(k=>{const inv=S.invoice[k],sc=S.scanned[k];const name=(sc&&sc.name)||(inv&&inv.name)||"";const code=(sc&&sc.code)||(inv&&inv.code)||k;const recv=sc?sc.recv:0,exp=inv?inv.exp:"",diff=inv?(recv-inv.exp):"";rows.push([code,name,exp,recv,diff,statusOf(k).label]);});
-  const csv="\uFEFF"+rows.map(r=>r.map(c=>{c=String(c);return /[",\n]/.test(c)?'"'+c.replace(/"/g,'""')+'"':c;}).join(",")).join("\r\n");
-  const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);a.download="checkin_"+(S.vendor||S.name).replace(/[^\w가-힣]+/g,"_")+"_"+new Date().toISOString().slice(0,10)+".csv";
-  document.body.appendChild(a);a.click();a.remove();};
-
-/* =================== 인보이스 + 업체 매핑 =================== */
-let dataRows=[],headerRow=null,colCount=0,pendingFiles=[],detectedVendor=null;
-function normCols(r){return r.map(c=>c==null?"":String(c).trim());}
-function detectDelim(text){const l=text.split(/\r?\n/).find(x=>x.trim());if(!l)return"\t";return (l.includes("\t")&&(l.match(/\t/g)||[]).length>=(l.match(/,/g)||[]).length)?"\t":",";}
-function rowsFromText(text){const d=detectDelim(text);return text.split(/\r?\n/).filter(l=>l.trim()).map(l=>l.split(d).map(c=>c.trim()));}
-function isHeaderRow(cols){const j=cols.join(" ").toLowerCase();return /(barcode|upc|item lookup|item name|description|qty|quantity|수량|품목|바코드)/.test(j)&&!cols.some(c=>/^\d{6,}$/.test(String(c).replace(/[^0-9]/g,"")));}
-function stripHeader(rows){rows=rows.map(normCols).filter(r=>r.some(c=>c!==""));let hdr=null;if(rows.length&&isHeaderRow(rows[0])){hdr=rows[0];rows=rows.slice(1);}return{rows,hdr};}
-function headerMap(){if(!headerRow)return null;const h=headerRow.map(x=>x.toLowerCase());
-  const find=arr=>{for(let i=0;i<h.length;i++){if(arr.some(x=>h[i].includes(x)))return i;}return -1;};
-  const b=find(["barcode","upc","item lookup","바코드"]);const q=find(["shipped qty","qtyshipped","qty","quantity","수량","units"]);
-  let n=find(["item name","description","desc","품목","product name","name"]);
-  if(b>=0&&q>=0)return{b,n,q};return null;}
-function guessMap(rows){let sB=Array(colCount).fill(0),sQ=Array(colCount).fill(0),sN=Array(colCount).fill(0);
-  rows.slice(0,40).forEach(r=>{for(let i=0;i<colCount;i++){const v=(r[i]||"").replace(/[",]/g,"").trim();
-    if(/^\d{6,}$/.test(v))sB[i]+=2;const n=parseInt(v,10);if(/^\d{1,4}$/.test(v)&&n>0&&n<=999)sQ[i]+=1;sN[i]+=(v.match(/[A-Za-z가-힣]/g)||[]).length;}});
-  const b=sB.indexOf(Math.max(...sB));let n=sN.indexOf(Math.max(...sN));let q=-1,best=-1;
-  for(let i=0;i<colCount;i++){if(i===b||i===n)continue;if(sQ[i]>best){best=sQ[i];q=i;}}if(q<0)q=colCount-1;
-  return{b:Math.max(0,b),n:n<0?1:n,q};}
-function currentMap(){
-  const vsel=$("vendorSelect").value;
-  if(vsel&&S.vendors[vsel]&&S.vendors[vsel].map)return S.vendors[vsel].map;
-  return headerMap()||guessMap(dataRows);}
-function renderMapping(){const area=$("mapArea");if(!dataRows.length){area.innerHTML="";$("detBadge").innerHTML="";return;}
-  const m=currentMap();const sample=dataRows[0]||[];
-  let h='<div class="maphead">'+t("map_note")+'</div>';
-  for(let i=0;i<colCount;i++){const role=(i===m.b)?"b":(i===m.q)?"q":(i===m.n)?"n":"x";
-    const label=headerRow&&headerRow[i]?"<b>"+esc(headerRow[i])+"</b> \u00B7 ":"";
-    h+='<div class="mapcol"><div class="sample">'+label+'<span>'+esc(sample[i]||"")+'</span></div>'+
-      '<select data-col="'+i+'"><option value="x"'+(role==="x"?" selected":"")+'>'+t("role_ignore")+'</option><option value="b"'+(role==="b"?" selected":"")+'>'+t("role_b")+'</option><option value="n"'+(role==="n"?" selected":"")+'>'+t("role_n")+'</option><option value="q"'+(role==="q"?" selected":"")+'>'+t("role_q")+'</option></select></div>';}
-  const totRows=pendingFiles.length?pendingFiles.reduce((a,x)=>a+x.rows.length,0):dataRows.length;
-  const fnote=pendingFiles.length>1?t("files_n",{c:pendingFiles.length}):"";
-  h+='<div class="mapnote">'+fnote+"<b>"+t("rows_n",{n:totRows})+"</b></div>";
-  area.innerHTML=h;
-  area.querySelectorAll("select").forEach(s=>s.addEventListener("change",()=>{}));}
-function readMapping(){const sels=$("mapArea").querySelectorAll("select");let b=-1,n=-1,q=-1;
-  sels.forEach(s=>{const i=parseInt(s.dataset.col,10);if(s.value==="b")b=i;else if(s.value==="n")n=i;else if(s.value==="q")q=i;});return{b,n,q};}
-function buildInvoiceFrom(rowsList,map){const inv={};let added=0;
-  rowsList.forEach(cols=>{const code=map.b>=0?String(cols[map.b]||"").replace(/[^0-9A-Za-z]/g,""):"";
-    const q=parseInt(String(map.q>=0?cols[map.q]||"":"").replace(/[^\d]/g,""),10);const name=map.n>=0?(cols[map.n]||""):"";
-    if(!code||isNaN(q)||q<=0)return;const key=norm(code);if(inv[key])inv[key].exp+=q;else inv[key]={name,exp:q,code};added++;});
-  return{inv,added};}
-function mergeInto(target,src){Object.entries(src).forEach(([k,v])=>{if(target[k])target[k].exp+=v.exp;else target[k]={...v};});}
-function refreshVendorSelect(){const sel=$("vendorSelect");const names=Object.keys(S.vendors);
-  let opts='<option value="">'+t("vendor_custom")+'</option>';names.forEach(nm=>opts+='<option value="'+esc(nm)+'">'+esc(nm)+'</option>');
-  opts+='<option value="__new">'+t("vendor_new")+'</option>';sel.innerHTML=opts;
-  sel.value=(S.vendor&&S.vendors[S.vendor])?S.vendor:"";}
-$("vendorSelect").addEventListener("change",e=>{const v=e.target.value,ni=$("newVendorName");
-  if(v==="__new"){ni.style.display="block";ni.focus();}else{ni.style.display="none";
-    if(v&&S.vendors[v])$("ignoreZero").checked=S.vendors[v].ignoreZero!==false;renderMapping();}});
-function applyDetection(){
-  detectedVendor=autoDetect(headerRow,dataRows);
-  const db=$("detBadge");
-  if(detectedVendor){
-    if(!S.vendors[detectedVendor.name])S.vendors[detectedVendor.name]={map:detectedVendor.map,ignoreZero:true};
-    refreshVendorSelect();$("vendorSelect").value=detectedVendor.name;
-    db.innerHTML='<div class="detbadge ok">\u2713 '+t("det_ok",{v:esc(detectedVendor.name)})+'</div>';
-  }else{
-    refreshVendorSelect();
-    db.innerHTML='<div class="detbadge no">\u26A0 '+t("det_no")+'</div>';
+function invoiceItem(key){return state.invoice[key] || null}
+function scannedItem(key){return state.scanned[key] || null}
+function itemName(key){return scannedItem(key)?.name || invoiceItem(key)?.name || t("new_item")}
+function itemCode(key){return scannedItem(key)?.code || invoiceItem(key)?.code || key}
+function getStatus(key){
+  const inv=invoiceItem(key), sc=scannedItem(key), recv=sc?Number(sc.recv)||0:0;
+  if(!inv) return {kind:"extra", cls:"extra", label:t("status_extra"), diff:""};
+  const exp=Number(inv.exp)||0;
+  if(recv===0) return {kind:"missing", cls:"bad", label:t("status_missing"), diff:-exp};
+  if(recv===exp) return {kind:"ok", cls:"ok", label:t("status_ok"), diff:0};
+  if(recv<exp) return {kind:"short", cls:"warn", label:t("status_short",{n:exp-recv}), diff:recv-exp};
+  return {kind:"over", cls:"over", label:t("status_over",{n:recv-exp}), diff:recv-exp};
+}
+function allKeys(){return [...new Set([...Object.keys(state.invoice), ...Object.keys(state.scanned)])];}
+function stats(){
+  const keys=allKeys();
+  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,receivedAll:0,ok:0,short:0,over:0,missing:0,extra:0,problem:0};
+  Object.entries(state.invoice).forEach(([k,v])=>{out.expectedQty += Number(v.exp)||0; if(state.scanned[k]) out.receivedOnInvoice += Number(state.scanned[k].recv)||0;});
+  Object.values(state.scanned).forEach(v=>out.receivedAll += Number(v.recv)||0);
+  keys.forEach(k=>{const kind=getStatus(k).kind; if(kind==="ok")out.ok++; else if(kind==="short")out.short++; else if(kind==="over")out.over++; else if(kind==="missing")out.missing++; else if(kind==="extra")out.extra++; if(kind!=="ok")out.problem++;});
+  out.progress = out.expectedQty ? Math.min(100, Math.round((out.receivedOnInvoice / out.expectedQty)*100)) : 0;
+  return out;
+}
+function barcodeWasDuplicate(code){
+  const now=Date.now();
+  if(lastScan.code===code && now-lastScan.ts<700) return true;
+  lastScan={code,ts:now};
+  return false;
+}
+function handleBarcode(raw, source="manual"){
+  raw = String(raw||"").trim();
+  if(!raw) return;
+  const cleaned=cleanCode(raw);
+  if(!cleaned) return;
+  if(barcodeWasDuplicate(cleaned)){ toast("warn", t("duplicate")); return; }
+  if(state.options.checkDigit && (source!=="manual") && isStandardDigitBarcode(cleaned) && !validCheckDigit(cleaned)){
+    vibrate([50,40,80]); toast("bad", `${t("bad_barcode")} (${esc(cleaned)})`); return;
   }
-  renderMapping();}
-function readOneFile(f){return new Promise(resolve=>{const ext=(f.name.split(".").pop()||"").toLowerCase();const r=new FileReader();
-  if(ext==="xls"||ext==="xlsx"){if(typeof XLSX==="undefined"){alert(t("a_xlsxlib"));resolve(null);return;}
-    r.onload=()=>{try{const wb=XLSX.read(new Uint8Array(r.result),{type:"array"});const ws=wb.Sheets[wb.SheetNames[0]];
-      /* raw:true 로 읽어 큰 숫자 바코드가 지수표기로 깨지는 것 방지, 이후 문자열화 */
-      const raw=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:""});
-      const rows=raw.map(row=>row.map(cell=>{
-        if(cell==null)return"";
-        if(typeof cell==="number"){ if(Number.isInteger(cell))return String(cell); return String(cell);}
-        return String(cell);}));
-      const s=stripHeader(rows);resolve({name:f.name,rows:s.rows,hdr:s.hdr});}catch(err){alert("Excel error ("+f.name+"): "+err);resolve(null);}};
-    r.readAsArrayBuffer(f);}
-  else{r.onload=()=>{const s=stripHeader(rowsFromText(r.result));resolve({name:f.name,rows:s.rows,hdr:s.hdr});};r.readAsText(f,"utf-8");}});}
-function renderFileList(){const el=$("fileList");if(!el)return;if(!pendingFiles.length){el.innerHTML="";return;}
-  const totRows=pendingFiles.reduce((a,x)=>a+x.rows.length,0);
-  el.innerHTML=pendingFiles.map((f,i)=>'<div class="filechip"><span class="fn">\uD83D\uDCC4 '+esc(f.name)+'</span><span class="fc">'+t("rows_n",{n:f.rows.length})+'</span><button class="fx" data-i="'+i+'">\u00D7</button></div>').join("")+
-    '<div class="filesum">'+t("files_n",{c:pendingFiles.length})+t("rows_n",{n:totRows})+'</div>';
-  el.querySelectorAll(".fx").forEach(b=>b.onclick=()=>{pendingFiles.splice(parseInt(b.dataset.i,10),1);
-    if(pendingFiles.length){headerRow=pendingFiles[0].hdr;dataRows=pendingFiles[0].rows;colCount=Math.max(1,...pendingFiles.flatMap(x=>x.rows.map(r=>r.length)),headerRow?headerRow.length:0);applyDetection();}
-    else{dataRows=[];headerRow=null;$("detBadge").innerHTML="";renderMapping();}
-    renderFileList();});}
-$("csvFile").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";if(!files.length)return;
-  for(const f of files){if(pendingFiles.some(p=>p.name===f.name))continue;const r=await readOneFile(f);if(r)pendingFiles.push(r);}
-  if(!pendingFiles.length)return;
-  headerRow=pendingFiles[0].hdr;dataRows=pendingFiles[0].rows;
-  colCount=Math.max(1,...pendingFiles.flatMap(x=>x.rows.map(r=>r.length)),headerRow?headerRow.length:0);
-  renderFileList();applyDetection();});
-$("invSave").onclick=()=>{const map=readMapping();
-  if(map.b<0){alert(t("a_needb"));return;}if(map.q<0){alert(t("a_needq"));return;}
-  S.ignoreZero=$("ignoreZero").checked;S.chkDigit=$("chkDigit").checked;
-  const sources=pendingFiles.length?pendingFiles.map(f=>f.rows):[dataRows];
-  const fileCount=sources.length;const inv={};let added=0;
-  sources.forEach(rows=>{const r=buildInvoiceFrom(rows,map);mergeInto(inv,r.inv);added+=r.added;});
-  if(!added){alert(t("a_noread"));return;}
-  const doMerge=$("mergeInvoice").checked&&Object.keys(S.invoice).length;
-  if(doMerge){mergeInto(S.invoice,inv);S.invCount=(S.invCount||1)+fileCount;}else{S.invoice=inv;S.invCount=fileCount;}
-  pendingFiles=[];
-  let vname=$("vendorSelect").value;if(vname==="__new")vname=($("newVendorName").value||"").trim();
-  if(vname&&vname!=="__new"){S.vendors[vname]={map,ignoreZero:S.ignoreZero};S.vendor=vname;}
-  const rescan={};Object.values(S.scanned).forEach(v=>{const k=norm(v.code);if(rescan[k])rescan[k].recv+=v.recv;else rescan[k]={...v};});S.scanned=rescan;
-  const totItems=Object.keys(S.invoice).length,totQty=Object.values(S.invoice).reduce((a,b)=>a+b.exp,0);
-  save();closeModal("invModal");updateBadges();
-  const many=fileCount>1||doMerge;
-  showFlash("ok",many?t("fl_merged",{c:S.invCount,i:totItems,q:totQty}):t("fl_loaded",{v:vname?vname+" ":"",i:totItems,q:totQty}));
-  goView("recon");};
-$("invCancel").onclick=()=>closeModal("invModal");
-
-/* =================== 메뉴 =================== */
-$("menuBtn").onclick=()=>{const ic=Object.keys(S.invoice).length;$("menuSub").textContent=(S.vendor?S.vendor+" \u00B7 ":"")+t("inv_n",{n:ic})+" \u00B7 "+Object.keys(S.scanned).length;openModal("menuModal");};
-$("menuClose").onclick=()=>closeModal("menuModal");
-$("miInvoice").onclick=()=>{closeModal("menuModal");refreshVendorSelect();$("ignoreZero").checked=S.ignoreZero;$("chkDigit").checked=S.chkDigit;$("mergeInvoice").checked=Object.keys(S.invoice).length>0;$("mapArea").innerHTML="";$("fileList").innerHTML="";$("detBadge").innerHTML="";dataRows=[];headerRow=null;pendingFiles=[];$("newVendorName").style.display="none";openModal("invModal");};
-$("miRename").onclick=()=>{const n=prompt(t("pr_rename"),S.name);if(n){S.name=n.trim()||S.name;save();updateBadges();}closeModal("menuModal");};
-$("miNew").onclick=()=>{if(confirm(t("cf_new"))){const kv=S.vendors;S=blank();S.vendors=kv;save();updateBadges();renderRecent();closeModal("menuModal");goView("scan");}};
-$("miClear").onclick=()=>{if(confirm(t("cf_clear"))){S.scanned={};S.recent=[];save();updateBadges();renderRecent();closeModal("menuModal");goView("scan");}};
-function openModal(id){$(id).classList.add("on");}
-function closeModal(id){$(id).classList.remove("on");if(!anyModalOpen())focusBarcode();}
-document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("on");}));
-
-/* =================== 배지 =================== */
-function updateBadges(){$("sessName").textContent=(S.vendor?S.vendor+" \u00B7 ":"")+S.name;$("hdrBadge").textContent=Object.keys(S.scanned).length;
-  let prob=0;allKeys().forEach(k=>{if(statusOf(k).kind!=="ok")prob++;});const dot=$("navDot");
-  if(prob>0&&(Object.keys(S.invoice).length||Object.keys(S.scanned).length)){dot.textContent=prob;dot.classList.add("on");}else dot.classList.remove("on");}
-
-/* =================== 카메라 =================== */
-let cam=null,camOn=false,lastCode="",lastTs=0;
-$("camBtn").onclick=async()=>{if(typeof Html5Qrcode==="undefined"){alert("Camera library not loaded. Use a scanner or manual input.");return;}
-  if(camOn){stopCam();return;}const reader=$("reader");reader.classList.add("on");cam=new Html5Qrcode("reader");
-  const fmts=typeof Html5QrcodeSupportedFormats!=="undefined"?[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.CODE_39,Html5QrcodeSupportedFormats.ITF,Html5QrcodeSupportedFormats.CODABAR]:undefined;
-  try{await cam.start({facingMode:"environment"},{fps:10,qrbox:{width:250,height:150},formatsToSupport:fmts},
-    txt=>{const now=Date.now();if(txt===lastCode&&now-lastTs<1600)return;lastCode=txt;lastTs=now;if(navigator.vibrate)navigator.vibrate(40);processBarcode(txt,"cam");},()=>{});
-    camOn=true;$("camBtn").innerHTML=t("cam_off");}
-  catch(err){reader.classList.remove("on");alert("Cannot open camera: "+err);}};
-function stopCam(){if(cam){cam.stop().then(()=>cam.clear()).catch(()=>{});}camOn=false;$("reader").classList.remove("on");$("camBtn").innerHTML=t("cam_on");focusBarcode();}
-
-/* =================== 언어 스위치 =================== */
-document.querySelectorAll("#langSw button").forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;localStorage.setItem("recv_lang",LANG);applyLang();focusBarcode();});
-
-/* =================== 뒤로가기 =================== */
-function anyModalOpen(){return [...document.querySelectorAll('.modal-bg')].some(m=>m.classList.contains('on'));}
-function closeAllModals(){document.querySelectorAll('.modal-bg').forEach(m=>m.classList.remove('on'));}
-function activeView(){const b=document.querySelector('nav button.active');return b?b.dataset.view:'scan';}
-try{history.pushState({app:1},'');}catch(e){}
-window.addEventListener('popstate',()=>{
-  if(anyModalOpen()){closeAllModals();}else if(camOn){stopCam();}else if(pending){closePending();focusBarcode();}
-  else if(activeView()!=='scan'){goView('scan');}
-  try{history.pushState({app:1},'');}catch(e){}});
-$("view-scan").addEventListener("click",e=>{if(camOn||scannerMode)return;if(!pending&&!e.target.closest("input,button,textarea"))focusBarcode();});
-
-/* =================== PWA manifest (설치형) =================== */
-(function(){try{
-  const mf={name:"901 Check-In",short_name:"Check-In",description:"US BEAUTY LLC receiving check-in",
-    start_url:".",scope:".",display:"standalone",orientation:"portrait",background_color:"#141a22",theme_color:"#141a22",
-    icons:[{src:IC192,sizes:"192x192",type:"image/png",purpose:"any maskable"},{src:IC512,sizes:"512x512",type:"image/png",purpose:"any maskable"}]};
-  const blob=new Blob([JSON.stringify(mf)],{type:"application/manifest+json"});
-  $("manifest").setAttribute("href",URL.createObjectURL(blob));
-}catch(e){}})();
-
-/* =================== PIN 게이트 =================== */
-function initPin(){
-  if(!STORE_PIN){startApp();return;}
-  const g=$("pinGate");g.classList.add("on");
-  const inp=$("pinInput"),err=$("pinErr");
-  function submit(){if(inp.value===STORE_PIN){g.classList.remove("on");startApp();}else{err.textContent=t("pin_wrong");inp.value="";inp.focus();}}
-  $("pinBtn").onclick=submit;
-  inp.addEventListener("keydown",e=>{if(e.key==="Enter")submit();});
-  setTimeout(()=>inp.focus(),200);
+  const key=normalizeCode(cleaned);
+  if(state.options.quickMode && (state.options.scannerMode || source==="cam")) addQty(key, cleaned, 1, source);
+  else showPending(key, cleaned);
 }
-function startApp(){updateBadges();renderRecent();applyLang();focusBarcode();save();}
+function addQty(key, code, qty, source="manual"){
+  qty = Math.max(1, parseInt(qty,10)||1);
+  const inv=invoiceItem(key), existing=scannedItem(key);
+  if(!state.scanned[key]) state.scanned[key]={code:code||key, name:inv?.name || existing?.name || "", recv:0, last:0};
+  state.scanned[key].recv = (Number(state.scanned[key].recv)||0) + qty;
+  state.scanned[key].last = Date.now();
+  if(!state.scanned[key].name && inv?.name) state.scanned[key].name = inv.name;
+  if(code) state.scanned[key].code = code;
+  state.history.push({key, code:code||itemCode(key), name:itemName(key), delta:qty, ts:Date.now(), source});
+  state.history = state.history.slice(-300);
+  save(); closePending(); renderEverything();
+  const now=state.scanned[key].recv, exp=inv?Number(inv.exp)||0:null;
+  let type="info", msg=t("toast_added",{a:qty,n:now});
+  if(inv){
+    if(now===exp){type="ok"; msg=t("toast_match",{n:now,e:exp}); vibrate(35);}
+    else if(now<exp){type="warn"; msg=t("toast_short",{n:now,e:exp,r:exp-now});}
+    else {type="warn"; msg=t("toast_over",{n:now,e:exp,d:now-exp}); vibrate([30,30,30]);}
+  } else {type="warn"; msg=t("toast_extra",{n:now}); vibrate([30,30,30]);}
+  toast(type,msg,{label:t("undo"),onClick:undoLast});
+  focusBarcode();
+}
+function undoLast(){
+  const h=state.history.pop();
+  if(!h){toast("warn",t("nothing_undo"));return;}
+  const sc=state.scanned[h.key];
+  if(sc){sc.recv=(Number(sc.recv)||0)-(Number(h.delta)||0); if(sc.recv<=0) delete state.scanned[h.key]; else sc.last=Date.now();}
+  save(); closePending(); renderEverything(); toast("info",t("undo_done")); focusBarcode();
+}
+function showPending(key, code){
+  pending={key,code};
+  const inv=invoiceItem(key), sc=scannedItem(key), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:0;
+  $("pendingName").textContent = itemName(key);
+  $("pendingCode").textContent = code;
+  $("pendingInv").textContent = inv ? fmt(exp) : "—";
+  $("pendingCur").textContent = fmt(recv);
+  $("pendingRemain").textContent = inv ? fmt(Math.max(0, exp-recv)) : "—";
+  const st=getStatus(key);
+  const ps=$("pendingStatus"); ps.className=`chip ${st.cls}`; ps.textContent= inv ? st.label : t("not_on_invoice");
+  $("qtyInput").value=1;
+  $("pendingCard").classList.add("on");
+  setTimeout(()=>{$("qtyInput").focus();$("qtyInput").select();},60);
+}
+function closePending(){pending=null;$("pendingCard").classList.remove("on");}
+function focusBarcode(){if(!anyModalOpen() && !camOn){setTimeout(()=>$("barcodeInput").focus(),40)}}
 
-/* =================== 시작 =================== */
-applyLang();
+function rowHTML(key){
+  const inv=invoiceItem(key), sc=scannedItem(key), st=getStatus(key), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:null;
+  const meta = inv ? `${t("invoice_qty")}: ${fmt(exp)}` : t("not_on_invoice");
+  return `<div class="row clickable" data-key="${esc(key)}">
+    <div class="row-info"><div class="row-name">${esc(itemName(key))}</div><div class="row-code">${esc(itemCode(key))} · ${meta}</div></div>
+    <div class="row-num"><span>${t("counted_qty")}</span><b>${fmt(recv)}</b></div>
+    <span class="chip ${st.cls}">${esc(st.label)}</span>
+  </div>`;
+}
+function recentHTML(){
+  const hist=[...state.history].reverse().slice(0,12);
+  if(!hist.length) return `<div class="empty">${t("empty_recent")}</div>`;
+  return hist.map(h=>`<div class="row clickable" data-key="${esc(h.key)}"><div class="row-info"><div class="row-name">${esc(itemName(h.key))}</div><div class="row-code">${esc(h.code)} · ${new Date(h.ts).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</div></div><div class="row-num"><span>+${fmt(h.delta)}</span><b>${fmt(scannedItem(h.key)?.recv||0)}</b></div><span class="chip ${getStatus(h.key).cls}">${esc(getStatus(h.key).label)}</span></div>`).join("");
+}
+function sortKeys(keys){
+  const sort=$("sortSelect")?.value || "problem";
+  const order={missing:0,short:1,over:2,extra:3,ok:4};
+  if(sort==="name") return keys.sort((a,b)=>itemName(a).localeCompare(itemName(b)));
+  if(sort==="recent") return keys.sort((a,b)=>(scannedItem(b)?.last||0)-(scannedItem(a)?.last||0));
+  return keys.sort((a,b)=>order[getStatus(a).kind]-order[getStatus(b).kind] || itemName(a).localeCompare(itemName(b)));
+}
+function filteredKeys(){
+  let keys=allKeys();
+  const q=($("searchInput")?.value||"").trim().toLowerCase();
+  if(q) keys=keys.filter(k=>`${itemName(k)} ${itemCode(k)}`.toLowerCase().includes(q));
+  if(activeFilter!=="all"){
+    if(activeFilter==="problem") keys=keys.filter(k=>getStatus(k).kind!=="ok");
+    else keys=keys.filter(k=>getStatus(k).kind===activeFilter);
+  }
+  return sortKeys(keys);
+}
+function renderStatusFilters(){
+  const s=stats();
+  const filters=[
+    ["all",t("all"),s.totalItems],["problem",t("problem"),s.problem],["missing",t("missing"),s.missing],["short",t("short"),s.short],["over",t("over"),s.over],["extra",t("extra"),s.extra],["ok",t("match"),s.ok]
+  ];
+  $("statusFilters").innerHTML=filters.map(([k,l,n])=>`<button class="filter ${activeFilter===k?"on":""}" data-filter="${k}">${l} ${fmt(n)}</button>`).join("");
+  $$("#statusFilters .filter").forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;renderList();});
+}
+function renderList(){
+  renderStatusFilters();
+  const keys=filteredKeys();
+  $("listCountChip").textContent=fmt(keys.length);
+  $("listRows").innerHTML=keys.length?keys.map(rowHTML).join(""):`<div class="empty">${t("empty_list")}</div>`;
+  attachRowClicks($("listRows"));
+}
+function renderRecon(){
+  const keys=allKeys();
+  if(!keys.length){$("reconRows").innerHTML=`<div class="card empty">${t("empty_recon")}</div>`;return;}
+  const problems=sortKeys(keys.filter(k=>getStatus(k).kind!=="ok"));
+  const good=sortKeys(keys.filter(k=>getStatus(k).kind==="ok"));
+  let html="";
+  if(problems.length) html += `<div class="section-title">${t("need_review")} (${fmt(problems.length)})</div>${problems.map(rowHTML).join("")}`;
+  else html += `<div class="card empty"><b>${t("all_clear")}</b></div>`;
+  if(good.length) html += `<div class="section-title">${t("matched_items")} (${fmt(good.length)})</div>${good.map(rowHTML).join("")}`;
+  $("reconRows").innerHTML=html; attachRowClicks($("reconRows"));
+}
+function renderDashboard(){
+  const s=stats();
+  $("progressPct").textContent=s.progress;
+  $("progressBar").style.width=s.progress+"%";
+  $("progressSub").textContent=s.expectedQty?t("progress_text",{recv:fmt(s.receivedOnInvoice),exp:fmt(s.expectedQty),p:fmt(s.problem)}):t("progress_none");
+  $("miniReceived").textContent=fmt(s.receivedOnInvoice);$("miniExpected").textContent=fmt(s.expectedQty);$("miniShort").textContent=fmt(s.short);$("miniOver").textContent=fmt(s.over);$("miniExtra").textContent=fmt(s.extra);$("miniOk").textContent=fmt(s.ok);
+  $("rOk").textContent=fmt(s.ok);$("rShort").textContent=fmt(s.short);$("rOver").textContent=fmt(s.over);$("rMiss").textContent=fmt(s.missing);$("rExtra").textContent=fmt(s.extra);$("rTotal").textContent=fmt(s.totalItems);
+  $("problemCountBig").textContent=fmt(s.problem);$("problemSub").textContent=s.problem?t("problem_sub"):t("all_clear");
+  $("scanBadge").textContent=fmt(Object.keys(state.scanned).length);
+  $("sessionLine").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName}`;
+  $("invoiceLoadedChip").textContent=`${fmt(s.invoiceItems)} items`;
+  $("listDot").textContent=fmt(s.problem);$("reconDot").textContent=fmt(s.problem);
+  $("listDot").classList.toggle("on",s.problem>0);$("reconDot").classList.toggle("on",s.problem>0);
+  $("modeChip").textContent = state.options.scannerMode ? (state.options.quickMode?t("quick"):t("scanner")) : t("manual");
+  $("scannerModeBtn").classList.toggle("on",!!state.options.scannerMode);
+  $("quickModeBtn").classList.toggle("on",!!state.options.quickMode);
+  $("barcodeInput").setAttribute("inputmode", state.options.scannerMode ? "none" : "numeric");
+  $("barcodeInput").placeholder = state.options.scannerMode ? "Ready — scan now" : (state.lang==="ko" ? "바코드 스캔 또는 입력 후 Enter" : "Scan or type barcode, then Enter");
+  $("menuSub").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName} · ${fmt(s.invoiceItems)} invoice items · ${fmt(Object.keys(state.scanned).length)} scanned`;
+}
+function renderRecent(){
+  $("recentList").innerHTML=recentHTML(); attachRowClicks($("recentList"));
+}
+function renderEverything(){renderDashboard(); renderRecent(); renderList(); renderRecon(); refreshVendorSelect(); renderFileList();}
+function attachRowClicks(root){$$(".row.clickable",root).forEach(r=>r.onclick=()=>openEdit(r.dataset.key));}
+
+function openEdit(key){
+  editKey=key;
+  $("editName").textContent=itemName(key);
+  const inv=invoiceItem(key), st=getStatus(key);
+  $("editCode").textContent=`${itemCode(key)} · ${inv?`${t("invoice_qty")}: ${fmt(inv.exp)}`:t("not_on_invoice")} · ${st.label}`;
+  $("editQty").value=scannedItem(key)?.recv || 0;
+  openModal("editModal");
+}
+function saveEdit(){
+  if(!editKey) return;
+  const v=Math.max(0,parseInt($("editQty").value,10)||0), inv=invoiceItem(editKey);
+  if(v===0) delete state.scanned[editKey];
+  else{
+    if(!state.scanned[editKey]) state.scanned[editKey]={code:itemCode(editKey), name:inv?.name||"", recv:0, last:0};
+    state.scanned[editKey].recv=v; state.scanned[editKey].last=Date.now();
+  }
+  save(); closeModal("editModal"); renderEverything();
+}
+
+function detectDelimiter(text){
+  const sample=text.split(/\r?\n/).slice(0,8).join("\n");
+  const candidates=[",","\t",";","|"];
+  let best=",", bestScore=-1;
+  for(const d of candidates){const score=(sample.match(new RegExp(d==="\t"?"\t":`\\${d}`,"g"))||[]).length;if(score>bestScore){best=d;bestScore=score;}}
+  return best;
+}
+function parseDelimited(text, delimiter){
+  const rows=[]; let row=[], field="", q=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i], next=text[i+1];
+    if(ch==='"'){
+      if(q && next==='"'){field+='"';i++;}
+      else q=!q;
+    } else if(ch===delimiter && !q){row.push(field.trim()); field="";}
+    else if((ch==='\n' || ch==='\r') && !q){
+      if(ch==='\r' && next==='\n') i++;
+      row.push(field.trim()); field="";
+      if(row.some(c=>String(c).trim()!=="")) rows.push(row);
+      row=[];
+    } else field+=ch;
+  }
+  row.push(field.trim()); if(row.some(c=>String(c).trim()!=="")) rows.push(row);
+  return rows;
+}
+function normRows(rows){return rows.map(r=>r.map(c=>c==null?"":String(c).trim())).filter(r=>r.some(Boolean));}
+function headerScore(row){
+  const text=row.join(" ").toLowerCase();
+  const words=["barcode","upc","item lookup","item name","description","desc","qty","quantity","shipped","수량","품목","바코드","cantidad","codigo","código"];
+  let score=words.reduce((a,w)=>a+(text.includes(w)?1:0),0);
+  const numberCells=row.filter(c=>/^\d{6,}$/.test(String(c).replace(/\D/g,""))).length;
+  return score*3-numberCells;
+}
+function splitHeader(rows){
+  rows=normRows(rows);
+  if(!rows.length) return {header:null, rows:[]};
+  let best=-1,bScore=0;
+  rows.slice(0,10).forEach((r,i)=>{const s=headerScore(r); if(s>bScore){bScore=s; best=i;}});
+  if(best>=0 && bScore>=3){return {header:rows[best], rows:rows.slice(best+1)}};
+  return {header:null, rows};
+}
+function toCellString(cell){
+  if(cell==null) return "";
+  if(typeof cell==="number") return Number.isInteger(cell)?String(cell):String(cell);
+  if(cell instanceof Date) return cell.toISOString().slice(0,10);
+  return String(cell);
+}
+function readOneFile(file){
+  return new Promise(resolve=>{
+    const ext=(file.name.split(".").pop()||"").toLowerCase();
+    const reader=new FileReader();
+    reader.onerror=()=>{toast("bad",`${t("file_error")}: ${esc(file.name)}`);resolve(null)};
+    if(["xls","xlsx"].includes(ext)){
+      if(typeof XLSX==="undefined"){toast("bad",t("xlsx_missing"));resolve(null);return;}
+      reader.onload=()=>{
+        try{
+          const wb=XLSX.read(new Uint8Array(reader.result),{type:"array",cellDates:false});
+          const ws=wb.Sheets[wb.SheetNames[0]];
+          const raw=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:""}).map(r=>r.map(toCellString));
+          const s=splitHeader(raw); resolve({name:file.name, header:s.header, rows:s.rows});
+        }catch(e){toast("bad",`${t("file_error")}: ${esc(file.name)}`);resolve(null)}
+      };
+      reader.readAsArrayBuffer(file);
+    }else{
+      reader.onload=()=>{const rows=parseDelimited(String(reader.result||""), detectDelimiter(String(reader.result||""))); const s=splitHeader(rows); resolve({name:file.name, header:s.header, rows:s.rows});};
+      reader.readAsText(file,"utf-8");
+    }
+  });
+}
+function maxCols(){return Math.max(1,...selectedFiles.flatMap(f=>[f.header?.length||0,...f.rows.slice(0,20).map(r=>r.length)]));}
+function sampleRows(){return selectedFiles.flatMap(f=>f.rows).slice(0,80);}
+function combinedHeader(){return selectedFiles.find(f=>f.header)?.header || null;}
+function headerMap(header){
+  if(!header) return null;
+  const h=header.map(x=>String(x).toLowerCase());
+  const find=(arr)=>h.findIndex(v=>arr.some(a=>v.includes(a)));
+  const b=find(["barcode","upc","item lookup","ean","바코드","codigo","código"]);
+  const q=find(["shipped qty","qtyshipped","quantity","qty","수량","cant"]);
+  let n=find(["item name","description","desc","product","품목","name","nombre"]);
+  if(n===b || n===q) n=-1;
+  if(b>=0 && q>=0) return {b,n,q};
+  return null;
+}
+function guessMap(rows, cols){
+  const scoreB=Array(cols).fill(0), scoreQ=Array(cols).fill(0), scoreN=Array(cols).fill(0);
+  rows.forEach(r=>{
+    for(let i=0;i<cols;i++){
+      const v=String(r[i]||"").trim(); const digits=v.replace(/\D/g,"");
+      if(/^\d{6,14}$/.test(digits)) scoreB[i]+=3;
+      if(/^[0-9,]+$/.test(v) && Number(v.replace(/,/g,""))>0 && Number(v.replace(/,/g,""))<5000) scoreQ[i]+=1.4;
+      if(/[A-Za-z가-힣]/.test(v) && v.length>3) scoreN[i]+=Math.min(4,v.length/12);
+    }
+  });
+  const b=scoreB.indexOf(Math.max(...scoreB));
+  const n=scoreN.indexOf(Math.max(...scoreN));
+  let q=-1,best=-1;
+  for(let i=0;i<cols;i++){if(i===b||i===n)continue;if(scoreQ[i]>best){best=scoreQ[i];q=i;}}
+  return {b:b<0?0:b,n:n<0?1:n,q:q<0?Math.min(2,cols-1):q};
+}
+/* --- column-shape based vendor detection (robust; validates the actual columns) --- */
+function _col(rows,i){return rows.map(r=>String(r[i]??"").trim());}
+function _fracBarcode(rows,i){const v=_col(rows,i).filter(Boolean);if(!v.length)return 0;return v.filter(x=>/^\d{8,14}$/.test(x.replace(/\D/g,""))).length/v.length;}
+function _fracQty(rows,i){const v=_col(rows,i).filter(Boolean);if(!v.length)return 0;return v.filter(x=>/^\d{1,4}$/.test(x.replace(/,/g,""))).length/v.length;}
+function _fracName(rows,i){const v=_col(rows,i).filter(Boolean);if(!v.length)return 0;return v.filter(x=>/[A-Za-z가-힣]/.test(x)&&x.length>=3).length/v.length;}
+function _mapFit(rows,map){
+  const b=_fracBarcode(rows,map.b), q=_fracQty(rows,map.q), n=map.n>=0?_fracName(rows,map.n):0.6;
+  if(b<0.5||q<0.4||n<0.3) return 0;      // this column map does not match the file -> reject
+  return b+q+n;                          // 0..3, higher = better fit
+}
+function detectVendor(){
+  if(!selectedFiles.length) return null;
+  const rows=sampleRows();
+  const hjoin=(combinedHeader()||[]).map(x=>String(x).toLowerCase()).join("|");
+  const data=rows.slice(0,60).map(r=>r.join(" ")).join(" ").toLowerCase();
+  let best=null,bestScore=0;
+  for(const p of VENDOR_PROFILES){
+    const fit=_mapFit(rows,p.map);
+    if(fit<=0) continue;                 // columns don't fit this vendor's format
+    let sc=fit*2;                        // base 0..6 from how well the columns fit
+    if(p.group==="sng_mm"){
+      if(!(hjoin.includes("qtyshipped")&&hjoin.includes("styleid"))) continue;
+      const st=_col(rows,5).concat(_col(rows,7)).filter(Boolean);
+      const m=st.filter(v=>/^m/i.test(v)).length, sg=st.filter(v=>/^s/i.test(v)).length;
+      if(p.name==="Model Model") sc+=(m>sg||/dream weaver|mykxx/.test(data))?3:-4;
+      else sc+=(sg>=m)?3:-4;             // Shake-N-Go: styles start with S
+    } else if(p.group==="kiss_red"){
+      if(!(hjoin.includes("customer number")&&hjoin.includes("shipped qty"))) continue;
+      if(p.name==="KISS") sc+=/\bivy\b|ruby|\brk\b|\brbl|\brae|gorgeous|kiss/.test(data)?2:0;
+      else sc+=/red premium|\brpm\b|hot beauty|\bhbd|loc & braid|twist/.test(data)?3:0;
+    } else if(p.group==="outre"){
+      if(hjoin.includes("discount")&&hjoin.includes("amount")) sc+=2;
+      if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
+    } else if(p.group==="gb"){
+      if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
+    }
+    if(sc>bestScore){bestScore=sc;best=p;}
+  }
+  return bestScore>=3?best:null;
+}
+function currentMap(){
+  const vendor=$("vendorSelect")?.value;
+  if(vendor && state.vendors[vendor]?.map) return {...state.vendors[vendor].map};
+  const hm=headerMap(combinedHeader());
+  return hm || guessMap(sampleRows(), maxCols());
+}
+function refreshVendorSelect(){
+  const sel=$("vendorSelect"); if(!sel) return;
+  const before=sel.value || state.vendor || "";
+  const names=Object.keys(state.vendors).sort((a,b)=>a.localeCompare(b));
+  sel.innerHTML=`<option value="">${t("custom_vendor")}</option>`+names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")+`<option value="__new">${t("add_vendor")}</option>`;
+  sel.value = names.includes(before) ? before : (names.includes(state.vendor)?state.vendor:"");
+  $("newVendorName").disabled = sel.value !== "__new";
+}
+function renderFileList(){
+  const el=$("fileList"); if(!el) return;
+  if(!selectedFiles.length){el.innerHTML="";$("mappingBox").innerHTML="";$("detectBox").classList.remove("on");return;}
+  const rows=selectedFiles.reduce((a,f)=>a+f.rows.length,0);
+  el.innerHTML=selectedFiles.map((f,i)=>`<div class="file-chip"><span class="fn">📄 ${esc(f.name)}</span><span class="meta">${t("rows",{n:fmt(f.rows.length)})}</span><button data-i="${i}" aria-label="remove">×</button></div>`).join("")+
+    `<div class="hint">${t("files_rows",{f:selectedFiles.length,r:fmt(rows)})}</div>`;
+  $$("button",el).forEach(btn=>btn.onclick=()=>{selectedFiles.splice(Number(btn.dataset.i),1);renderFileList();renderMapping();});
+  renderMapping();
+}
+function renderMapping(){
+  const box=$("mappingBox"), detect=$("detectBox");
+  if(!selectedFiles.length){box.innerHTML="";detect.classList.remove("on");return;}
+  const vendor=detectVendor();
+  if(vendor && (!$("vendorSelect").value || $("vendorSelect").value==="")){$("vendorSelect").value=vendor.name;}
+  detect.classList.add("on");
+  detect.innerHTML= vendor ? `<span class="chip ok">✓ ${t("detected")}: ${esc(vendor.name)}</span>` : `<span class="chip warn">⚠ ${t("not_detected")}</span>`;
+  const map=currentMap(), header=combinedHeader(), rows=sampleRows(), first=rows[0]||[], cols=maxCols();
+  box.innerHTML=Array.from({length:cols}).map((_,i)=>{
+    const role=(i===map.b)?"b":(i===map.n)?"n":(i===map.q)?"q":"x";
+    return `<div class="map-row"><div class="map-sample">${header?.[i]?`<b>${esc(header[i])}</b>`:""}<span>${esc(first[i]||"")}</span></div><select data-col="${i}"><option value="x" ${role==="x"?"selected":""}>${t("ignore")}</option><option value="b" ${role==="b"?"selected":""}>${t("barcode")}</option><option value="n" ${role==="n"?"selected":""}>${t("name")}</option><option value="q" ${role==="q"?"selected":""}>${t("qty")}</option></select></div>`;
+  }).join("");
+}
+function readMapFromUI(){
+  let map={b:-1,n:-1,q:-1};
+  $$("#mappingBox select").forEach(sel=>{const col=Number(sel.dataset.col); if(sel.value==="b")map.b=col; if(sel.value==="n")map.n=col; if(sel.value==="q")map.q=col;});
+  return map;
+}
+function buildInvoice(rows, map){
+  const out={}; let read=0;
+  rows.forEach((r,idx)=>{
+    const code=cleanCode(r[map.b]||"");
+    const qty=parseInt(String(r[map.q]||"").replace(/[^\d]/g,""),10);
+    const name=map.n>=0 ? String(r[map.n]||"").trim() : "";
+    if(!code || !qty || qty<1) return;
+    const key=normalizeCode(code);
+    if(out[key]) out[key].exp += qty;
+    else out[key] = {code, name, exp:qty, row:idx+1};
+    if(!out[key].name && name) out[key].name=name;
+    read++;
+  });
+  return {invoice:out, read};
+}
+function mergeInvoice(target, src){Object.entries(src).forEach(([k,v])=>{if(target[k]){target[k].exp += Number(v.exp)||0; if(!target[k].name && v.name)target[k].name=v.name;} else target[k]={...v};});}
+function loadInvoice(){
+  if(!selectedFiles.length){toast("warn",t("no_rows"));return;}
+  const map=readMapFromUI();
+  if(map.b<0){toast("bad",t("choose_barcode"));return;} if(map.q<0){toast("bad",t("choose_qty"));return;}
+  state.options.ignoreZero=$("ignoreZero").checked;
+  state.options.checkDigit=$("checkDigit").checked;
+  const newInvoice={}; let read=0;
+  selectedFiles.forEach(f=>{const r=buildInvoice(f.rows,map);mergeInvoice(newInvoice,r.invoice);read+=r.read;});
+  if(!read){toast("bad",t("no_rows"));return;}
+  const isMerge=$("mergeInvoice").checked && Object.keys(state.invoice).length;
+  if(isMerge){mergeInvoice(state.invoice,newInvoice);state.invCount=(state.invCount||1)+selectedFiles.length;}
+  else{state.invoice=newInvoice;state.invCount=selectedFiles.length;}
+  let vendor=$("vendorSelect").value;
+  if(vendor==="__new") vendor=$("newVendorName").value.trim();
+  if(vendor){state.vendor=vendor;if($("saveVendorMap").checked)state.vendors[vendor]={map:{...map},ignoreZero:state.options.ignoreZero};}
+  const rescanned={};
+  Object.values(state.scanned).forEach(sc=>{const key=normalizeCode(sc.code); if(rescanned[key]) rescanned[key].recv += Number(sc.recv)||0; else rescanned[key]={...sc};});
+  state.scanned=rescanned;
+  selectedFiles=[];save();renderEverything();goView("recon");
+  const st=stats(); toast("ok", isMerge?t("merged",{i:fmt(st.invoiceItems),q:fmt(st.expectedQty)}):t("loaded",{i:fmt(st.invoiceItems),q:fmt(st.expectedQty)}));
+}
+
+function detailRows(){
+  const rows=[["Session",state.sessionName,"Vendor",state.vendor,"Exported",new Date().toLocaleString()],[]];
+  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","Status","LastCounted"]);
+  sortKeys(allKeys()).forEach(k=>{
+    const inv=invoiceItem(k), sc=scannedItem(k), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:"", diff=inv?recv-Number(inv.exp):"", st=getStatus(k).label;
+    rows.push([itemCode(k), itemName(k), exp, recv, diff, st, sc?.last?new Date(sc.last).toLocaleString():""]);
+  });
+  return rows;
+}
+function downloadBlob(filename, data, type){
+  const blob=data instanceof Blob?data:new Blob([data],{type}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+}
+function safeName(){return `${state.vendor||state.sessionName||"checkin"}`.replace(/[^\w가-힣-]+/g,"_").slice(0,48);}
+function exportCSV(){
+  if(!allKeys().length){toast("warn",t("no_export"));return;}
+  const csv="\uFEFF"+detailRows().map(r=>r.map(c=>{c=String(c??"");return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c}).join(",")).join("\r\n");
+  downloadBlob(`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.csv`, csv, "text/csv;charset=utf-8");
+}
+function exportXLSX(){
+  if(!allKeys().length){toast("warn",t("no_export"));return;}
+  if(typeof XLSX==="undefined"){toast("warn",t("xlsx_missing"));exportCSV();return;}
+  const wb=XLSX.utils.book_new();
+  const s=stats();
+  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Expected Qty",s.expectedQty],["Counted On Invoice",s.receivedOnInvoice],["All Counted",s.receivedAll],["Match",s.ok],["Short",s.short],["Over",s.over],["Missing",s.missing],["Extra",s.extra],["Exported",new Date().toLocaleString()]];
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),"Summary");
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(detailRows()),"Details");
+  XLSX.writeFile(wb,`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.xlsx`);
+}
+function backupJSON(){downloadBlob(`checkin_backup_${safeName()}_${Date.now()}.json`, JSON.stringify(state,null,2), "application/json");toast("ok",t("backup_saved"));}
+function restoreJSONFile(file){
+  const r=new FileReader(); r.onload=()=>{try{state=normalizeState(JSON.parse(r.result));save();closeModal("menuModal");renderEverything();toast("ok",t("restored"));}catch(e){toast("bad",t("file_error"));}}; r.readAsText(file,"utf-8");
+}
+
+function openModal(id){$(id).classList.add("on")}
+function closeModal(id){$(id).classList.remove("on");focusBarcode()}
+function anyModalOpen(){return $$(".modal-bg").some(m=>m.classList.contains("on"))}
+function goView(view){
+  $$("nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===view));
+  $$(".view").forEach(v=>v.classList.toggle("active",v.id===`view-${view}`));
+  if(view==="list")renderList(); if(view==="recon")renderRecon(); if(view==="invoice")renderFileList(); focusBarcode();
+}
+
+function initEvents(){
+  $$("nav button").forEach(b=>b.onclick=()=>goView(b.dataset.view));
+  $$("#langSw button").forEach(b=>b.onclick=()=>{state.lang=b.dataset.lang;save();applyLang();});
+  $("themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save();applyTheme();};
+  $("barcodeInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const v=e.target.value;e.target.value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual");}});
+  $("manualAddBtn").onclick=()=>{const v=$("barcodeInput").value;$("barcodeInput").value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual");};
+  $("scannerModeBtn").onclick=()=>{state.options.scannerMode=!state.options.scannerMode;if(state.options.scannerMode&&camOn)stopCamera();save();renderEverything();focusBarcode();};
+  $("quickModeBtn").onclick=()=>{state.options.quickMode=!state.options.quickMode;save();renderEverything();focusBarcode();};
+  $("undoBtn").onclick=undoLast;
+  $("jumpRecon").onclick=()=>goView("recon");
+  $("pendingCancel").onclick=()=>{closePending();focusBarcode();};
+  $("pendingSave").onclick=()=>{if(pending)addQty(pending.key,pending.code,$("qtyInput").value,"manual")};
+  $("qtyInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("pendingSave").click();}});
+  $("qtyPlus").onclick=()=>$("qtyInput").value=(parseInt($("qtyInput").value,10)||0)+1;
+  $("qtyMinus").onclick=()=>$("qtyInput").value=Math.max(1,(parseInt($("qtyInput").value,10)||1)-1);
+  $("editPlus").onclick=()=>$("editQty").value=(parseInt($("editQty").value,10)||0)+1;
+  $("editMinus").onclick=()=>$("editQty").value=Math.max(0,(parseInt($("editQty").value,10)||0)-1);
+  $("editSave").onclick=saveEdit;
+  $("editDelete").onclick=()=>{if(editKey){delete state.scanned[editKey];save();closeModal("editModal");renderEverything();}};
+  $("searchInput").addEventListener("input",renderList); $("sortSelect").addEventListener("change",renderList);
+  $("invoiceFiles").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";for(const file of files){const data=await readOneFile(file);if(data)selectedFiles.push(data);}renderFileList();});
+  $("vendorSelect").addEventListener("change",()=>{const isNew=$("vendorSelect").value==="__new";$("newVendorName").disabled=!isNew;if(isNew)$("newVendorName").focus();const v=$("vendorSelect").value;if(v&&state.vendors[v])$("ignoreZero").checked=state.vendors[v].ignoreZero!==false;renderMapping();});
+  $("clearFilesBtn").onclick=()=>{selectedFiles=[];renderFileList();};
+  $("loadInvoiceBtn").onclick=loadInvoice;
+  $("exportCsvBtn").onclick=exportCSV; $("exportXlsxBtn").onclick=exportXLSX;
+  $("menuBtn").onclick=()=>{renderDashboard();openModal("menuModal")}; $("menuCloseBtn").onclick=()=>closeModal("menuModal");
+  $("renameSessionBtn").onclick=()=>{const n=prompt(t("rename_prompt"),state.sessionName);if(n){state.sessionName=n.trim()||state.sessionName;save();renderEverything();}};
+  $("backupBtn").onclick=backupJSON; $("restoreBtn").onclick=()=>$("restoreFile").click(); $("restoreFile").onchange=e=>{const f=e.target.files[0];e.target.value="";if(f)restoreJSONFile(f)};
+  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];save();closeModal("menuModal");renderEverything();}};
+  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){const vendors=state.vendors, lang=state.lang, theme=state.theme;state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");}};
+  $("cameraBtn").onclick=()=>camOn?stopCamera():startCamera();
+  $$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
+  window.addEventListener("popstate",()=>{if(anyModalOpen())$$(".modal-bg").forEach(m=>m.classList.remove("on"));else if(camOn)stopCamera();else if(pending)closePending();else goView("scan");try{history.pushState({app:1},"")}catch(e){}});
+  try{history.pushState({app:1},"")}catch(e){}
+}
+async function startCamera(){
+  if(typeof Html5Qrcode==="undefined"){toast("bad","Camera library not loaded");return;}
+  try{
+    if(state.options.scannerMode){state.options.scannerMode=false;save();}
+    const reader=$("reader"); reader.classList.add("on"); cam=new Html5Qrcode("reader");
+    const formats=typeof Html5QrcodeSupportedFormats!=="undefined"?[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.CODE_39,Html5QrcodeSupportedFormats.ITF,Html5QrcodeSupportedFormats.CODABAR]:undefined;
+    await cam.start({facingMode:"environment"},{fps:10,qrbox:{width:270,height:160},formatsToSupport:formats},txt=>handleBarcode(txt,"cam"),()=>{});
+    camOn=true;$("cameraBtn").classList.add("on");$("cameraBtn").querySelector("span:last-child").textContent=t("camera_stop");renderEverything();
+  }catch(e){$("reader").classList.remove("on");toast("bad",String(e).slice(0,120));}
+}
+function stopCamera(){
+  const done=()=>{$("reader").classList.remove("on");$("cameraBtn").classList.remove("on");$("cameraBtn").querySelector("span:last-child").textContent=t("camera");camOn=false;focusBarcode();};
+  if(cam){cam.stop().then(()=>cam.clear()).then(done).catch(done);cam=null;}else done();
+}
+function initPin(){
+  applyTheme(); applyLang();
+  if(!STORE_PIN){$("app").hidden=false;renderEverything();focusBarcode();return;}
+  $("pinGate").classList.add("on");
+  const submit=()=>{if($("pinInput").value===STORE_PIN){$("pinGate").classList.remove("on");$("app").hidden=false;renderEverything();focusBarcode();save();}else{$("pinErr").textContent=t("pin_wrong");$("pinInput").value="";$("pinInput").focus();vibrate([40,40,40]);}};
+  $("pinBtn").onclick=submit; $("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter")submit()});
+  setTimeout(()=>$("pinInput").focus(),120);
+}
+function createManifest(){
+  try{
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" fill="#0f172a"/><path d="M113 148h286v64H113zM113 244h196v52H113zM113 328h286v36H113z" fill="#60a5fa"/><circle cx="360" cy="280" r="58" fill="#7c3aed"/><path d="M336 278l20 20 42-48" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const icon="data:image/svg+xml,"+encodeURIComponent(svg);
+    const mf={name:"901 Check-In Pro",short_name:"Check-In",start_url:".",scope:".",display:"standalone",orientation:"portrait",background_color:"#0f172a",theme_color:"#0f172a",icons:[{src:icon,sizes:"any",type:"image/svg+xml",purpose:"any maskable"}]};
+    const link=document.createElement("link"); link.rel="manifest"; link.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:"application/manifest+json"})); document.head.appendChild(link);
+  }catch(e){}
+}
+createManifest();
+initEvents();
 initPin();
-
 </script>
 </body>
 </html>
