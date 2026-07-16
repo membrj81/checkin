@@ -9,6 +9,8 @@
 <meta name="theme-color" content="#0f172a">
 <meta name="apple-mobile-web-app-title" content="901 Check-In Pro">
 <title>901 Check-In Pro · US BEAUTY LLC</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   :root{
     --bg:#eef2f7;--surface:#ffffff;--surface-2:#f7f9fc;--ink:#0f172a;--text:#182230;--muted:#667085;--line:#d7dee9;
@@ -306,9 +308,7 @@
 
 <script>
 /* 901 Check-In Pro · Single-file warehouse receiving app
-   PIN 변경: STORE_PIN 값을 바꾸세요. PIN을 끄려면 빈 문자열("")로 두면 됩니다.
-   ── 오프라인 내구성 패치(2026-07): 카메라/엑셀 라이브러리를 화면 로딩을 막지 않게
-      비동기로 불러오고, 인터넷/cdnjs가 안 돼도 앱(PIN·스캔·CSV)은 항상 뜨게 함. */
+   PIN 변경: STORE_PIN 값을 바꾸세요. PIN을 끄려면 빈 문자열("")로 두면 됩니다. */
 const STORE_PIN = "901901";
 const KEY = "recv_pro_session_v2";
 const OLD_KEY = "recv_session_v4";
@@ -325,7 +325,8 @@ const VENDOR_PROFILES = [
   {name:"KISS", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
-  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"}
+  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"},
+  {name:"Motown Tress", map:{b:14,n:0,q:12}, group:"mt"}
 ];
 
 const $ = (id)=>document.getElementById(id);
@@ -405,7 +406,7 @@ function applyLang(){
 }
 function normalizeCode(raw){
   let code = String(raw ?? "").trim().replace(/\s+/g,"");
-  code = code.replace(/[\u200B-\u200D\uFEFF]/g,"");
+  code = code.replace(/[​-‍﻿]/g,"");
   if(state.options.ignoreZero) code = code.replace(/^0+/,"") || "0";
   return code;
 }
@@ -754,6 +755,9 @@ function detectVendor(){
       if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
     } else if(p.group==="gb"){
       if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
+    } else if(p.group==="mt"){
+      if(!(hjoin.includes("outstanding qty")&&hjoin.includes("po line qty"))) continue;  // MT (Motown Tress/Oradell) fingerprint
+      sc+=3;
     }
     if(sc>bestScore){bestScore=sc;best=p;}
   }
@@ -854,7 +858,7 @@ function downloadBlob(filename, data, type){
 function safeName(){return `${state.vendor||state.sessionName||"checkin"}`.replace(/[^\w가-힣-]+/g,"_").slice(0,48);}
 function exportCSV(){
   if(!allKeys().length){toast("warn",t("no_export"));return;}
-  const csv="\uFEFF"+detailRows().map(r=>r.map(c=>{c=String(c??"");return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c}).join(",")).join("\r\n");
+  const csv="﻿"+detailRows().map(r=>r.map(c=>{c=String(c??"");return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c}).join(",")).join("\r\n");
   downloadBlob(`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.csv`, csv, "text/csv;charset=utf-8");
 }
 function exportXLSX(){
@@ -946,17 +950,9 @@ function createManifest(){
     const link=document.createElement("link"); link.rel="manifest"; link.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:"application/manifest+json"})); document.head.appendChild(link);
   }catch(e){}
 }
-/* ── 라이브러리 비동기 로더: 화면 로딩을 절대 막지 않음.
-   인터넷/cdnjs가 안 되면 카메라·엑셀만 잠깐 빠지고, 앱은 정상적으로 뜬다.
-   (도착하면 XLSX / Html5Qrcode 전역이 채워져 자동으로 기능이 살아남) */
-function __loadLib(src){try{var s=document.createElement("script");s.async=true;s.src=src;s.onerror=function(){/* CDN 실패는 조용히 무시 — 앱은 계속 작동 */};document.head.appendChild(s);}catch(e){}}
-__loadLib("https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js");
-__loadLib("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
-
-/* ── 부팅: 라이브러리 도착 여부와 무관하게 즉시 실행 */
-function __boot(){try{createManifest();}catch(e){}try{initEvents();}catch(e){}try{initPin();}catch(e){}}
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__boot);
-else __boot();
+createManifest();
+initEvents();
+initPin();
 </script>
 </body>
 </html>
