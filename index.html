@@ -9,8 +9,6 @@
 <meta name="theme-color" content="#0f172a">
 <meta name="apple-mobile-web-app-title" content="901 Check-In Pro">
 <title>901 Check-In Pro · US BEAUTY LLC</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   :root{
     --bg:#eef2f7;--surface:#ffffff;--surface-2:#f7f9fc;--ink:#0f172a;--text:#182230;--muted:#667085;--line:#d7dee9;
@@ -77,7 +75,8 @@
   .pending.on{display:block;animation:rise .18s ease-out}
   @keyframes rise{from{transform:translateY(7px);opacity:.5}to{transform:translateY(0);opacity:1}}
   .p-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.p-name{font-weight:900;font-size:17px;line-height:1.25}.p-code{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace;margin-top:3px}
-  .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;white-space:nowrap}.chip.ok{background:var(--green-bg);color:var(--green)}.chip.warn{background:var(--amber-bg);color:var(--amber)}.chip.over{background:var(--purple-bg);color:var(--purple)}.chip.bad{background:var(--red-bg);color:var(--red)}.chip.extra{background:var(--cyan-bg);color:var(--cyan)}.chip.neutral{background:var(--surface-2);color:var(--muted)}
+  .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;white-space:nowrap}.chip.ok{background:var(--green-bg);color:var(--green)}.chip.warn{background:var(--amber-bg);color:var(--amber)}.chip.over{background:var(--purple-bg);color:var(--purple)}.chip.bad{background:var(--red-bg);color:var(--red)}.chip.extra{background:var(--cyan-bg);color:var(--cyan)}.chip.neutral{background:var(--surface-2);color:var(--muted)}.chip.back{background:var(--surface-2);color:var(--text);border:1px dashed var(--muted)}
+  .vault-card{border:1px solid var(--line);background:var(--surface-2);border-radius:16px;padding:12px;margin-bottom:10px}.vault-card.cur{border-color:var(--accent);background:var(--accent-soft)}.vault-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.vault-name{font-weight:900;font-size:15px;line-height:1.25;min-width:0;overflow:hidden;text-overflow:ellipsis}.vault-meta{color:var(--muted);font-size:12px;margin-top:3px;line-height:1.45}.vault-bar{height:7px;border-radius:999px;background:var(--line);overflow:hidden;margin:9px 0 10px}.vault-bar span{display:block;height:100%;background:var(--accent);border-radius:999px}.vault-acts{display:flex;gap:7px}
   .qty-panel{display:grid;grid-template-columns:54px 1fr 54px;gap:10px;align-items:center;margin-top:10px}.qty-panel button{height:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface-2);font-size:26px;font-weight:900}.qty-panel input{text-align:center;border:2px solid var(--line);border-radius:16px;background:var(--surface);padding:10px;font-size:27px;font-weight:900;outline:none}.qty-panel input:focus{border-color:var(--accent)}
   .actions{display:flex;gap:9px;margin-top:10px}.btn{border:none;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:900;background:var(--surface-2);color:var(--text);flex:1}.btn.primary{background:var(--accent);color:#fff}.btn.danger{background:var(--red-bg);color:var(--red)}.btn.green{background:var(--green-bg);color:var(--green)}.btn.line{border:1px solid var(--line);background:var(--surface)}.btn.small{padding:9px 12px;border-radius:12px;font-size:12px;flex:0 0 auto}
   .section-title{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:16px 2px 8px}
@@ -253,6 +252,7 @@
           <div class="mini"><b id="rOver">0</b><span data-i18n="over">초과</span></div>
           <div class="mini"><b id="rMiss">0</b><span data-i18n="missing">누락</span></div>
           <div class="mini"><b id="rExtra">0</b><span data-i18n="extra">외품</span></div>
+          <div class="mini"><b id="rBack">0</b><span data-i18n="backorder">미도착</span></div>
           <div class="mini"><b id="rTotal">0</b><span data-i18n="total">전체</span></div>
         </div>
       </div>
@@ -281,12 +281,25 @@
     <h2 data-i18n="menu">메뉴</h2>
     <p class="hint" id="menuSub">-</p>
     <button class="item" id="renameSessionBtn"><span>✏️</span><div><b data-i18n="rename_session">세션 이름 변경</b><p class="hint" data-i18n="rename_hint">작업일/공급업체명으로 구분하세요.</p></div></button>
+    <button class="item" id="vaultBtn"><span>📂</span><div><b data-i18n="vault">세션 보관함</b><p class="hint" data-i18n="vault_hint">검수 중인 작업을 여러 개 저장하고 나중에 이어서 하기.</p></div></button>
     <button class="item" id="backupBtn"><span>⬇️</span><div><b data-i18n="backup_json">백업 파일 저장</b><p class="hint" data-i18n="backup_hint">현재 세션 전체를 JSON으로 저장합니다.</p></div></button>
     <button class="item" id="restoreBtn"><span>⬆️</span><div><b data-i18n="restore_json">백업 불러오기</b><p class="hint" data-i18n="restore_hint">저장했던 JSON 세션을 복원합니다.</p></div></button>
     <input id="restoreFile" type="file" accept="application/json,.json" style="display:none">
     <button class="item" id="clearCountsBtn"><span>🧹</span><div><b data-i18n="clear_counts">검수 수량만 초기화</b><p class="hint" data-i18n="clear_counts_hint">인보이스는 유지됩니다.</p></div></button>
     <button class="item danger" id="newSessionBtn"><span>🗑️</span><div><b data-i18n="new_session">새 세션 시작</b><p class="hint" data-i18n="new_session_hint">현재 검수/인보이스를 비웁니다. 업체 설정은 유지됩니다.</p></div></button>
     <div class="actions"><button class="btn line" id="menuCloseBtn" data-i18n="close">닫기</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="vaultModal">
+  <div class="modal">
+    <div class="card-title" style="margin-bottom:2px"><h2 data-i18n="vault_title">세션 보관함</h2><span class="chip neutral" id="vaultCountChip">0</span></div>
+    <p class="hint" data-i18n="vault_hint">검수 중인 작업을 여러 개 저장하고 나중에 이어서 하기.</p>
+    <div id="vaultRows"></div>
+    <div class="actions">
+      <button class="btn line" id="vaultSaveBtn" data-i18n="vault_save_now">💾 현재 작업 저장</button>
+      <button class="btn primary" id="vaultCloseBtn" data-i18n="close">닫기</button>
+    </div>
   </div>
 </div>
 
@@ -299,6 +312,8 @@
       <input id="editQty" type="number" min="0" inputmode="numeric" value="0">
       <button id="editPlus">+</button>
     </div>
+    <button class="btn line" id="editBackorder" style="width:100%;margin-top:10px">🚚 미도착(백오더)으로 표시</button>
+    <p class="hint" id="editBackorderHint" style="margin:7px 0 0">벤더가 이번에 안 보낸 물건이면 표시하세요.</p>
     <div class="actions">
       <button class="btn danger" id="editDelete" data-i18n="delete">삭제</button>
       <button class="btn primary" id="editSave" data-i18n="save">저장</button>
@@ -308,7 +323,9 @@
 
 <script>
 /* 901 Check-In Pro · Single-file warehouse receiving app
-   PIN 변경: STORE_PIN 값을 바꾸세요. PIN을 끄려면 빈 문자열("")로 두면 됩니다. */
+   PIN 변경: STORE_PIN 값을 바꾸세요. PIN을 끄려면 빈 문자열("")로 두면 됩니다.
+   ── 오프라인 내구성 패치(2026-07): 카메라/엑셀 라이브러리를 화면 로딩을 막지 않게
+      비동기로 불러오고, 인터넷/cdnjs가 안 돼도 앱(PIN·스캔·CSV)은 항상 뜨게 함. */
 const STORE_PIN = "901901";
 const KEY = "recv_pro_session_v2";
 const OLD_KEY = "recv_session_v4";
@@ -319,14 +336,57 @@ const I18N = {
   es:{app_title:"Recepción Pro",pin_sub:"US BEAUTY LLC · Solo personal",pin_enter:"Entrar",pin_wrong:"Código incorrecto",today_progress:"Progreso de hoy",recv:"Contado",expected:"Esperado",short:"Falta",over:"Sobra",extra:"Extra",match:"Coincide",missing:"Ausente",total:"Total",scan_title:"Escanear código",scanner_mode:"Modo escáner",quick_mode:"Añadir rápido",camera:"Cámara",camera_stop:"Apagar cámara",undo:"Deshacer",scan_hint:"Con escáner manual, usa Modo escáner + Añadir rápido para sumar 1 por lectura.",invoice_qty:"Factura",counted_qty:"Contado",remain_qty:"Falta",cancel:"Cancelar",add_qty:"Añadir",recent_scans:"Recientes",review:"Revisar",invoice_title:"Cargar factura",invoice_hint:"Carga CSV, TSV, TXT, XLS o XLSX. Varias facturas OK; códigos iguales se suman.",pick_invoice:"📎 Elegir / añadir archivos",pick_invoice_sub:"Puedes seleccionar varios archivos.",vendor:"Proveedor",new_vendor:"Nuevo proveedor",merge_invoice:"Unir a factura actual",ignore_zero:"Ignorar ceros iniciales",check_digit:"Validar UPC/EAN",save_vendor_map:"Guardar mapeo",clear_files:"Vaciar archivos",load_invoice:"Aplicar factura",list_title:"Lista completa",sort_problem:"Problemas primero",sort_name:"Nombre",sort_recent:"Reciente",recon_title:"Verificación",export_csv:"Exportar CSV",export_xlsx:"Exportar Excel",nav_scan:"Escanear",nav_invoice:"Factura",nav_list:"Lista",nav_recon:"Verificar",menu:"Menú",rename_session:"Renombrar sesión",rename_hint:"Usa fecha/proveedor.",backup_json:"Guardar respaldo",backup_hint:"Descarga la sesión en JSON.",restore_json:"Restaurar respaldo",restore_hint:"Restaura un JSON guardado.",clear_counts:"Limpiar conteos",clear_counts_hint:"La factura se mantiene.",new_session:"Nueva sesión",new_session_hint:"Borra factura y conteos. Mantiene proveedores.",close:"Cerrar",delete:"Borrar",save:"Guardar",go:"OK",manual:"Manual",scanner:"Escáner",quick:"Rápido +1",detected:"Detectado",not_detected:"No detectado — revisa columnas",barcode:"Código",name:"Nombre",qty:"Cant.",ignore:"Ignorar",rows:"{n} filas",files_rows:"{f} archivos · {r} filas",custom_vendor:"Personalizado",add_vendor:"+ Añadir proveedor…",empty_recent:"Aún no hay escaneos.<br>Escanea o escribe un código.",empty_list:"La lista está vacía.<br>Carga una factura o empieza.",empty_recon:"Nada que verificar.<br>Carga una factura y empieza.",need_review:"Revisar",matched_items:"Coinciden",all:"Todo",problem:"Problemas",status_ok:"Coincide",status_short:"Falta {n}",status_over:"Sobra +{n}",status_missing:"Ausente",status_extra:"Fuera factura",not_on_invoice:"Fuera factura",new_item:"Nuevo artículo",toast_added:"+{a} · total {n}",toast_match:"✓ Coincide ({n}/{e})",toast_short:"Falta {n}/{e} ({r})",toast_over:"Sobra {n}/{e} (+{d})",toast_extra:"Fuera factura · total {n}",bad_barcode:"Código sospechoso — ignorado",duplicate:"Duplicado ignorado",undo_done:"Último escaneo deshecho",nothing_undo:"Nada que deshacer",choose_barcode:"Elige columna de código",choose_qty:"Elige columna de cantidad",no_rows:"No hay filas legibles. Revisa columnas.",loaded:"Factura aplicada · {i} art. {q} pzs",merged:"Factura unida · {i} art. {q} pzs",no_export:"Nada que exportar",xlsx_missing:"Falta librería Excel; guardando CSV",rename_prompt:"Nombre de sesión",confirm_clear:"¿Limpiar conteos? La factura queda.",confirm_new:"¿Nueva sesión? Se borran factura y conteos.",restored:"Respaldo restaurado",backup_saved:"Respaldo guardado",file_error:"No se pudo leer archivo",progress_none:"Carga una factura y empieza.",progress_text:"{recv}/{exp} contado · {p} por revisar",problem_sub:"Artículos por revisar",all_clear:"Todo coincide",session_default:"Recepción {d}"}
 };
 
+/* ── 2026-07 추가: 세션 보관함(Sessions) + 미도착(백오더) 표시 ── */
+Object.assign(I18N.ko, {
+  vault:"세션 보관함", vault_hint:"검수 중인 작업을 여러 개 저장하고 나중에 이어서 하기.",
+  vault_title:"세션 보관함", vault_empty:"보관된 작업이 없어요.<br>검수를 시작하면 자동으로 저장됩니다.",
+  vault_save_now:"💾 현재 작업 저장", vault_current:"지금 작업 중", vault_open:"이어하기",
+  vault_done:"완료", vault_inprogress:"진행중", vault_mark_done:"완료로 표시", vault_mark_open:"진행중으로",
+  vault_delete_confirm:"이 저장된 작업을 삭제할까요? 되돌릴 수 없습니다.",
+  vault_opened:"이어서 시작합니다", vault_saved:"현재 작업을 보관함에 저장했습니다",
+  vault_nothing:"저장할 작업이 없습니다", vault_full:"저장 공간이 부족합니다. 보관함에서 오래된 작업을 삭제하세요.",
+  vault_count:"보관 {n}개", vault_items:"{i}품목 · 검수 {r}/{e}개", vault_problem:"확인 {p}",
+  backorder:"미도착", status_backorder:"미도착", status_backorder_partial:"미도착 {n}",
+  mark_backorder:"🚚 미도착(백오더)으로 표시", unmark_backorder:"✓ 미도착 표시 해제",
+  backorder_hint:"벤더가 이번에 안 보낸 물건이면 표시하세요. 부족/누락에서 빠지고 리포트에 따로 나옵니다.",
+  backorder_section:"미도착 (백오더)", progress_back:" · 미도착 {b}개"
+});
+Object.assign(I18N.en, {
+  vault:"Sessions", vault_hint:"Save several receiving jobs and continue later.",
+  vault_title:"Saved sessions", vault_empty:"No saved sessions yet.<br>Jobs are saved automatically once you start.",
+  vault_save_now:"💾 Save current job", vault_current:"Working on this", vault_open:"Resume",
+  vault_done:"Done", vault_inprogress:"In progress", vault_mark_done:"Mark done", vault_mark_open:"Reopen",
+  vault_delete_confirm:"Delete this saved session? This cannot be undone.",
+  vault_opened:"Resumed", vault_saved:"Current job saved to Sessions",
+  vault_nothing:"Nothing to save yet", vault_full:"Storage is full. Delete old sessions.",
+  vault_count:"{n} saved", vault_items:"{i} items · {r}/{e} counted", vault_problem:"review {p}",
+  backorder:"Backorder", status_backorder:"Not delivered", status_backorder_partial:"Backorder {n}",
+  mark_backorder:"🚚 Mark as backorder (not delivered)", unmark_backorder:"✓ Remove backorder mark",
+  backorder_hint:"Use this when the vendor did not ship it. It leaves Short/Missing and is listed separately in the report.",
+  backorder_section:"Backorder (not delivered)", progress_back:" · {b} on backorder"
+});
+Object.assign(I18N.es, {
+  vault:"Sesiones", vault_hint:"Guarda varios trabajos y continúa después.",
+  vault_title:"Sesiones guardadas", vault_empty:"No hay sesiones guardadas.<br>Se guardan solas al empezar.",
+  vault_save_now:"💾 Guardar trabajo actual", vault_current:"Trabajo actual", vault_open:"Continuar",
+  vault_done:"Listo", vault_inprogress:"En curso", vault_mark_done:"Marcar listo", vault_mark_open:"Reabrir",
+  vault_delete_confirm:"¿Borrar esta sesión guardada? No se puede deshacer.",
+  vault_opened:"Continuando", vault_saved:"Trabajo guardado en Sesiones",
+  vault_nothing:"Nada que guardar", vault_full:"Sin espacio. Borra sesiones antiguas.",
+  vault_count:"{n} guardadas", vault_items:"{i} art. · {r}/{e} contado", vault_problem:"revisar {p}",
+  backorder:"No llegó", status_backorder:"No llegó", status_backorder_partial:"No llegó {n}",
+  mark_backorder:"🚚 Marcar como no enviado", unmark_backorder:"✓ Quitar marca",
+  backorder_hint:"Úsalo si el proveedor no lo envió. Sale de Falta/Ausente y aparece aparte en el reporte.",
+  backorder_section:"No enviado (backorder)", progress_back:" · {b} no llegó"
+});
+
 const VENDOR_PROFILES = [
   {name:"Shake-N-Go", map:{b:0,n:3,q:1}, group:"sng_mm"},
   {name:"Model Model", map:{b:0,n:3,q:1}, group:"sng_mm"},
   {name:"KISS", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
-  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"},
-  {name:"Motown Tress", map:{b:14,n:0,q:12}, group:"mt"}
+  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"}
 ];
 
 const $ = (id)=>document.getElementById(id);
@@ -349,12 +409,13 @@ function t(key, vars={}){
   Object.entries(vars).forEach(([k,v])=>{s=s.replaceAll(`{${k}}`, v)});
   return s;
 }
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 function todayLabel(){return new Date().toLocaleDateString(undefined,{year:"numeric",month:"2-digit",day:"2-digit"});}
 function blankState(){
   const vendors = {};
   VENDOR_PROFILES.forEach(v=>vendors[v.name]={map:{...v.map}, ignoreZero:true});
   const lang = storage.get("recv_lang") || "ko";
-  return {version:2, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now()};
+  return {version:2, id:uid(), done:false, backorder:{}, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now()};
 }
 function migrateOld(old){
   const fresh = blankState();
@@ -386,11 +447,14 @@ function normalizeState(s){
   s.invoice = s.invoice || {};
   s.scanned = s.scanned || {};
   s.history = Array.isArray(s.history) ? s.history : [];
+  s.backorder = (s.backorder && typeof s.backorder==="object") ? s.backorder : {};
+  if(!s.id) s.id = uid();
+  s.done = !!s.done;
   if(!I18N[s.lang]) s.lang = "ko";
   return s;
 }
 let state = loadState();
-function save(){state.updatedAt=Date.now();storage.set(KEY, JSON.stringify(state));storage.set("recv_lang", state.lang);storage.set("recv_theme", state.theme || "light");}
+function save(){state.updatedAt=Date.now();storage.set(KEY, JSON.stringify(state));storage.set("recv_lang", state.lang);storage.set("recv_theme", state.theme || "light");scheduleArchive();}
 
 function applyTheme(){
   document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
@@ -406,7 +470,7 @@ function applyLang(){
 }
 function normalizeCode(raw){
   let code = String(raw ?? "").trim().replace(/\s+/g,"");
-  code = code.replace(/[​-‍﻿]/g,"");
+  code = code.replace(/[\u200B-\u200D\uFEFF]/g,"");
   if(state.options.ignoreZero) code = code.replace(/^0+/,"") || "0";
   return code;
 }
@@ -432,6 +496,125 @@ function toast(type, msg, action){
   setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(8px)";el.style.transition=".25s";setTimeout(()=>el.remove(),260)}, type==="bad"?3600:2600);
 }
 
+/* ─────────────── 세션 보관함 (Sessions vault) ─────────────── */
+const VAULT_KEY = "recv_pro_vault_v1";
+const VAULT_MAX = 12;
+let archiveTimer = null;
+
+function loadVault(){
+  try{const raw=storage.get(VAULT_KEY); const arr=raw?JSON.parse(raw):[]; return Array.isArray(arr)?arr:[];}
+  catch(e){return [];}
+}
+function saveVault(list){
+  try{storage.set(VAULT_KEY, JSON.stringify(list)); return true;}
+  catch(e){toast("bad", t("vault_full")); return false;}
+}
+function sessionHasWork(s){
+  return Object.keys(s?.invoice||{}).length>0 || Object.keys(s?.scanned||{}).length>0;
+}
+function snapshotOf(s){
+  const c = JSON.parse(JSON.stringify(s));
+  c.history = (c.history||[]).slice(-60);   /* 용량 절약: 최근 스캔 60건만 보관 */
+  c.updatedAt = Date.now();
+  return c;
+}
+function archiveCurrent(){
+  clearTimeout(archiveTimer); archiveTimer=null;
+  if(!sessionHasWork(state)) return false;
+  const list = loadVault();
+  const snap = snapshotOf(state);
+  const i = list.findIndex(x=>x && x.id===state.id);
+  if(i>=0) list[i]=snap; else list.push(snap);
+  list.sort((a,b)=>(b?.updatedAt||0)-(a?.updatedAt||0));
+  return saveVault(list.slice(0, VAULT_MAX));
+}
+function scheduleArchive(){
+  clearTimeout(archiveTimer);
+  archiveTimer = setTimeout(archiveCurrent, 4000);
+}
+function sessionSummary(s){
+  const inv=s?.invoice||{}, sc=s?.scanned||{}, bo=s?.backorder||{};
+  let exp=0, recv=0, problem=0, back=0;
+  const keys=new Set([...Object.keys(inv), ...Object.keys(sc)]);
+  keys.forEach(k=>{
+    const e=Number(inv[k]?.exp)||0, r=Number(sc[k]?.recv)||0;
+    if(inv[k]){exp+=e; recv+=r;}
+    if(!inv[k]){problem++; return;}
+    if(r===e) return;
+    if(r<e && bo[k]){back++; return;}
+    problem++;
+  });
+  return {items:keys.size, invoiceItems:Object.keys(inv).length, exp, recv, problem, back,
+          pct: exp?Math.min(100, Math.round(recv/exp*100)):0};
+}
+function vaultRowHTML(s){
+  const sm=sessionSummary(s), cur=(s.id===state.id);
+  const when=new Date(s.updatedAt||s.createdAt||Date.now()).toLocaleString([], {month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const badge = cur ? `<span class="chip ok">${t("vault_current")}</span>`
+                    : (s.done ? `<span class="chip neutral">${t("vault_done")}</span>`
+                              : `<span class="chip warn">${t("vault_inprogress")}</span>`);
+  const bits = [t("vault_items",{i:fmt(sm.invoiceItems),r:fmt(sm.recv),e:fmt(sm.exp)})];
+  if(sm.problem) bits.push(t("vault_problem",{p:fmt(sm.problem)}));
+  if(sm.back) bits.push(`${t("backorder")} ${fmt(sm.back)}`);
+  return `<div class="vault-card ${cur?"cur":""}">
+    <div class="vault-top">
+      <div style="min-width:0">
+        <div class="vault-name">${esc(s.vendor?s.vendor+" · ":"")}${esc(s.sessionName||"-")}</div>
+        <div class="vault-meta">${when} · ${bits.join(" · ")}</div>
+      </div>${badge}
+    </div>
+    <div class="vault-bar"><span style="width:${sm.pct}%"></span></div>
+    <div class="vault-acts">
+      <button class="btn primary small" style="flex:1" data-vopen="${esc(s.id)}">${cur?t("close"):t("vault_open")}</button>
+      <button class="btn line small" data-vdone="${esc(s.id)}">${s.done?t("vault_mark_open"):t("vault_mark_done")}</button>
+      <button class="btn danger small" data-vdel="${esc(s.id)}">${t("delete")}</button>
+    </div>
+  </div>`;
+}
+function renderVault(){
+  archiveCurrent();
+  const list = loadVault();
+  $("vaultCountChip").textContent = t("vault_count",{n:fmt(list.length)});
+  $("vaultRows").innerHTML = list.length ? list.map(vaultRowHTML).join("") : `<div class="empty">${t("vault_empty")}</div>`;
+  $$("#vaultRows [data-vopen]").forEach(b=>b.onclick=()=>openSession(b.dataset.vopen));
+  $$("#vaultRows [data-vdone]").forEach(b=>b.onclick=()=>toggleSessionDone(b.dataset.vdone));
+  $$("#vaultRows [data-vdel]").forEach(b=>b.onclick=()=>deleteSession(b.dataset.vdel));
+}
+function openSession(id){
+  if(id===state.id){closeModal("vaultModal");return;}
+  archiveCurrent();
+  const found = loadVault().find(x=>x && x.id===id);
+  if(!found) return;
+  state = normalizeState(JSON.parse(JSON.stringify(found)));
+  selectedFiles=[]; activeFilter="all";
+  save(); closeModal("vaultModal"); closeModal("menuModal");
+  applyLang(); goView("scan");
+  toast("ok", `${state.sessionName} — ${t("vault_opened")}`);
+}
+function toggleSessionDone(id){
+  const list=loadVault(); const i=list.findIndex(x=>x && x.id===id);
+  if(i<0) return;
+  list[i].done = !list[i].done;
+  if(id===state.id) state.done = list[i].done;
+  saveVault(list); renderVault();
+}
+function deleteSession(id){
+  if(!confirm(t("vault_delete_confirm"))) return;
+  saveVault(loadVault().filter(x=>x && x.id!==id));
+  renderVault();
+}
+function saveCurrentToVault(){
+  if(!sessionHasWork(state)){toast("warn", t("vault_nothing")); return;}
+  if(archiveCurrent()){toast("ok", t("vault_saved")); renderVault();}
+}
+function isBackorder(key){return !!(state.backorder && state.backorder[key]);}
+function toggleBackorder(key){
+  if(!key) return;
+  if(state.backorder[key]) delete state.backorder[key];
+  else state.backorder[key]=true;
+  save(); renderEverything();
+}
+
 function invoiceItem(key){return state.invoice[key] || null}
 function scannedItem(key){return state.scanned[key] || null}
 function itemName(key){return scannedItem(key)?.name || invoiceItem(key)?.name || t("new_item")}
@@ -440,19 +623,25 @@ function getStatus(key){
   const inv=invoiceItem(key), sc=scannedItem(key), recv=sc?Number(sc.recv)||0:0;
   if(!inv) return {kind:"extra", cls:"extra", label:t("status_extra"), diff:""};
   const exp=Number(inv.exp)||0;
-  if(recv===0) return {kind:"missing", cls:"bad", label:t("status_missing"), diff:-exp};
   if(recv===exp) return {kind:"ok", cls:"ok", label:t("status_ok"), diff:0};
-  if(recv<exp) return {kind:"short", cls:"warn", label:t("status_short",{n:exp-recv}), diff:recv-exp};
-  return {kind:"over", cls:"over", label:t("status_over",{n:recv-exp}), diff:recv-exp};
+  if(recv>exp) return {kind:"over", cls:"over", label:t("status_over",{n:recv-exp}), diff:recv-exp};
+  /* 여기부터는 recv < exp. 미도착(백오더) 표시가 있으면 부족/누락이 아니라 별도 상태로 분리한다. */
+  if(isBackorder(key)) return {kind:"backorder", cls:"back",
+      label: recv ? t("status_backorder_partial",{n:exp-recv}) : t("status_backorder"), diff:recv-exp};
+  if(recv===0) return {kind:"missing", cls:"bad", label:t("status_missing"), diff:-exp};
+  return {kind:"short", cls:"warn", label:t("status_short",{n:exp-recv}), diff:recv-exp};
 }
 function allKeys(){return [...new Set([...Object.keys(state.invoice), ...Object.keys(state.scanned)])];}
 function stats(){
   const keys=allKeys();
-  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,receivedAll:0,ok:0,short:0,over:0,missing:0,extra:0,problem:0};
+  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,receivedAll:0,ok:0,short:0,over:0,missing:0,extra:0,backorder:0,backorderQty:0,problem:0};
   Object.entries(state.invoice).forEach(([k,v])=>{out.expectedQty += Number(v.exp)||0; if(state.scanned[k]) out.receivedOnInvoice += Number(state.scanned[k].recv)||0;});
   Object.values(state.scanned).forEach(v=>out.receivedAll += Number(v.recv)||0);
-  keys.forEach(k=>{const kind=getStatus(k).kind; if(kind==="ok")out.ok++; else if(kind==="short")out.short++; else if(kind==="over")out.over++; else if(kind==="missing")out.missing++; else if(kind==="extra")out.extra++; if(kind!=="ok")out.problem++;});
-  out.progress = out.expectedQty ? Math.min(100, Math.round((out.receivedOnInvoice / out.expectedQty)*100)) : 0;
+  keys.forEach(k=>{const kind=getStatus(k).kind; if(kind==="ok")out.ok++; else if(kind==="short")out.short++; else if(kind==="over")out.over++; else if(kind==="missing")out.missing++; else if(kind==="extra")out.extra++;
+    else if(kind==="backorder"){out.backorder++; out.backorderQty += Math.max(0,(Number(state.invoice[k]?.exp)||0)-(Number(state.scanned[k]?.recv)||0));}
+    if(kind!=="ok" && kind!=="backorder")out.problem++;});
+  /* 미도착으로 확정한 수량은 진행률에 포함 → 남은 물건 없이 작업을 끝낼 수 있음 */
+  out.progress = out.expectedQty ? Math.min(100, Math.round(((out.receivedOnInvoice + out.backorderQty) / out.expectedQty)*100)) : 0;
   return out;
 }
 function barcodeWasDuplicate(code){
@@ -535,7 +724,7 @@ function recentHTML(){
 }
 function sortKeys(keys){
   const sort=$("sortSelect")?.value || "problem";
-  const order={missing:0,short:1,over:2,extra:3,ok:4};
+  const order={missing:0,short:1,over:2,extra:3,backorder:4,ok:5};
   if(sort==="name") return keys.sort((a,b)=>itemName(a).localeCompare(itemName(b)));
   if(sort==="recent") return keys.sort((a,b)=>(scannedItem(b)?.last||0)-(scannedItem(a)?.last||0));
   return keys.sort((a,b)=>order[getStatus(a).kind]-order[getStatus(b).kind] || itemName(a).localeCompare(itemName(b)));
@@ -545,7 +734,7 @@ function filteredKeys(){
   const q=($("searchInput")?.value||"").trim().toLowerCase();
   if(q) keys=keys.filter(k=>`${itemName(k)} ${itemCode(k)}`.toLowerCase().includes(q));
   if(activeFilter!=="all"){
-    if(activeFilter==="problem") keys=keys.filter(k=>getStatus(k).kind!=="ok");
+    if(activeFilter==="problem") keys=keys.filter(k=>{const kd=getStatus(k).kind; return kd!=="ok" && kd!=="backorder";});
     else keys=keys.filter(k=>getStatus(k).kind===activeFilter);
   }
   return sortKeys(keys);
@@ -553,7 +742,7 @@ function filteredKeys(){
 function renderStatusFilters(){
   const s=stats();
   const filters=[
-    ["all",t("all"),s.totalItems],["problem",t("problem"),s.problem],["missing",t("missing"),s.missing],["short",t("short"),s.short],["over",t("over"),s.over],["extra",t("extra"),s.extra],["ok",t("match"),s.ok]
+    ["all",t("all"),s.totalItems],["problem",t("problem"),s.problem],["missing",t("missing"),s.missing],["short",t("short"),s.short],["over",t("over"),s.over],["extra",t("extra"),s.extra],["backorder",t("backorder"),s.backorder],["ok",t("match"),s.ok]
   ];
   $("statusFilters").innerHTML=filters.map(([k,l,n])=>`<button class="filter ${activeFilter===k?"on":""}" data-filter="${k}">${l} ${fmt(n)}</button>`).join("");
   $$("#statusFilters .filter").forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;renderList();});
@@ -568,11 +757,13 @@ function renderList(){
 function renderRecon(){
   const keys=allKeys();
   if(!keys.length){$("reconRows").innerHTML=`<div class="card empty">${t("empty_recon")}</div>`;return;}
-  const problems=sortKeys(keys.filter(k=>getStatus(k).kind!=="ok"));
+  const problems=sortKeys(keys.filter(k=>{const kd=getStatus(k).kind; return kd!=="ok" && kd!=="backorder";}));
+  const backs=sortKeys(keys.filter(k=>getStatus(k).kind==="backorder"));
   const good=sortKeys(keys.filter(k=>getStatus(k).kind==="ok"));
   let html="";
   if(problems.length) html += `<div class="section-title">${t("need_review")} (${fmt(problems.length)})</div>${problems.map(rowHTML).join("")}`;
   else html += `<div class="card empty"><b>${t("all_clear")}</b></div>`;
+  if(backs.length) html += `<div class="section-title">${t("backorder_section")} (${fmt(backs.length)})</div>${backs.map(rowHTML).join("")}`;
   if(good.length) html += `<div class="section-title">${t("matched_items")} (${fmt(good.length)})</div>${good.map(rowHTML).join("")}`;
   $("reconRows").innerHTML=html; attachRowClicks($("reconRows"));
 }
@@ -580,9 +771,9 @@ function renderDashboard(){
   const s=stats();
   $("progressPct").textContent=s.progress;
   $("progressBar").style.width=s.progress+"%";
-  $("progressSub").textContent=s.expectedQty?t("progress_text",{recv:fmt(s.receivedOnInvoice),exp:fmt(s.expectedQty),p:fmt(s.problem)}):t("progress_none");
+  $("progressSub").textContent=s.expectedQty?(t("progress_text",{recv:fmt(s.receivedOnInvoice),exp:fmt(s.expectedQty),p:fmt(s.problem)})+(s.backorder?t("progress_back",{b:fmt(s.backorderQty)}):"")):t("progress_none");
   $("miniReceived").textContent=fmt(s.receivedOnInvoice);$("miniExpected").textContent=fmt(s.expectedQty);$("miniShort").textContent=fmt(s.short);$("miniOver").textContent=fmt(s.over);$("miniExtra").textContent=fmt(s.extra);$("miniOk").textContent=fmt(s.ok);
-  $("rOk").textContent=fmt(s.ok);$("rShort").textContent=fmt(s.short);$("rOver").textContent=fmt(s.over);$("rMiss").textContent=fmt(s.missing);$("rExtra").textContent=fmt(s.extra);$("rTotal").textContent=fmt(s.totalItems);
+  $("rOk").textContent=fmt(s.ok);$("rShort").textContent=fmt(s.short);$("rOver").textContent=fmt(s.over);$("rMiss").textContent=fmt(s.missing);$("rExtra").textContent=fmt(s.extra);$("rBack").textContent=fmt(s.backorder);$("rTotal").textContent=fmt(s.totalItems);
   $("problemCountBig").textContent=fmt(s.problem);$("problemSub").textContent=s.problem?t("problem_sub"):t("all_clear");
   $("scanBadge").textContent=fmt(Object.keys(state.scanned).length);
   $("sessionLine").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName}`;
@@ -608,7 +799,15 @@ function openEdit(key){
   const inv=invoiceItem(key), st=getStatus(key);
   $("editCode").textContent=`${itemCode(key)} · ${inv?`${t("invoice_qty")}: ${fmt(inv.exp)}`:t("not_on_invoice")} · ${st.label}`;
   $("editQty").value=scannedItem(key)?.recv || 0;
+  renderBackorderBtn();
   openModal("editModal");
+}
+function renderBackorderBtn(){
+  const on=isBackorder(editKey);
+  const b=$("editBackorder");
+  b.textContent = on ? t("unmark_backorder") : t("mark_backorder");
+  b.classList.toggle("green", on);
+  $("editBackorderHint").textContent = t("backorder_hint");
 }
 function saveEdit(){
   if(!editKey) return;
@@ -755,9 +954,6 @@ function detectVendor(){
       if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
     } else if(p.group==="gb"){
       if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
-    } else if(p.group==="mt"){
-      if(!(hjoin.includes("outstanding qty")&&hjoin.includes("po line qty"))) continue;  // MT (Motown Tress/Oradell) fingerprint
-      sc+=3;
     }
     if(sc>bestScore){bestScore=sc;best=p;}
   }
@@ -844,10 +1040,11 @@ function loadInvoice(){
 
 function detailRows(){
   const rows=[["Session",state.sessionName,"Vendor",state.vendor,"Exported",new Date().toLocaleString()],[]];
-  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","Status","LastCounted"]);
+  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","Status","LastCounted","Backorder"]);
   sortKeys(allKeys()).forEach(k=>{
-    const inv=invoiceItem(k), sc=scannedItem(k), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:"", diff=inv?recv-Number(inv.exp):"", st=getStatus(k).label;
-    rows.push([itemCode(k), itemName(k), exp, recv, diff, st, sc?.last?new Date(sc.last).toLocaleString():""]);
+    const inv=invoiceItem(k), sc=scannedItem(k), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:"", diff=inv?recv-Number(inv.exp):"", stt=getStatus(k);
+    const label = stt.kind==="backorder" ? "BACKORDER" : stt.label;
+    rows.push([itemCode(k), itemName(k), exp, recv, diff, label, sc?.last?new Date(sc.last).toLocaleString():"", isBackorder(k)?"YES":""]);
   });
   return rows;
 }
@@ -858,7 +1055,7 @@ function downloadBlob(filename, data, type){
 function safeName(){return `${state.vendor||state.sessionName||"checkin"}`.replace(/[^\w가-힣-]+/g,"_").slice(0,48);}
 function exportCSV(){
   if(!allKeys().length){toast("warn",t("no_export"));return;}
-  const csv="﻿"+detailRows().map(r=>r.map(c=>{c=String(c??"");return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c}).join(",")).join("\r\n");
+  const csv="\uFEFF"+detailRows().map(r=>r.map(c=>{c=String(c??"");return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c}).join(",")).join("\r\n");
   downloadBlob(`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.csv`, csv, "text/csv;charset=utf-8");
 }
 function exportXLSX(){
@@ -866,7 +1063,7 @@ function exportXLSX(){
   if(typeof XLSX==="undefined"){toast("warn",t("xlsx_missing"));exportCSV();return;}
   const wb=XLSX.utils.book_new();
   const s=stats();
-  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Expected Qty",s.expectedQty],["Counted On Invoice",s.receivedOnInvoice],["All Counted",s.receivedAll],["Match",s.ok],["Short",s.short],["Over",s.over],["Missing",s.missing],["Extra",s.extra],["Exported",new Date().toLocaleString()]];
+  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Expected Qty",s.expectedQty],["Counted On Invoice",s.receivedOnInvoice],["All Counted",s.receivedAll],["Match",s.ok],["Short",s.short],["Over",s.over],["Missing",s.missing],["Extra",s.extra],["Backorder items",s.backorder],["Backorder qty",s.backorderQty],["Exported",new Date().toLocaleString()]];
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),"Summary");
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(detailRows()),"Details");
   XLSX.writeFile(wb,`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.xlsx`);
@@ -903,7 +1100,8 @@ function initEvents(){
   $("editPlus").onclick=()=>$("editQty").value=(parseInt($("editQty").value,10)||0)+1;
   $("editMinus").onclick=()=>$("editQty").value=Math.max(0,(parseInt($("editQty").value,10)||0)-1);
   $("editSave").onclick=saveEdit;
-  $("editDelete").onclick=()=>{if(editKey){delete state.scanned[editKey];save();closeModal("editModal");renderEverything();}};
+  $("editDelete").onclick=()=>{if(editKey){delete state.scanned[editKey];if(!state.invoice[editKey])delete state.backorder[editKey];save();closeModal("editModal");renderEverything();}};
+  $("editBackorder").onclick=()=>{toggleBackorder(editKey);renderBackorderBtn();};
   $("searchInput").addEventListener("input",renderList); $("sortSelect").addEventListener("change",renderList);
   $("invoiceFiles").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";for(const file of files){const data=await readOneFile(file);if(data)selectedFiles.push(data);}renderFileList();});
   $("vendorSelect").addEventListener("change",()=>{const isNew=$("vendorSelect").value==="__new";$("newVendorName").disabled=!isNew;if(isNew)$("newVendorName").focus();const v=$("vendorSelect").value;if(v&&state.vendors[v])$("ignoreZero").checked=state.vendors[v].ignoreZero!==false;renderMapping();});
@@ -912,12 +1110,17 @@ function initEvents(){
   $("exportCsvBtn").onclick=exportCSV; $("exportXlsxBtn").onclick=exportXLSX;
   $("menuBtn").onclick=()=>{renderDashboard();openModal("menuModal")}; $("menuCloseBtn").onclick=()=>closeModal("menuModal");
   $("renameSessionBtn").onclick=()=>{const n=prompt(t("rename_prompt"),state.sessionName);if(n){state.sessionName=n.trim()||state.sessionName;save();renderEverything();}};
+  $("vaultBtn").onclick=()=>{renderVault();openModal("vaultModal");};
+  $("vaultCloseBtn").onclick=()=>closeModal("vaultModal");
+  $("vaultSaveBtn").onclick=saveCurrentToVault;
   $("backupBtn").onclick=backupJSON; $("restoreBtn").onclick=()=>$("restoreFile").click(); $("restoreFile").onchange=e=>{const f=e.target.files[0];e.target.value="";if(f)restoreJSONFile(f)};
-  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];save();closeModal("menuModal");renderEverything();}};
-  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){const vendors=state.vendors, lang=state.lang, theme=state.theme;state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");}};
+  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];state.backorder={};save();closeModal("menuModal");renderEverything();}};
+  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){archiveCurrent();const vendors=state.vendors, lang=state.lang, theme=state.theme;state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");}};
   $("cameraBtn").onclick=()=>camOn?stopCamera():startCamera();
   $$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
   window.addEventListener("popstate",()=>{if(anyModalOpen())$$(".modal-bg").forEach(m=>m.classList.remove("on"));else if(camOn)stopCamera();else if(pending)closePending();else goView("scan");try{history.pushState({app:1},"")}catch(e){}});
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")archiveCurrent();});
+  window.addEventListener("pagehide",archiveCurrent);
   try{history.pushState({app:1},"")}catch(e){}
 }
 async function startCamera(){
@@ -950,9 +1153,17 @@ function createManifest(){
     const link=document.createElement("link"); link.rel="manifest"; link.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:"application/manifest+json"})); document.head.appendChild(link);
   }catch(e){}
 }
-createManifest();
-initEvents();
-initPin();
+/* ── 라이브러리 비동기 로더: 화면 로딩을 절대 막지 않음.
+   인터넷/cdnjs가 안 되면 카메라·엑셀만 잠깐 빠지고, 앱은 정상적으로 뜬다.
+   (도착하면 XLSX / Html5Qrcode 전역이 채워져 자동으로 기능이 살아남) */
+function __loadLib(src){try{var s=document.createElement("script");s.async=true;s.src=src;s.onerror=function(){/* CDN 실패는 조용히 무시 — 앱은 계속 작동 */};document.head.appendChild(s);}catch(e){}}
+__loadLib("https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js");
+__loadLib("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
+
+/* ── 부팅: 라이브러리 도착 여부와 무관하게 즉시 실행 */
+function __boot(){try{createManifest();}catch(e){}try{initEvents();}catch(e){}try{initPin();}catch(e){}}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__boot);
+else __boot();
 </script>
 </body>
 </html>
