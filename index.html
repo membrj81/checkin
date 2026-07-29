@@ -386,7 +386,8 @@ const VENDOR_PROFILES = [
   {name:"KISS", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
-  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"}
+  {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"},
+  {name:"Motown Tress", map:{b:14,n:0,q:12}, group:"mt"}
 ];
 
 const $ = (id)=>document.getElementById(id);
@@ -954,6 +955,9 @@ function detectVendor(){
       if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
     } else if(p.group==="gb"){
       if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
+    } else if(p.group==="mt"){
+      if(!(hjoin.includes("outstanding qty")&&hjoin.includes("po line qty"))) continue;  // MT (Motown Tress/Oradell) fingerprint
+      sc+=3;
     }
     if(sc>bestScore){bestScore=sc;best=p;}
   }
