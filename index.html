@@ -29,7 +29,7 @@
   button,input,select,textarea{font:inherit;color:inherit}
   button{cursor:pointer}
   .app{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
-  .topbar{background:var(--ink);color:#fff;padding:10px 12px calc(10px + env(safe-area-inset-top,0px));display:flex;gap:10px;align-items:center;box-shadow:0 1px 0 rgba(255,255,255,.08);z-index:8}
+  .topbar{background:var(--ink);color:#fff;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;display:flex;gap:10px;align-items:center;box-shadow:0 1px 0 rgba(255,255,255,.08);z-index:8}
   [data-theme="dark"] .topbar{color:var(--text)}
   .brand{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
   .mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#2563eb 55%,#7c3aed);display:grid;place-items:center;color:#fff;font-weight:900;letter-spacing:-1px;box-shadow:0 8px 18px rgba(37,99,235,.25)}
@@ -43,6 +43,10 @@
   .langsw{display:flex;gap:2px;background:rgba(0,0,0,.22);border-radius:11px;padding:3px}
   .langsw button{border:none;background:transparent;color:#9fb0c2;border-radius:8px;padding:6px 7px;font-size:11px;font-weight:900}
   .langsw button.on{background:var(--accent);color:#fff}
+  .system-strip{display:flex;align-items:center;gap:12px;min-height:30px;padding:5px 12px;background:var(--surface);border-bottom:1px solid var(--line);overflow:auto;white-space:nowrap;font-size:11px;font-weight:850;color:var(--muted);z-index:7}
+  .system-strip .status{display:inline-flex;align-items:center;gap:5px}.system-strip .status:before{content:"";width:7px;height:7px;border-radius:50%;background:#94a3b8;flex:0 0 auto}.system-strip .status.ok:before{background:var(--green)}.system-strip .status.warn:before{background:var(--amber)}.system-strip .status.bad:before{background:var(--red)}
+  .system-strip .staff{margin-left:auto;overflow:hidden;text-overflow:ellipsis}
+  .storage-alert{display:flex;align-items:center;gap:10px;background:var(--red-bg);color:var(--red);border-bottom:1px solid color-mix(in srgb,var(--red) 24%,transparent);padding:9px 12px;font-size:12px;font-weight:850;z-index:7}.storage-alert[hidden]{display:none}.storage-alert span{flex:1}.storage-alert button{border:1px solid currentColor;background:transparent;color:inherit;border-radius:10px;padding:6px 9px;font-weight:900}
   main{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:12px 12px 96px}
   .view{display:none;max-width:980px;margin:0 auto}
   .view.active{display:block}
@@ -77,8 +81,9 @@
   .p-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.p-name{font-weight:900;font-size:17px;line-height:1.25}.p-code{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace;margin-top:3px}
   .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;white-space:nowrap}.chip.ok{background:var(--green-bg);color:var(--green)}.chip.warn{background:var(--amber-bg);color:var(--amber)}.chip.over{background:var(--purple-bg);color:var(--purple)}.chip.bad{background:var(--red-bg);color:var(--red)}.chip.extra{background:var(--cyan-bg);color:var(--cyan)}.chip.neutral{background:var(--surface-2);color:var(--muted)}
   .qty-panel{display:grid;grid-template-columns:54px 1fr 54px;gap:10px;align-items:center;margin-top:10px}.qty-panel button{height:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface-2);font-size:26px;font-weight:900}.qty-panel input{text-align:center;border:2px solid var(--line);border-radius:16px;background:var(--surface);padding:10px;font-size:27px;font-weight:900;outline:none}.qty-panel input:focus{border-color:var(--accent)}
-  .actions{display:flex;gap:9px;margin-top:10px}.btn{border:none;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:900;background:var(--surface-2);color:var(--text);flex:1}.btn.primary{background:var(--accent);color:#fff}.btn.danger{background:var(--red-bg);color:var(--red)}.btn.green{background:var(--green-bg);color:var(--green)}.btn.line{border:1px solid var(--line);background:var(--surface)}.btn.small{padding:9px 12px;border-radius:12px;font-size:12px;flex:0 0 auto}
+  .actions{display:flex;gap:9px;margin-top:10px}.btn{border:none;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:900;background:var(--surface-2);color:var(--text);flex:1}.btn:disabled{cursor:not-allowed;opacity:.62}.btn.primary{background:var(--accent);color:#fff}.btn.danger{background:var(--red-bg);color:var(--red)}.btn.green{background:var(--green-bg);color:var(--green)}.btn.line{border:1px solid var(--line);background:var(--surface)}.btn.small,.btn.sm{padding:9px 12px;border-radius:12px;font-size:12px;flex:0 0 auto}
   .section-title{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:16px 2px 8px}
+  .item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:12px;margin-bottom:8px;color:var(--text);font:inherit}.item b{font-size:14px}.item .hint{margin-top:4px}.q-item{transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}.q-item:active{transform:scale(.995)}.q-item:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:0 7px 18px rgba(15,23,42,.06)}
   .row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:12px;margin-bottom:8px;min-height:62px}.row.clickable{cursor:pointer}.row-info{flex:1;min-width:0}.row-name{font-size:14px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row-code{margin-top:3px;font-size:11px;color:var(--muted);font-family:ui-monospace,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row-num{text-align:right;font-size:11px;color:var(--muted);min-width:54px}.row-num b{display:block;color:var(--text);font-size:18px;line-height:1.05}.empty{text-align:center;color:var(--muted);padding:34px 18px;line-height:1.6}.empty b{display:block;color:var(--text);font-size:15px;margin-bottom:5px}
   .searchbar{display:flex;gap:8px;margin-bottom:10px}.searchbar input,.searchbar select{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;font-size:14px;outline:none}.searchbar input{flex:1;min-width:0}.searchbar select{width:132px}
   .filters{display:flex;gap:7px;overflow:auto;padding-bottom:7px;margin-bottom:8px}.filter{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 11px;font-weight:850;font-size:12px;color:var(--muted)}.filter.on{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -88,7 +93,7 @@
   .detect{display:none;margin:10px 0}.detect.on{display:block}.map-table{display:grid;gap:6px;margin-top:10px}.map-row{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:8px;border-bottom:1px solid var(--line)}.map-sample{min-width:0;font-size:12px;line-height:1.35}.map-sample b{display:block;color:var(--accent);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-sample span{font-family:ui-monospace,monospace;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-row select{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px;font-size:12px}
   .toast-wrap{position:fixed;left:12px;right:12px;bottom:calc(78px + var(--safe-bottom));z-index:90;display:grid;gap:8px;pointer-events:none}.toast{pointer-events:auto;max-width:980px;width:100%;margin:0 auto;border-radius:16px;padding:13px 14px;color:#fff;background:#1f2937;box-shadow:var(--shadow);font-weight:850;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}.toast.ok{background:#166534}.toast.warn{background:#92400e}.toast.bad{background:#991b1b}.toast.info{background:#1e40af}.toast button{border:none;background:rgba(255,255,255,.16);color:#fff;border-radius:10px;padding:7px 9px;font-size:12px;font-weight:900}
   nav{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:5px 6px calc(7px + var(--safe-bottom));z-index:20}nav button{position:relative;border:none;background:transparent;border-radius:14px;padding:8px 2px 6px;color:var(--muted);font-size:11px;font-weight:850}nav button .ico{display:block;font-size:20px;margin-bottom:2px}nav button.active{background:var(--accent-soft);color:var(--accent)}.nav-dot{display:none;position:absolute;top:5px;left:50%;margin-left:9px;min-width:17px;height:17px;border-radius:999px;background:var(--red);color:#fff;font-size:9px;line-height:17px;font-weight:900;padding:0 3px}.nav-dot.on{display:block}
-  .modal-bg{position:fixed;inset:0;background:rgba(4,10,20,.62);z-index:60;display:none;align-items:flex-end}.modal-bg.on{display:flex}.modal{background:var(--surface);border-radius:22px 22px 0 0;width:100%;max-height:88dvh;overflow:auto;padding:18px 16px calc(18px + var(--safe-bottom));box-shadow:var(--shadow)}.modal h2{margin:0 0 4px;font-size:18px}.modal .hint{margin-bottom:12px}.modal-menu button.item{width:100%;display:flex;align-items:center;gap:10px;background:transparent;border:none;border-bottom:1px solid var(--line);padding:15px 4px;text-align:left;font-weight:850}.modal-menu button.item span{font-size:20px}.modal-menu button.item.danger{color:var(--red)}
+  .modal-bg{position:fixed;inset:0;background:rgba(4,10,20,.62);z-index:60;display:none;align-items:flex-end}.modal-bg.on{display:flex}.modal{background:var(--surface);border-radius:22px 22px 0 0;width:100%;max-height:88dvh;overflow:auto;padding:18px 16px calc(18px + var(--safe-bottom));box-shadow:var(--shadow)}.modal h2{margin:0 0 4px;font-size:18px}.modal .hint{margin-bottom:12px}.modal-menu button.item{width:100%;display:flex;align-items:center;gap:10px;background:transparent;border:none;border-bottom:1px solid var(--line);border-radius:0;margin:0;padding:15px 4px;text-align:left;font-weight:850}.modal-menu button.item span{font-size:20px}.modal-menu button.item.danger{color:var(--red)}
   .pin-gate{position:fixed;inset:0;background:radial-gradient(circle at top,#1e3a8a 0,#0f172a 45%,#020617 100%);z-index:200;color:#fff;display:none;align-items:center;justify-content:center;padding:24px}.pin-gate.on{display:flex}.pin-card{width:min(360px,100%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);border-radius:28px;padding:26px 22px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.36)}.pin-logo{width:60px;height:60px;border-radius:20px;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(135deg,#60a5fa,#2563eb 55%,#7c3aed);font-size:22px;font-weight:900}.pin-card h1{margin:0;font-size:24px;letter-spacing:-.5px}.pin-card p{margin:7px 0 18px;color:#cbd5e1;font-size:13px}.pin-card input{width:100%;border:2px solid rgba(255,255,255,.18);background:rgba(0,0,0,.28);color:#fff;border-radius:17px;text-align:center;padding:13px;font-size:28px;font-family:ui-monospace,monospace;letter-spacing:8px;outline:none}.pin-card input:focus{border-color:#60a5fa}.pin-err{height:20px;margin-top:9px;color:#fecaca;font-size:13px}.pin-card .btn{margin-top:7px}.copyright{margin-top:16px;color:#94a3b8;font-size:10px;line-height:1.45}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   @media (min-width:760px){main{padding:18px 18px 104px}.two-col{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:12px;align-items:start}.toolbar{grid-template-columns:repeat(4,1fr)}.form-grid{grid-template-columns:1fr 1fr}.mini-grid{grid-template-columns:repeat(6,1fr)}.modal{max-width:620px;margin:0 auto;border-radius:22px 22px 0 0}.view{max-width:1080px}.brand-sub{max-width:420px}}
@@ -103,7 +108,7 @@
     <input id="pinInput" type="password" inputmode="numeric" maxlength="10" autocomplete="off" aria-label="PIN">
     <div id="pinErr" class="pin-err"></div>
     <button class="btn primary" id="pinBtn" data-i18n="pin_enter">입장</button>
-    <div class="copyright">© 2026 US BEAUTY LLC. All Rights Reserved.<br>Unauthorized use is strictly prohibited.</div>
+    <div class="copyright">© 2026 US BEAUTY LLC. All Rights Reserved. · v3.0<br>Unauthorized use is strictly prohibited.</div>
   </div>
 </div>
 
@@ -125,6 +130,16 @@
       <button class="icon-btn" id="menuBtn" title="Menu">☰</button>
     </div>
   </header>
+
+  <div class="system-strip" id="systemStrip" aria-live="polite">
+    <span class="status" id="networkStatus">-</span>
+    <span class="status" id="saveStatus">-</span>
+    <span class="staff" id="staffStatus">-</span>
+  </div>
+  <div class="storage-alert" id="storageAlert" hidden>
+    <span id="storageAlertText"></span>
+    <button id="storageBackupBtn" type="button" data-i18n="backup_now">지금 백업</button>
+  </div>
 
   <main>
     <section class="view" id="view-queue">
@@ -150,17 +165,17 @@
       <div class="two-col">
         <div>
           <div class="hero">
-            <div class="label" data-i18n="today_progress">오늘 진행률</div>
+            <div class="label" data-i18n="current_progress">현재 인보이스 진행률</div>
             <div class="big"><span id="progressPct">0</span>%</div>
             <div class="sub" id="progressSub">인보이스를 불러오고 스캔을 시작하세요.</div>
             <div class="progress"><span id="progressBar"></span></div>
             <div class="mini-grid">
-              <div class="mini"><b id="miniReceived">0</b><span data-i18n="recv">검수</span></div>
-              <div class="mini"><b id="miniExpected">0</b><span data-i18n="expected">예정</span></div>
-              <div class="mini"><b id="miniShort">0</b><span data-i18n="short">부족</span></div>
-              <div class="mini"><b id="miniOver">0</b><span data-i18n="over">초과</span></div>
-              <div class="mini"><b id="miniExtra">0</b><span data-i18n="extra">외품</span></div>
-              <div class="mini"><b id="miniOk">0</b><span data-i18n="match">일치</span></div>
+              <div class="mini"><b id="miniReceived">0</b><span data-i18n="scanned_qty">스캔 수량</span></div>
+              <div class="mini"><b id="miniExpected">0</b><span data-i18n="expected_qty">주문 수량</span></div>
+              <div class="mini"><b id="miniShort">0</b><span data-i18n="short_qty">부족 수량</span></div>
+              <div class="mini"><b id="miniOver">0</b><span data-i18n="over_qty">초과 수량</span></div>
+              <div class="mini"><b id="miniExtra">0</b><span data-i18n="extra_qty">외품 수량</span></div>
+              <div class="mini"><b id="miniOk">0</b><span data-i18n="match_items">일치 품목</span></div>
             </div>
           </div>
 
@@ -265,12 +280,12 @@
         <div class="big"><span id="problemCountBig">0</span></div>
         <div class="sub" id="problemSub">확인이 필요한 품목</div>
         <div class="mini-grid">
-          <div class="mini"><b id="rOk">0</b><span data-i18n="match">일치</span></div>
-          <div class="mini"><b id="rShort">0</b><span data-i18n="short">부족</span></div>
-          <div class="mini"><b id="rOver">0</b><span data-i18n="over">초과</span></div>
-          <div class="mini"><b id="rMiss">0</b><span data-i18n="missing">누락</span></div>
-          <div class="mini"><b id="rExtra">0</b><span data-i18n="extra">외품</span></div>
-          <div class="mini"><b id="rTotal">0</b><span data-i18n="total">전체</span></div>
+          <div class="mini"><b id="rOk">0</b><span data-i18n="match_items">일치 품목</span></div>
+          <div class="mini"><b id="rShort">0</b><span data-i18n="short_items">부족 품목</span></div>
+          <div class="mini"><b id="rOver">0</b><span data-i18n="over_items">초과 품목</span></div>
+          <div class="mini"><b id="rMiss">0</b><span data-i18n="missing_items">누락 품목</span></div>
+          <div class="mini"><b id="rExtra">0</b><span data-i18n="extra_items">외품 품목</span></div>
+          <div class="mini"><b id="rTotal">0</b><span data-i18n="total_items">전체 품목</span></div>
         </div>
       </div>
       <div class="card">
@@ -303,6 +318,8 @@
       <input id="cloudUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="off"></label>
     <label class="field"><span data-i18n="cloud_token">열쇠(TOKEN)</span>
       <input id="cloudToken" type="password" placeholder="TOKEN" autocomplete="off"></label>
+    <label class="field"><span data-i18n="staff_label">직원 이름 / 번호</span>
+      <input id="cloudStaff" type="text" placeholder="예: Maria / E12" autocomplete="name"></label>
     <p class="hint" id="cloudTestMsg"></p>
     <div class="actions">
       <button class="btn line" id="cloudTestBtn" data-i18n="cloud_test">연결 확인</button>
@@ -343,11 +360,25 @@
 </div>
 
 <script>
-/* 901 Check-In Pro · Single-file warehouse receiving app
+/* 901 Check-In Pro v3.0 · Reliability & workflow hardening build (2026-07-31)
+   Single-file warehouse receiving app
    PIN 변경: STORE_PIN 값을 바꾸세요. PIN을 끄려면 빈 문자열("")로 두면 됩니다.
    ── 오프라인 내구성 패치(2026-07): 카메라/엑셀 라이브러리를 화면 로딩을 막지 않게
       비동기로 불러오고, 인터넷/cdnjs가 안 돼도 앱(PIN·스캔·CSV)은 항상 뜨게 함. */
-const STORE_PIN = "901901";
+/* ─────────────────────────────────────────────────────────────
+   직원 PIN 명단 — 직원 추가/삭제는 여기 한 줄만 고치면 끝.
+     형식:  "번호": "이름",
+     · 번호는 4자리 숫자 권장, 서로 겹치면 안 됨
+     · 이름은 리포트에 그대로 찍히니 짧게
+     · 예) 사람 추가하려면 아래에 한 줄 넣기:
+             "5521": "Jasmine",
+   ───────────────────────────────────────────────────────────── */
+const STAFF_PINS = {
+  "8393": "Maverick",
+  "1293": "Angel"
+};
+const STORE_PIN = "901901";      // 공용/관리자 PIN (이름 없이 입장)
+const HISTORY_MAX = 500;         // 수량수정 이력 보관 건수 (넘으면 오래된 것부터 삭제)
 const KEY = "recv_pro_session_v2";
 const OLD_KEY = "recv_session_v4";
 
@@ -357,6 +388,22 @@ const I18N = {
   es:{app_title:"Recepción Pro",pin_sub:"US BEAUTY LLC · Solo personal",pin_enter:"Entrar",pin_wrong:"Código incorrecto",today_progress:"Progreso de hoy",recv:"Contado",expected:"Esperado",short:"Falta",over:"Sobra",extra:"Extra",match:"Coincide",missing:"Ausente",total:"Total",scan_title:"Escanear código",scanner_mode:"Modo escáner",quick_mode:"Añadir rápido",camera:"Cámara",camera_stop:"Apagar cámara",undo:"Deshacer",scan_hint:"Con escáner manual, usa Modo escáner + Añadir rápido para sumar 1 por lectura.",invoice_qty:"Factura",counted_qty:"Contado",remain_qty:"Falta",cancel:"Cancelar",add_qty:"Añadir",recent_scans:"Recientes",review:"Revisar",invoice_title:"Cargar factura",invoice_hint:"Carga CSV, TSV, TXT, XLS o XLSX. Varias facturas OK; códigos iguales se suman.",pick_invoice:"📎 Elegir / añadir archivos",pick_invoice_sub:"Puedes seleccionar varios archivos.",vendor:"Proveedor",new_vendor:"Nuevo proveedor",merge_invoice:"Unir a factura actual",ignore_zero:"Ignorar ceros iniciales",check_digit:"Validar UPC/EAN",save_vendor_map:"Guardar mapeo",clear_files:"Vaciar archivos",load_invoice:"Aplicar factura",list_title:"Lista completa",sort_problem:"Problemas primero",sort_name:"Nombre",sort_recent:"Reciente",recon_title:"Verificación",export_csv:"Exportar CSV",export_xlsx:"Exportar Excel",nav_scan:"Escanear",nav_invoice:"Factura",nav_list:"Lista",nav_recon:"Verificar",menu:"Menú",rename_session:"Renombrar sesión",rename_hint:"Usa fecha/proveedor.",backup_json:"Guardar respaldo",backup_hint:"Descarga la sesión en JSON.",restore_json:"Restaurar respaldo",restore_hint:"Restaura un JSON guardado.",clear_counts:"Limpiar conteos",clear_counts_hint:"La factura se mantiene.",new_session:"Nueva sesión",new_session_hint:"Borra factura y conteos. Mantiene proveedores.",close:"Cerrar",delete:"Borrar",save:"Guardar",go:"OK",manual:"Manual",scanner:"Escáner",quick:"Rápido +1",detected:"Detectado",not_detected:"No detectado — revisa columnas",barcode:"Código",name:"Nombre",qty:"Cant.",ignore:"Ignorar",rows:"{n} filas",files_rows:"{f} archivos · {r} filas",custom_vendor:"Personalizado",add_vendor:"+ Añadir proveedor…",empty_recent:"Aún no hay escaneos.<br>Escanea o escribe un código.",empty_list:"La lista está vacía.<br>Carga una factura o empieza.",empty_recon:"Nada que verificar.<br>Carga una factura y empieza.",need_review:"Revisar",matched_items:"Coinciden",all:"Todo",problem:"Problemas",status_ok:"Coincide",status_short:"Falta {n}",status_over:"Sobra +{n}",status_missing:"Ausente",status_extra:"Fuera factura",not_on_invoice:"Fuera factura",new_item:"Nuevo artículo",toast_added:"+{a} · total {n}",toast_match:"✓ Coincide ({n}/{e})",toast_short:"Falta {n}/{e} ({r})",toast_over:"Sobra {n}/{e} (+{d})",toast_extra:"Fuera factura · total {n}",bad_barcode:"Código sospechoso — ignorado",duplicate:"Duplicado ignorado",undo_done:"Último escaneo deshecho",nothing_undo:"Nada que deshacer",choose_barcode:"Elige columna de código",choose_qty:"Elige columna de cantidad",no_rows:"No hay filas legibles. Revisa columnas.",loaded:"Factura aplicada · {i} art. {q} pzs",merged:"Factura unida · {i} art. {q} pzs",no_export:"Nada que exportar",xlsx_missing:"Falta librería Excel; guardando CSV",rename_prompt:"Nombre de sesión",confirm_clear:"¿Limpiar conteos? La factura queda.",confirm_new:"¿Nueva sesión? Se borran factura y conteos.",restored:"Respaldo restaurado",backup_saved:"Respaldo guardado",file_error:"No se pudo leer archivo",progress_none:"Carga una factura y empieza.",progress_text:"{recv}/{exp} contado · {p} por revisar",problem_sub:"Artículos por revisar",all_clear:"Todo coincide",session_default:"Recepción {d}",nav_queue:"Cola",queue_title:"Facturas pendientes",queue_hint:"Toca una factura para empezar.",refresh:"Actualizar",sessions_title:"En progreso",cloud_title:"Ajustes del servidor",cloud_hint:"Se guarda solo en este dispositivo.",cloud_url:"URL de la app web",cloud_token:"Token",cloud_test:"Probar",cloud_ok:"Conectado",cloud_bad:"Fallo de conexión",cloud_need:"Toca ⚙ e ingresa el token.",q_loading:"Cargando…",q_empty:"No hay facturas pendientes.",q_cached:"Sin conexión — última lista guardada ({t})",q_updated:"{n} · {t}",q_start:"Empezar",q_resume:"Continuar",q_done:"Hecho",q_items:"{i} art. {q} pzs",q_backorder:"{n} pendientes",q_loaded:"Cargado {v} {no} · {i} art. {q} pzs",no_session:"Sin sesiones en progreso.",sess_switch:"Abrir",sess_del:"Borrar",sess_del_confirm:"¿Borrar esta sesión?",send_report:"Enviar reporte",send_hint:"Sube la recepción terminada.",send_ok:"Enviado",send_fail:"Error — se reintentará",send_queued:"{n} por enviar",send_none:"Nada que enviar"}
 };
 
+Object.assign(I18N.ko,{
+  current_progress:"현재 인보이스 진행률",scanned_qty:"스캔 수량",expected_qty:"주문 수량",short_qty:"부족 수량",over_qty:"초과 수량",extra_qty:"외품 수량",match_items:"일치 품목",short_items:"부족 품목",over_items:"초과 품목",missing_items:"누락 품목",extra_items:"외품 품목",total_items:"전체 품목",
+  network_online:"온라인",network_offline:"오프라인",save_saved:"안전하게 저장됨",save_saving:"저장 중",save_local:"기기 저장됨",save_error:"저장 오류",staff_label:"직원 이름 / 번호",staff_unset:"직원 미설정",switch_user:"탭하면 사용자 전환",backup_now:"지금 백업",storage_error:"브라우저 저장소에 문제가 있습니다. 작업을 계속하기 전에 백업 파일을 저장하세요.",
+  duplicate_file:"같은 파일은 한 번만 추가할 수 있습니다",map_mismatch:"파일의 칸 구조가 서로 다릅니다",confirm_replace_invoice:"현재 인보이스와 기존 검수 수량을 새 인보이스로 교체할까요?",invalid_file_rows:"수량 또는 바코드를 읽을 수 없는 행이 있습니다",item_count:"{n}품목",session_summary:"{i} 인보이스 품목 · {s} 스캔 품목",progress_text:"{recv}/{exp}개 확인 · 부족 {sq}개 · 확인 필요 {p}품목",send_already:"이미 같은 결과가 전송되었습니다",sending:"전송 중…",send_waiting:"전송 대기 중",send_sent:"전송 완료",staff_saved:"직원 정보가 저장되었습니다",camera_loading:"카메라 기능을 불러오는 중…",library_missing:"필요한 기능을 불러오지 못했습니다",report_dirty:"검수 내용이 변경되어 다시 전송해야 합니다",add_anyway:"그래도 추가"
+});
+Object.assign(I18N.en,{
+  current_progress:"Current invoice progress",scanned_qty:"Scanned qty",expected_qty:"Expected qty",short_qty:"Short qty",over_qty:"Over qty",extra_qty:"Extra qty",match_items:"Matched items",short_items:"Short items",over_items:"Over items",missing_items:"Missing items",extra_items:"Extra items",total_items:"Total items",
+  network_online:"Online",network_offline:"Offline",save_saved:"Safely saved",save_saving:"Saving",save_local:"Saved on device",save_error:"Save error",staff_label:"Employee name / ID",staff_unset:"Employee not set",switch_user:"Tap to switch user",backup_now:"Back up now",storage_error:"Browser storage has a problem. Save a backup before continuing.",
+  duplicate_file:"The same file can only be added once",map_mismatch:"The selected files use different column layouts",confirm_replace_invoice:"Replace the current invoice and its counted quantities with the new invoice?",invalid_file_rows:"Some rows have an unreadable barcode or quantity",item_count:"{n} items",session_summary:"{i} invoice items · {s} scanned items",progress_text:"{recv}/{exp} verified · {sq} short · {p} items need review",send_already:"The same result was already sent",sending:"Sending…",send_waiting:"Waiting to send",send_sent:"Sent",staff_saved:"Employee information saved",camera_loading:"Loading camera support…",library_missing:"A required feature could not be loaded",report_dirty:"The count changed and must be sent again",add_anyway:"Add anyway"
+});
+Object.assign(I18N.es,{
+  current_progress:"Progreso de la factura actual",scanned_qty:"Cant. escaneada",expected_qty:"Cant. esperada",short_qty:"Cant. faltante",over_qty:"Cant. sobrante",extra_qty:"Cant. extra",match_items:"Art. correctos",short_items:"Art. faltantes",over_items:"Art. sobrantes",missing_items:"Art. ausentes",extra_items:"Art. extra",total_items:"Total de artículos",
+  network_online:"En línea",network_offline:"Sin conexión",save_saved:"Guardado de forma segura",save_saving:"Guardando",save_local:"Guardado en el dispositivo",save_error:"Error al guardar",staff_label:"Nombre / ID del empleado",staff_unset:"Empleado no configurado",switch_user:"Toca para cambiar de usuario",backup_now:"Respaldar ahora",storage_error:"Hay un problema con el almacenamiento. Guarda un respaldo antes de continuar.",
+  duplicate_file:"El mismo archivo solo se puede añadir una vez",map_mismatch:"Los archivos seleccionados tienen columnas diferentes",confirm_replace_invoice:"¿Reemplazar la factura y los conteos actuales con la nueva factura?",invalid_file_rows:"Algunas filas tienen un código o cantidad no válidos",item_count:"{n} artículos",session_summary:"{i} artículos de factura · {s} escaneados",progress_text:"{recv}/{exp} verificado · faltan {sq} · {p} por revisar",send_already:"El mismo resultado ya fue enviado",sending:"Enviando…",send_waiting:"En espera de envío",send_sent:"Enviado",staff_saved:"Información del empleado guardada",camera_loading:"Cargando la cámara…",library_missing:"No se pudo cargar una función necesaria",report_dirty:"El conteo cambió y debe enviarse otra vez",add_anyway:"Añadir de todos modos"
+});
+
 const VENDOR_PROFILES = [
   {name:"Shake-N-Go", map:{b:0,n:3,q:1}, group:"sng_mm"},
   {name:"Model Model", map:{b:0,n:3,q:1}, group:"sng_mm"},
@@ -364,7 +411,7 @@ const VENDOR_PROFILES = [
   {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
   {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"},
-  {name:"Annie", map:{b:2,n:1,q:3}, group:"annie"},
+  {name:"Annie", map:{b:2,n:-1,q:3}, group:"annie"},
   {name:"Motown Tress", map:{b:14,n:0,q:12}, group:"mt"}
 ];
 
@@ -372,15 +419,90 @@ const $ = (id)=>document.getElementById(id);
 const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
 const esc = (s)=>String(s ?? "").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = (n)=>Number(n||0).toLocaleString();
-let memStore = {};
-const storage = {get(k){try{return localStorage.getItem(k)}catch(e){return memStore[k]||null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){memStore[k]=v}},remove(k){try{localStorage.removeItem(k)}catch(e){delete memStore[k]}}};
+let memStore = Object.create(null);
+const storageHealth = {local:null,idb:null,lastError:""};
+let appDbPromise = null;
+let pendingStorageWrites = 0;
+
+function directLocalGet(k){try{const v=localStorage.getItem(k);storageHealth.local=true;return v}catch(e){storageHealth.local=false;storageHealth.lastError=String(e);return null}}
+function directLocalSet(k,v){try{localStorage.setItem(k,v);storageHealth.local=true;return true}catch(e){storageHealth.local=false;storageHealth.lastError=String(e);return false}}
+function directLocalRemove(k){try{localStorage.removeItem(k);storageHealth.local=true;return true}catch(e){storageHealth.local=false;storageHealth.lastError=String(e);return false}}
+function openAppDB(){
+  if(appDbPromise) return appDbPromise;
+  appDbPromise=new Promise((resolve,reject)=>{
+    if(!window.indexedDB){reject(new Error("IndexedDB unavailable"));return;}
+    const req=indexedDB.open("901_checkin_pro",1);
+    req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains("kv"))db.createObjectStore("kv")};
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error||new Error("IndexedDB open failed"));
+  }).catch(e=>{appDbPromise=null;throw e});
+  return appDbPromise;
+}
+async function idbSet(k,v,at=Date.now()){const db=await openAppDB();return new Promise((resolve,reject)=>{const tx=db.transaction("kv","readwrite");tx.objectStore("kv").put({__recvKv:1,value:v,at},k);tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error||new Error("IndexedDB write failed"));tx.onabort=()=>reject(tx.error||new Error("IndexedDB write aborted"))})}
+async function idbGetAll(){const db=await openAppDB();return new Promise((resolve,reject)=>{const out={};const tx=db.transaction("kv","readonly");const req=tx.objectStore("kv").openCursor();req.onsuccess=()=>{const c=req.result;if(c){out[c.key]=c.value;c.continue()}else resolve(out)};req.onerror=()=>reject(req.error||new Error("IndexedDB read failed"))})}
+function localMetaKey(k){return `__recv_at__${k}`}
+function setSaveIndicator(kind){
+  const el=$("saveStatus"); if(!el) return;
+  el.className=`status ${kind==="error"?"bad":kind==="saving"?"warn":"ok"}`;
+  el.textContent=kind==="saving"?t("save_saving"):kind==="error"?t("save_error"):kind==="local"?t("save_local"):t("save_saved");
+}
+function showStorageAlert(detail){
+  const box=$("storageAlert"), text=$("storageAlertText"); if(!box||!text)return;
+  text.textContent=t("storage_error")+(detail?` (${String(detail).slice(0,100)})`:"");box.hidden=false;
+}
+function hideStorageAlert(){const box=$("storageAlert");if(box)box.hidden=true}
+function beginStorageWrite(){pendingStorageWrites++;setSaveIndicator("saving")}
+function endStorageWrite(localOk,idbOk,error){
+  pendingStorageWrites=Math.max(0,pendingStorageWrites-1);
+  if(idbOk){storageHealth.idb=true;hideStorageAlert()}
+  else if(idbOk===false){storageHealth.idb=false;if(error)storageHealth.lastError=String(error)}
+  if(!localOk&&!idbOk){setSaveIndicator("error");showStorageAlert(error||storageHealth.lastError);return}
+  if(pendingStorageWrites===0)setSaveIndicator(idbOk?"saved":"local");
+}
+const storage = {
+  get(k){if(Object.prototype.hasOwnProperty.call(memStore,k))return memStore[k];const v=directLocalGet(k);return v===null?null:v},
+  set(k,v){v=String(v);const at=Date.now();memStore[k]=v;beginStorageWrite();const localOk=directLocalSet(k,v);if(localOk)directLocalSet(localMetaKey(k),String(at));idbSet(k,v,at).then(()=>endStorageWrite(localOk,true)).catch(e=>endStorageWrite(localOk,false,e));return localOk},
+  remove(k){const at=Date.now();memStore[k]=null;beginStorageWrite();const localOk=directLocalRemove(k);directLocalRemove(localMetaKey(k));idbSet(k,null,at).then(()=>endStorageWrite(localOk,true)).catch(e=>endStorageWrite(localOk,false,e));return localOk}
+};
+function dataFreshness(k,v){
+  if(!v)return 0;
+  try{
+    const j=JSON.parse(v);
+    if(k===KEY||k===OLD_KEY)return Number(j.updatedAt||j.createdAt||0);
+    if(k==="recv_sessions_v1")return Math.max(0,...Object.values(j||{}).map(x=>Number(x?.updatedAt||x?.state?.updatedAt||0)));
+    if(k==="recv_qcache_v1")return Number(j.at||0);
+    if(k==="recv_cloud_v1")return Number(j.updatedAt||0);
+    if(k==="recv_outbox_v1")return Math.max(0,...(Array.isArray(j)?j:[]).map(x=>Number(x?.queuedAt||0)));
+  }catch(e){}
+  return 0;
+}
+async function hydrateStorageFromIDB(){
+  directLocalGet(KEY);
+  try{
+    const all=await idbGetAll();storageHealth.idb=true;
+    const keys=[KEY,OLD_KEY,"recv_lang","recv_theme","recv_cloud_v1","recv_sessions_v1","recv_qcache_v1","recv_outbox_v1","recv_device_id_v1"];
+    keys.forEach(k=>{
+      const entry=all[k],wrapped=entry&&typeof entry==="object"&&entry.__recvKv===1;
+      const iv=wrapped?entry.value:entry,ia=wrapped?Number(entry.at||0):dataFreshness(k,iv);
+      const lv=directLocalGet(k),la=Number(directLocalGet(localMetaKey(k))||0)||dataFreshness(k,lv);
+      const useIdb=entry!==undefined&&(lv==null||(wrapped?ia>=la:ia>la));
+      if(useIdb){memStore[k]=iv==null?null:String(iv);if(iv==null){directLocalRemove(k);directLocalRemove(localMetaKey(k))}else{directLocalSet(k,String(iv));directLocalSet(localMetaKey(k),String(ia||Date.now()))}}
+      else if(lv!=null)memStore[k]=lv;
+    });
+  }catch(e){storageHealth.idb=false;storageHealth.lastError=String(e)}
+}
 let selectedFiles = [];
 let pending = null;
 let editKey = null;
 let cam = null;
 let camOn = false;
-let lastScan = {code:"", ts:0};
+let scanDebounce = new Map();
+let cameraLatchCode = "";
+let cameraMisses = 0;
+let cameraLastSuccessAt = 0;
 let activeFilter = "all";
+let reportSending = false;
+let outboxFlushing = false;
 
 function t(key, vars={}){
   const lang = state?.lang || storage.get("recv_lang") || "ko";
@@ -393,7 +515,7 @@ function blankState(){
   const vendors = {};
   VENDOR_PROFILES.forEach(v=>vendors[v.name]={map:{...v.map}, ignoreZero:true});
   const lang = storage.get("recv_lang") || "ko";
-  return {version:2, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now()};
+  return {version:3, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], invoiceSources:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now(), reportRevision:0, reportSentAt:"", reportSignature:"", reportQueued:false, completed:false};
 }
 function migrateOld(old){
   const fresh = blankState();
@@ -418,57 +540,68 @@ function loadState(){
   return blankState();
 }
 function normalizeState(s){
-  const b = blankState();
-  s = {...b, ...s};
-  s.options = {...b.options, ...(s.options||{})};
-  s.vendors = {...b.vendors, ...(s.vendors||{})};
-  s.invoice = s.invoice || {};
-  s.scanned = s.scanned || {};
-  s.history = Array.isArray(s.history) ? s.history : [];
-  if(!I18N[s.lang]) s.lang = "ko";
-  return s;
+  const b=blankState();s={...b,...s};s.version=3;s.options={...b.options,...(s.options||{})};s.vendors={...b.vendors,...(s.vendors||{})};s.invoice=s.invoice&&typeof s.invoice==="object"?s.invoice:{};s.scanned=s.scanned&&typeof s.scanned==="object"?s.scanned:{};s.history=Array.isArray(s.history)?s.history.slice(-HISTORY_MAX):[];s.invoiceSources=Array.isArray(s.invoiceSources)?s.invoiceSources:[];
+  for(const [k,v] of Object.entries(s.invoice)){const c=String(v?.code??"").trim().toLowerCase();if(!k||(k==="0"&&(!c||c==="undefined"||c==="null")))delete s.invoice[k]}
+  for(const [k,v] of Object.entries(s.scanned)){const c=String(v?.code??"").trim().toLowerCase();if(!k||(k==="0"&&(!c||c==="undefined"||c==="null")))delete s.scanned[k]}
+  if(!I18N[s.lang])s.lang="ko";s.reportQueued=!!s.reportQueued;s.completed=!!s.completed;return s;
 }
 let state = loadState();
-function save(){state.updatedAt=Date.now();storage.set(KEY, JSON.stringify(state));storage.set("recv_lang", state.lang);storage.set("recv_theme", state.theme || "light");}
+function save(){
+  state.updatedAt=Date.now();
+  storage.set(KEY,JSON.stringify(state));
+  if(storage.get("recv_lang")!==state.lang)storage.set("recv_lang",state.lang);
+  if(storage.get("recv_theme")!==(state.theme||"light"))storage.set("recv_theme",state.theme||"light");
+}
 
 function applyTheme(){
   document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
   $("themeBtn").textContent = state.theme === "dark" ? "☀" : "◐";
 }
+function scannerPlaceholder(){
+  if(state.options.scannerMode)return state.lang==="ko"?"스캔 준비됨 — 바코드를 읽으세요":state.lang==="es"?"Listo — escanea ahora":"Ready — scan now";
+  return state.lang==="ko"?"바코드 스캔 또는 입력 후 Enter":state.lang==="es"?"Escanea o escribe el código y pulsa Enter":"Scan or type barcode, then Enter";
+}
+function updateNetworkStatus(){
+  const el=$("networkStatus");if(!el)return;
+  const online=navigator.onLine!==false;el.className=`status ${online?"ok":"warn"}`;el.textContent=online?t("network_online"):t("network_offline");
+}
+function updateStaffStatus(){
+  const el=$("staffStatus");if(!el)return;const staff=typeof cloudCfg==="function"?(cloudCfg().staff||""):"";el.textContent=`👤 ${staff||t("staff_unset")}${(STORE_PIN||Object.keys(STAFF_PINS).length)?" ⇄":""}`;
+}
 function applyLang(){
   document.documentElement.lang = state.lang;
-  $$('[data-i18n]').forEach(el=>{el.innerHTML=t(el.dataset.i18n)});
+  $$('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});
   $$('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});
   $$("#langSw button").forEach(b=>b.classList.toggle("on", b.dataset.lang === state.lang));
-  $("barcodeInput").placeholder = state.options.scannerMode ? "Ready — scan now" : (state.lang==="ko" ? "바코드 스캔 또는 입력 후 Enter" : "Scan or type barcode, then Enter");
+  $("barcodeInput").placeholder=scannerPlaceholder();
+  updateNetworkStatus();updateStaffStatus();
+  if(storageHealth.local===false&&storageHealth.idb===false)setSaveIndicator("error");else setSaveIndicator(storageHealth.idb?"saved":"local");
   renderEverything();
 }
 function normalizeCode(raw){
-  let code = String(raw ?? "").trim().replace(/\s+/g,"");
-  code = code.replace(/[\u200B-\u200D\uFEFF]/g,"");
-  if(state.options.ignoreZero) code = code.replace(/^0+/,"") || "0";
+  let code=String(raw??"").trim().replace(/\s+/g,"");
+  code=code.replace(/[\u200B-\u200D\uFEFF]/g,"");
+  if(!code)return "";
+  if(state.options.ignoreZero)code=code.replace(/^0+/,"")||"0";
   return code;
 }
 function cleanCode(raw){return String(raw ?? "").trim().replace(/[^0-9A-Za-z]/g,"");}
-function isStandardDigitBarcode(code){return /^\d+$/.test(code) && [8,12,13].includes(code.length);}
+function isStandardDigitBarcode(code){return /^\d+$/.test(code)&&[8,12,13,14].includes(code.length);}
 function validCheckDigit(raw){
-  const code = String(raw).replace(/\D/g,"");
-  if(!isStandardDigitBarcode(code)) return true;
-  const digits = code.split("").map(Number), check = digits.pop();
-  let sum = 0;
-  if(code.length === 12){ digits.forEach((d,i)=>sum += d * (i%2===0 ? 3 : 1)); }
-  else { digits.reverse().forEach((d,i)=>sum += d * (i%2===0 ? 3 : 1)); }
-  return ((10 - (sum % 10)) % 10) === check;
+  const code=String(raw).replace(/\D/g,"");
+  if(!isStandardDigitBarcode(code))return true;
+  const digits=code.split("").map(Number),check=digits.pop();
+  let sum=0;
+  for(let i=digits.length-1,pos=0;i>=0;i--,pos++)sum+=digits[i]*(pos%2===0?3:1);
+  return ((10-(sum%10))%10)===check;
 }
 function vibrate(pattern){try{if(navigator.vibrate) navigator.vibrate(pattern)}catch(e){}}
-function toast(type, msg, action){
-  const wrap=$("toastWrap");
-  const el=document.createElement("div");
-  el.className=`toast ${type||"info"}`;
-  el.innerHTML=`<span>${msg}</span>${action?`<button>${esc(action.label)}</button>`:""}`;
-  if(action) el.querySelector("button").onclick=()=>{action.onClick(); el.remove();};
-  wrap.appendChild(el);
-  setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(8px)";el.style.transition=".25s";setTimeout(()=>el.remove(),260)}, type==="bad"?3600:2600);
+function toast(type,msg,action){
+  const wrap=$("toastWrap");if(!wrap)return;const channel=action?.channel||"";if(channel)$$(".toast",wrap).filter(x=>x.dataset.channel===channel).forEach(x=>x.remove());while(wrap.children.length>=4)wrap.firstElementChild?.remove();
+  const el=document.createElement("div");el.className=`toast ${type||"info"}`;if(channel)el.dataset.channel=channel;
+  const span=document.createElement("span");span.textContent=String(msg??"");el.appendChild(span);
+  if(action){const btn=document.createElement("button");btn.textContent=String(action.label||"");btn.onclick=()=>{action.onClick();el.remove()};el.appendChild(btn)}
+  wrap.appendChild(el);setTimeout(()=>{if(!el.isConnected)return;el.style.opacity="0";el.style.transform="translateY(8px)";el.style.transition=".25s";setTimeout(()=>el.remove(),260)},type==="bad"?3600:2600);
 }
 
 function invoiceItem(key){return state.invoice[key] || null}
@@ -487,59 +620,63 @@ function getStatus(key){
 function allKeys(){return [...new Set([...Object.keys(state.invoice), ...Object.keys(state.scanned)])];}
 function stats(){
   const keys=allKeys();
-  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,receivedAll:0,ok:0,short:0,over:0,missing:0,extra:0,problem:0};
-  Object.entries(state.invoice).forEach(([k,v])=>{out.expectedQty += Number(v.exp)||0; if(state.scanned[k]) out.receivedOnInvoice += Number(state.scanned[k].recv)||0;});
-  Object.values(state.scanned).forEach(v=>out.receivedAll += Number(v.recv)||0);
-  keys.forEach(k=>{const kind=getStatus(k).kind; if(kind==="ok")out.ok++; else if(kind==="short")out.short++; else if(kind==="over")out.over++; else if(kind==="missing")out.missing++; else if(kind==="extra")out.extra++; if(kind!=="ok")out.problem++;});
-  out.progress = out.expectedQty ? Math.min(100, Math.round((out.receivedOnInvoice / out.expectedQty)*100)) : 0;
+  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,matchedQty:0,receivedAll:0,shortQty:0,overQty:0,extraQty:0,missingQty:0,ok:0,short:0,over:0,missing:0,extra:0,problem:0,itemAccuracy:0};
+  Object.entries(state.invoice).forEach(([k,v])=>{
+    const exp=Math.max(0,Number(v.exp)||0),recv=Math.max(0,Number(state.scanned[k]?.recv)||0);
+    out.expectedQty+=exp;out.receivedOnInvoice+=recv;out.matchedQty+=Math.min(recv,exp);
+    if(recv<exp){out.shortQty+=exp-recv;if(recv===0)out.missingQty+=exp}
+    if(recv>exp)out.overQty+=recv-exp;
+  });
+  Object.entries(state.scanned).forEach(([k,v])=>{const recv=Math.max(0,Number(v.recv)||0);out.receivedAll+=recv;if(!state.invoice[k])out.extraQty+=recv});
+  keys.forEach(k=>{const kind=getStatus(k).kind;if(kind==="ok")out.ok++;else if(kind==="short")out.short++;else if(kind==="over")out.over++;else if(kind==="missing")out.missing++;else if(kind==="extra")out.extra++;if(kind!=="ok")out.problem++});
+  out.progress=out.expectedQty?Math.min(100,Math.round(out.matchedQty/out.expectedQty*100)):0;
+  out.itemAccuracy=out.invoiceItems?Math.round(out.ok/out.invoiceItems*100):0;
   return out;
 }
-function barcodeWasDuplicate(code){
-  const now=Date.now();
-  if(lastScan.code===code && now-lastScan.ts<700) return true;
-  lastScan={code,ts:now};
-  return false;
+function ensureReportId(){
+  if(!state.reportId){const sid=state.sid||ensureSid();state.reportId=`r_${sid}`}
+  return state.reportId;
 }
-function handleBarcode(raw, source="manual"){
-  raw = String(raw||"").trim();
-  if(!raw) return;
-  const cleaned=cleanCode(raw);
-  if(!cleaned) return;
-  if(barcodeWasDuplicate(cleaned)){ toast("warn", t("duplicate")); return; }
-  if(state.options.checkDigit && (source!=="manual") && isStandardDigitBarcode(cleaned) && !validCheckDigit(cleaned)){
-    vibrate([50,40,80]); toast("bad", `${t("bad_barcode")} (${esc(cleaned)})`); return;
+function markReportDirty(){
+  ensureReportId();state.reportRevision=(Number(state.reportRevision)||0)+1;state.reportSentAt="";state.reportSignature="";state.reportQueued=false;state.completed=false;state.finishedAt="";
+  try{const ob=outbox();const next=ob.filter(p=>p?.session?.reportId!==state.reportId);if(next.length!==ob.length)writeJSON(OUTBOX_KEY,next)}catch(e){}
+}
+function barcodeWasDuplicate(code,source){
+  const windowMs=source==="cam"?250:source==="scanner"?80:0;if(!windowMs)return false;
+  const now=Date.now(),k=`${source}:${code}`,last=scanDebounce.get(k)||0;scanDebounce.set(k,now);
+  if(scanDebounce.size>120){for(const [x,ts] of scanDebounce)if(now-ts>5000)scanDebounce.delete(x)}
+  return now-last<windowMs;
+}
+function handleBarcode(raw,source="manual"){
+  raw=String(raw||"").trim();if(!raw)return;
+  const cleaned=cleanCode(raw);if(!cleaned)return;
+  if(barcodeWasDuplicate(cleaned,source)){if(source!=="cam")toast("warn",t("duplicate"));return}
+  const accept=()=>{const key=normalizeCode(cleaned);if(!key)return;if(state.options.quickMode&&(state.options.scannerMode||source==="cam"))addQty(key,cleaned,1,source);else showPending(key,cleaned)};
+  if(state.options.checkDigit&&source!=="manual"&&isStandardDigitBarcode(cleaned)&&!validCheckDigit(cleaned)){
+    vibrate([50,40,80]);toast("bad",`${t("bad_barcode")} (${cleaned})`,{label:t("add_anyway"),onClick:accept,channel:"barcode-error"});return;
   }
-  const key=normalizeCode(cleaned);
-  if(state.options.quickMode && (state.options.scannerMode || source==="cam")) addQty(key, cleaned, 1, source);
-  else showPending(key, cleaned);
+  accept();
 }
-function addQty(key, code, qty, source="manual"){
-  qty = Math.max(1, parseInt(qty,10)||1);
-  const inv=invoiceItem(key), existing=scannedItem(key);
-  if(!state.scanned[key]) state.scanned[key]={code:code||key, name:inv?.name || existing?.name || "", recv:0, last:0};
-  state.scanned[key].recv = (Number(state.scanned[key].recv)||0) + qty;
-  state.scanned[key].last = Date.now();
-  if(!state.scanned[key].name && inv?.name) state.scanned[key].name = inv.name;
-  if(code) state.scanned[key].code = code;
-  state.history.push({key, code:code||itemCode(key), name:itemName(key), delta:qty, ts:Date.now(), source});
-  state.history = state.history.slice(-300);
-  save(); closePending(); renderEverything();
-  const now=state.scanned[key].recv, exp=inv?Number(inv.exp)||0:null;
-  let type="info", msg=t("toast_added",{a:qty,n:now});
-  if(inv){
-    if(now===exp){type="ok"; msg=t("toast_match",{n:now,e:exp}); vibrate(35);}
-    else if(now<exp){type="warn"; msg=t("toast_short",{n:now,e:exp,r:exp-now});}
-    else {type="warn"; msg=t("toast_over",{n:now,e:exp,d:now-exp}); vibrate([30,30,30]);}
-  } else {type="warn"; msg=t("toast_extra",{n:now}); vibrate([30,30,30]);}
-  toast(type,msg,{label:t("undo"),onClick:undoLast});
-  focusBarcode();
+function addQty(key,code,qty,source="manual"){
+  qty=Math.max(1,parseInt(qty,10)||1);
+  const inv=invoiceItem(key),existing=scannedItem(key),before=Math.max(0,Number(existing?.recv)||0);
+  if(!state.scanned[key])state.scanned[key]={code:code||key,name:inv?.name||"",recv:0,last:0};
+  state.scanned[key].recv=before+qty;state.scanned[key].last=Date.now();
+  if(!state.scanned[key].name&&inv?.name)state.scanned[key].name=inv.name;if(code)state.scanned[key].code=code;
+  const after=state.scanned[key].recv;
+  state.history.push({type:"scan",key,code:code||itemCode(key),name:itemName(key),before,after,delta:qty,ts:Date.now(),source});state.history=state.history.slice(-HISTORY_MAX);
+  markReportDirty();save();closePending();renderAfterCountChange();
+  const exp=inv?Number(inv.exp)||0:null;let type="info",msg=t("toast_added",{a:qty,n:after});
+  if(inv){if(after===exp){type="ok";msg=t("toast_match",{n:after,e:exp});vibrate(35)}else if(after<exp){type="warn";msg=t("toast_short",{n:after,e:exp,r:exp-after})}else{type="warn";msg=t("toast_over",{n:after,e:exp,d:after-exp});vibrate([30,30,30])}}
+  else{type="warn";msg=t("toast_extra",{n:after});vibrate([30,30,30])}
+  toast(type,msg,{label:t("undo"),onClick:undoLast,channel:"scan"});focusBarcode();
 }
 function undoLast(){
-  const h=state.history.pop();
-  if(!h){toast("warn",t("nothing_undo"));return;}
-  const sc=state.scanned[h.key];
-  if(sc){sc.recv=(Number(sc.recv)||0)-(Number(h.delta)||0); if(sc.recv<=0) delete state.scanned[h.key]; else sc.last=Date.now();}
-  save(); closePending(); renderEverything(); toast("info",t("undo_done")); focusBarcode();
+  const h=state.history.pop();if(!h){toast("warn",t("nothing_undo"));return}
+  const current=Math.max(0,Number(state.scanned[h.key]?.recv)||0);const target=Number.isFinite(Number(h.before))?Math.max(0,Number(h.before)):Math.max(0,current-(Number(h.delta)||0));
+  const inv=invoiceItem(h.key);
+  if(target===0)delete state.scanned[h.key];else{if(!state.scanned[h.key])state.scanned[h.key]={code:h.code||itemCode(h.key),name:inv?.name||h.name||"",recv:0,last:0};state.scanned[h.key].recv=target;state.scanned[h.key].last=Date.now()}
+  markReportDirty();save();closePending();renderAfterCountChange();toast("info",t("undo_done"));focusBarcode();
 }
 function showPending(key, code){
   pending={key,code};
@@ -570,7 +707,7 @@ function rowHTML(key){
 function recentHTML(){
   const hist=[...state.history].reverse().slice(0,12);
   if(!hist.length) return `<div class="empty">${t("empty_recent")}</div>`;
-  return hist.map(h=>`<div class="row clickable" data-key="${esc(h.key)}"><div class="row-info"><div class="row-name">${esc(itemName(h.key))}</div><div class="row-code">${esc(h.code)} · ${new Date(h.ts).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</div></div><div class="row-num"><span>+${fmt(h.delta)}</span><b>${fmt(scannedItem(h.key)?.recv||0)}</b></div><span class="chip ${getStatus(h.key).cls}">${esc(getStatus(h.key).label)}</span></div>`).join("");
+  return hist.map(h=>{const d=Number(h.delta)||0,signed=d>0?`+${fmt(d)}`:fmt(d),name=scannedItem(h.key)?.name||invoiceItem(h.key)?.name||h.name||t("new_item");return `<div class="row clickable" data-key="${esc(h.key)}"><div class="row-info"><div class="row-name">${esc(name)}</div><div class="row-code">${esc(h.code)} · ${new Date(h.ts).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</div></div><div class="row-num"><span>${signed}</span><b>${fmt(scannedItem(h.key)?.recv||0)}</b></div><span class="chip ${getStatus(h.key).cls}">${esc(getStatus(h.key).label)}</span></div>`}).join("");
 }
 function sortKeys(keys){
   const sort=$("sortSelect")?.value || "problem";
@@ -615,49 +752,46 @@ function renderRecon(){
   if(good.length) html += `<div class="section-title">${t("matched_items")} (${fmt(good.length)})</div>${good.map(rowHTML).join("")}`;
   $("reconRows").innerHTML=html; attachRowClicks($("reconRows"));
 }
+function renderSendState(){
+  const btn=$("sendReportBtn");if(!btn)return;
+  if(reportSending){btn.disabled=true;btn.textContent=t("sending");return}
+  if(state.reportQueued){btn.disabled=true;btn.textContent=t("send_waiting");return}
+  if(state.reportSentAt){btn.disabled=true;btn.textContent=t("send_sent");btn.title=new Date(state.reportSentAt).toLocaleString();return}
+  btn.disabled=false;btn.textContent=t("send_report");btn.title="";
+}
 function renderDashboard(){
   const s=stats();
-  $("progressPct").textContent=s.progress;
-  $("progressBar").style.width=s.progress+"%";
-  $("progressSub").textContent=s.expectedQty?t("progress_text",{recv:fmt(s.receivedOnInvoice),exp:fmt(s.expectedQty),p:fmt(s.problem)}):t("progress_none");
-  $("miniReceived").textContent=fmt(s.receivedOnInvoice);$("miniExpected").textContent=fmt(s.expectedQty);$("miniShort").textContent=fmt(s.short);$("miniOver").textContent=fmt(s.over);$("miniExtra").textContent=fmt(s.extra);$("miniOk").textContent=fmt(s.ok);
+  $("progressPct").textContent=s.progress;$("progressBar").style.width=s.progress+"%";
+  $("progressSub").textContent=s.expectedQty?t("progress_text",{recv:fmt(s.matchedQty),exp:fmt(s.expectedQty),sq:fmt(s.shortQty),p:fmt(s.problem)}):t("progress_none");
+  $("miniReceived").textContent=fmt(s.receivedOnInvoice);$("miniExpected").textContent=fmt(s.expectedQty);$("miniShort").textContent=fmt(s.shortQty);$("miniOver").textContent=fmt(s.overQty);$("miniExtra").textContent=fmt(s.extraQty);$("miniOk").textContent=fmt(s.ok);
   $("rOk").textContent=fmt(s.ok);$("rShort").textContent=fmt(s.short);$("rOver").textContent=fmt(s.over);$("rMiss").textContent=fmt(s.missing);$("rExtra").textContent=fmt(s.extra);$("rTotal").textContent=fmt(s.totalItems);
   $("problemCountBig").textContent=fmt(s.problem);$("problemSub").textContent=s.problem?t("problem_sub"):t("all_clear");
-  $("scanBadge").textContent=fmt(Object.keys(state.scanned).length);
-  $("sessionLine").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName}`;
-  $("invoiceLoadedChip").textContent=`${fmt(s.invoiceItems)} items`;
-  $("listDot").textContent=fmt(s.problem);$("reconDot").textContent=fmt(s.problem);
-  $("listDot").classList.toggle("on",s.problem>0);$("reconDot").classList.toggle("on",s.problem>0);
-  $("modeChip").textContent = state.options.scannerMode ? (state.options.quickMode?t("quick"):t("scanner")) : t("manual");
-  $("scannerModeBtn").classList.toggle("on",!!state.options.scannerMode);
-  $("quickModeBtn").classList.toggle("on",!!state.options.quickMode);
-  $("barcodeInput").setAttribute("inputmode", state.options.scannerMode ? "none" : "numeric");
-  $("barcodeInput").placeholder = state.options.scannerMode ? "Ready — scan now" : (state.lang==="ko" ? "바코드 스캔 또는 입력 후 Enter" : "Scan or type barcode, then Enter");
-  $("menuSub").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName} · ${fmt(s.invoiceItems)} invoice items · ${fmt(Object.keys(state.scanned).length)} scanned`;
+  $("scanBadge").textContent=fmt(Object.keys(state.scanned).length);$("sessionLine").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName}`;
+  $("invoiceLoadedChip").textContent=t("item_count",{n:fmt(s.invoiceItems)});
+  $("listDot").textContent=fmt(s.problem);$("reconDot").textContent=fmt(s.problem);$("listDot").classList.toggle("on",s.problem>0);$("reconDot").classList.toggle("on",s.problem>0);
+  $("modeChip").textContent=state.options.scannerMode?(state.options.quickMode?t("quick"):t("scanner")):t("manual");$("scannerModeBtn").classList.toggle("on",!!state.options.scannerMode);$("quickModeBtn").classList.toggle("on",!!state.options.quickMode);
+  $("barcodeInput").setAttribute("inputmode",state.options.scannerMode?"none":"numeric");$("barcodeInput").placeholder=scannerPlaceholder();
+  $("menuSub").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName} · ${t("session_summary",{i:fmt(s.invoiceItems),s:fmt(Object.keys(state.scanned).length)})}`;
+  renderSendState();updateNetworkStatus();updateStaffStatus();
 }
-function renderRecent(){
-  $("recentList").innerHTML=recentHTML(); attachRowClicks($("recentList"));
-}
-function renderEverything(){renderDashboard(); renderRecent(); renderList(); renderRecon(); refreshVendorSelect(); renderFileList();}
-function attachRowClicks(root){$$(".row.clickable",root).forEach(r=>r.onclick=()=>openEdit(r.dataset.key));}
+function renderRecent(){$("recentList").innerHTML=recentHTML();attachRowClicks($("recentList"))}
+function activeViewName(){return document.querySelector(".view.active")?.id?.replace("view-","")||"scan"}
+function renderAfterCountChange(){renderDashboard();renderRecent();const v=activeViewName();if(v==="list")renderList();else if(v==="recon")renderRecon()}
+function renderEverything(){renderDashboard();renderRecent();renderList();renderRecon();refreshVendorSelect();renderFileList()}
+function attachRowClicks(root){if(!root)return;$$(".row.clickable",root).forEach(r=>r.onclick=()=>openEdit(r.dataset.key))}
 
 function openEdit(key){
-  editKey=key;
-  $("editName").textContent=itemName(key);
-  const inv=invoiceItem(key), st=getStatus(key);
-  $("editCode").textContent=`${itemCode(key)} · ${inv?`${t("invoice_qty")}: ${fmt(inv.exp)}`:t("not_on_invoice")} · ${st.label}`;
-  $("editQty").value=scannedItem(key)?.recv || 0;
-  openModal("editModal");
+  editKey=key;$("editName").textContent=itemName(key);const inv=invoiceItem(key),st=getStatus(key);
+  $("editCode").textContent=`${itemCode(key)} · ${inv?`${t("invoice_qty")}: ${fmt(inv.exp)}`:t("not_on_invoice")} · ${st.label}`;$("editQty").value=scannedItem(key)?.recv||0;openModal("editModal");
+}
+function setCountWithAudit(key,value,source="adjustment"){
+  value=Math.max(0,parseInt(value,10)||0);const before=Math.max(0,Number(scannedItem(key)?.recv)||0);if(before===value)return false;
+  const code=itemCode(key),name=itemName(key),inv=invoiceItem(key);
+  if(value===0)delete state.scanned[key];else{if(!state.scanned[key])state.scanned[key]={code,name:inv?.name||name||"",recv:0,last:0};state.scanned[key].recv=value;state.scanned[key].last=Date.now()}
+  state.history.push({type:source,key,code,name,before,after:value,delta:value-before,ts:Date.now(),source});state.history=state.history.slice(-HISTORY_MAX);markReportDirty();save();return true;
 }
 function saveEdit(){
-  if(!editKey) return;
-  const v=Math.max(0,parseInt($("editQty").value,10)||0), inv=invoiceItem(editKey);
-  if(v===0) delete state.scanned[editKey];
-  else{
-    if(!state.scanned[editKey]) state.scanned[editKey]={code:itemCode(editKey), name:inv?.name||"", recv:0, last:0};
-    state.scanned[editKey].recv=v; state.scanned[editKey].last=Date.now();
-  }
-  save(); closeModal("editModal"); renderEverything();
+  if(!editKey)return;const changed=setCountWithAudit(editKey,$("editQty").value,"adjustment");closeModal("editModal");if(changed)renderAfterCountChange();
 }
 
 function detectDelimiter(text){
@@ -707,27 +841,23 @@ function toCellString(cell){
   if(cell instanceof Date) return cell.toISOString().slice(0,10);
   return String(cell);
 }
-function readOneFile(file){
-  return new Promise(resolve=>{
-    const ext=(file.name.split(".").pop()||"").toLowerCase();
-    const reader=new FileReader();
-    reader.onerror=()=>{toast("bad",`${t("file_error")}: ${esc(file.name)}`);resolve(null)};
+function waitForGlobal(name,timeout=4500){return new Promise(resolve=>{const start=Date.now();const timer=setInterval(()=>{if(typeof window[name]!=="undefined"){clearInterval(timer);resolve(true)}else if(Date.now()-start>=timeout){clearInterval(timer);resolve(false)}},80)})}
+function hashBytes(bytes){let h=2166136261;for(let i=0;i<bytes.length;i++){h^=bytes[i];h=Math.imul(h,16777619)}return (h>>>0).toString(16)}
+function hashText(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16)}
+async function readOneFile(file){
+  const ext=(file.name.split(".").pop()||"").toLowerCase();
+  try{
     if(["xls","xlsx"].includes(ext)){
-      if(typeof XLSX==="undefined"){toast("bad",t("xlsx_missing"));resolve(null);return;}
-      reader.onload=()=>{
-        try{
-          const wb=XLSX.read(new Uint8Array(reader.result),{type:"array",cellDates:false});
-          const ws=wb.Sheets[wb.SheetNames[0]];
-          const raw=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:""}).map(r=>r.map(toCellString));
-          const s=splitHeader(raw); resolve({name:file.name, header:s.header, rows:s.rows});
-        }catch(e){toast("bad",`${t("file_error")}: ${esc(file.name)}`);resolve(null)}
-      };
-      reader.readAsArrayBuffer(file);
-    }else{
-      reader.onload=()=>{const rows=parseDelimited(String(reader.result||""), detectDelimiter(String(reader.result||""))); const s=splitHeader(rows); resolve({name:file.name, header:s.header, rows:s.rows});};
-      reader.readAsText(file,"utf-8");
+      if(typeof XLSX==="undefined")await waitForGlobal("XLSX",5000);
+      if(typeof XLSX==="undefined"){toast("bad",t("xlsx_missing"));return null}
+      const buffer=await file.arrayBuffer(),bytes=new Uint8Array(buffer);
+      const wb=XLSX.read(bytes,{type:"array",cellDates:false}),ws=wb.Sheets[wb.SheetNames[0]];
+      const raw=XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:""}).map(r=>r.map(toCellString));const split=splitHeader(raw);
+      return {name:file.name,header:split.header,rows:split.rows,fingerprint:`${file.size}:${hashBytes(bytes)}`};
     }
-  });
+    const text=await file.text(),rows=parseDelimited(text,detectDelimiter(text)),split=splitHeader(rows);
+    return {name:file.name,header:split.header,rows:split.rows,fingerprint:`${file.size}:${hashText(text)}`};
+  }catch(e){toast("bad",`${t("file_error")}: ${file.name}`);return null}
 }
 function maxCols(){return Math.max(1,...selectedFiles.flatMap(f=>[f.header?.length||0,...f.rows.slice(0,20).map(r=>r.length)]));}
 function sampleRows(){return selectedFiles.flatMap(f=>f.rows).slice(0,80);}
@@ -765,10 +895,18 @@ function _fracBarcode(rows,i){const v=_col(rows,i).filter(Boolean);if(!v.length)
 function _fracQty(rows,i){const v=_col(rows,i).filter(Boolean);if(!v.length)return 0;return v.filter(x=>/^\d{1,4}$/.test(x.replace(/,/g,""))).length/v.length;}
 function _fracName(rows,i){const v=_col(rows,i).filter(Boolean);if(!v.length)return 0;return v.filter(x=>/[A-Za-z가-힣]/.test(x)&&x.length>=3).length/v.length;}
 function _mapFit(rows,map){
-  const b=_fracBarcode(rows,map.b), q=_fracQty(rows,map.q), n=map.n>=0?_fracName(rows,map.n):0.6;
-  if(b<0.5||q<0.4||n<0.3) return 0;      // this column map does not match the file -> reject
-  return b+q+n;                          // 0..3, higher = better fit
+  const b=_fracBarcode(rows,map.b),q=_fracQty(rows,map.q),n=map.n>=0?_fracName(rows,map.n):0.6;
+  if(b<0.5||q<0.4||n<0.3)return 0;
+  return b+q+n;
 }
+function mapCompatible(rows,map){
+  if(!map||map.b<0||map.q<0)return false;const sample=rows.slice(0,80),bv=_col(sample,map.b).filter(Boolean),qv=_col(sample,map.q).filter(Boolean);if(!bv.length||!qv.length)return false;
+  const br=bv.filter(v=>{const c=cleanCode(v);return c.length>=6&&c.length<=20}).length/bv.length;
+  const qr=qv.filter(v=>{const x=String(v).trim().replace(/,/g,"");return /^\d+(?:\.0+)?$/.test(x)&&Number(x)>0}).length/qv.length;
+  return br>=0.45&&qr>=0.35;
+}
+function headerSignature(header){return (header||[]).map(x=>String(x).trim().toLowerCase()).join("|")}
+function parsePositiveInt(value){const raw=String(value??"").trim().replace(/,/g,"");if(!/^\d+(?:\.0+)?$/.test(raw))return null;const n=Number(raw);return Number.isSafeInteger(n)&&n>0?n:null}
 function detectVendor(){
   if(!selectedFiles.length) return null;
   const rows=sampleRows();
@@ -794,16 +932,21 @@ function detectVendor(){
       if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
     } else if(p.group==="gb"){
       if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
+    } else if(p.group==="mt"){
+      if(!(hjoin.includes("outstanding qty")&&hjoin.includes("po line qty"))) continue;  // MT (Motown Tress/Oradell) fingerprint
+      sc+=3;
+    } else if(p.group==="annie"){
+      if(!(hjoin.includes("bar code")&&hjoin.includes("item no"))) continue;  // Annie fingerprint
+      sc+=3;
     }
     if(sc>bestScore){bestScore=sc;best=p;}
   }
   return bestScore>=3?best:null;
 }
 function currentMap(){
-  const vendor=$("vendorSelect")?.value;
-  if(vendor && state.vendors[vendor]?.map) return {...state.vendors[vendor].map};
-  const hm=headerMap(combinedHeader());
-  return hm || guessMap(sampleRows(), maxCols());
+  const vendor=$("vendorSelect")?.value,saved=vendor&&state.vendors[vendor]?.map;
+  if(saved&&mapCompatible(sampleRows(),saved))return {...saved};
+  const hm=headerMap(combinedHeader());return hm||guessMap(sampleRows(),maxCols());
 }
 function refreshVendorSelect(){
   const sel=$("vendorSelect"); if(!sel) return;
@@ -840,52 +983,33 @@ function readMapFromUI(){
   $$("#mappingBox select").forEach(sel=>{const col=Number(sel.dataset.col); if(sel.value==="b")map.b=col; if(sel.value==="n")map.n=col; if(sel.value==="q")map.q=col;});
   return map;
 }
-function buildInvoice(rows, map){
-  const out={}; let read=0;
-  rows.forEach((r,idx)=>{
-    const code=cleanCode(r[map.b]||"");
-    const qty=parseInt(String(r[map.q]||"").replace(/[^\d]/g,""),10);
-    const name=map.n>=0 ? String(r[map.n]||"").trim() : "";
-    if(!code || !qty || qty<1) return;
-    const key=normalizeCode(code);
-    if(out[key]) out[key].exp += qty;
-    else out[key] = {code, name, exp:qty, row:idx+1};
-    if(!out[key].name && name) out[key].name=name;
-    read++;
-  });
-  return {invoice:out, read};
+function buildInvoice(rows,map){
+  const out={};let read=0,invalid=0;
+  rows.forEach((r,idx)=>{const code=cleanCode(r[map.b]||""),qty=parsePositiveInt(r[map.q]),name=map.n>=0?String(r[map.n]||"").trim():"";if(!code||qty==null){if(String(r[map.b]||"").trim()||String(r[map.q]||"").trim())invalid++;return}const key=normalizeCode(code);if(!key){invalid++;return}if(out[key])out[key].exp+=qty;else out[key]={code,name,exp:qty,row:idx+1};if(!out[key].name&&name)out[key].name=name;read++});
+  return {invoice:out,read,invalid};
 }
-function mergeInvoice(target, src){Object.entries(src).forEach(([k,v])=>{if(target[k]){target[k].exp += Number(v.exp)||0; if(!target[k].name && v.name)target[k].name=v.name;} else target[k]={...v};});}
+function mergeInvoice(target,src){Object.entries(src).forEach(([k,v])=>{if(target[k]){target[k].exp+=Number(v.exp)||0;if(!target[k].name&&v.name)target[k].name=v.name}else target[k]={...v}})}
 function loadInvoice(){
-  if(!selectedFiles.length){toast("warn",t("no_rows"));return;}
-  const map=readMapFromUI();
-  if(map.b<0){toast("bad",t("choose_barcode"));return;} if(map.q<0){toast("bad",t("choose_qty"));return;}
-  state.options.ignoreZero=$("ignoreZero").checked;
-  state.options.checkDigit=$("checkDigit").checked;
-  const newInvoice={}; let read=0;
-  selectedFiles.forEach(f=>{const r=buildInvoice(f.rows,map);mergeInvoice(newInvoice,r.invoice);read+=r.read;});
-  if(!read){toast("bad",t("no_rows"));return;}
-  const isMerge=$("mergeInvoice").checked && Object.keys(state.invoice).length;
-  if(isMerge){mergeInvoice(state.invoice,newInvoice);state.invCount=(state.invCount||1)+selectedFiles.length;}
-  else{state.invoice=newInvoice;state.invCount=selectedFiles.length;}
-  let vendor=$("vendorSelect").value;
-  if(vendor==="__new") vendor=$("newVendorName").value.trim();
-  if(vendor){state.vendor=vendor;if($("saveVendorMap").checked)state.vendors[vendor]={map:{...map},ignoreZero:state.options.ignoreZero};}
-  const rescanned={};
-  Object.values(state.scanned).forEach(sc=>{const key=normalizeCode(sc.code); if(rescanned[key]) rescanned[key].recv += Number(sc.recv)||0; else rescanned[key]={...sc};});
-  state.scanned=rescanned;
-  selectedFiles=[];save();renderEverything();goView("recon");
-  const st=stats(); toast("ok", isMerge?t("merged",{i:fmt(st.invoiceItems),q:fmt(st.expectedQty)}):t("loaded",{i:fmt(st.invoiceItems),q:fmt(st.expectedQty)}));
+  if(!selectedFiles.length){toast("warn",t("no_rows"));return}
+  const map=readMapFromUI();if(map.b<0){toast("bad",t("choose_barcode"));return}if(map.q<0){toast("bad",t("choose_qty"));return}
+  const incompatible=selectedFiles.filter(f=>!mapCompatible(f.rows,map));if(incompatible.length){toast("bad",`${t("map_mismatch")}: ${incompatible.map(f=>f.name).join(", ")}`);return}
+  state.options.ignoreZero=$("ignoreZero").checked;state.options.checkDigit=$("checkDigit").checked;
+  const newInvoice={};let read=0,invalid=0;selectedFiles.forEach(f=>{const r=buildInvoice(f.rows,map);mergeInvoice(newInvoice,r.invoice);read+=r.read;invalid+=r.invalid});if(!read){toast("bad",t("no_rows"));return}
+  const isMerge=$("mergeInvoice").checked&&Object.keys(state.invoice).length>0,replacing=!isMerge&&Object.keys(state.invoice).length>0;
+  const duplicateSources=isMerge?selectedFiles.filter(f=>state.invoiceSources.includes(f.fingerprint)):[];if(duplicateSources.length){toast("bad",`${t("duplicate_file")}: ${duplicateSources.map(f=>f.name).join(", ")}`);return}
+  if(replacing&&!confirm(t("confirm_replace_invoice")))return;
+  if(replacing){stashCurrent();state.sid=`s${Date.now().toString(36)}${Math.random().toString(36).slice(2,5)}`;state.reportId="";state.reportRevision=0;state.scanned={};state.history=[];state.queueId="";state.invoiceNo="";state.invoiceDate="";state.backorderQty=0;state.unresolved=[];state.createdAt=Date.now()}
+  if(isMerge){mergeInvoice(state.invoice,newInvoice);state.invCount=(state.invCount||1)+selectedFiles.length;state.invoiceSources=[...new Set([...state.invoiceSources,...selectedFiles.map(f=>f.fingerprint)])]}else{state.invoice=newInvoice;state.invCount=selectedFiles.length;state.invoiceSources=selectedFiles.map(f=>f.fingerprint)}
+  let vendor=$("vendorSelect").value;if(vendor==="__new")vendor=$("newVendorName").value.trim();
+  if(vendor){state.vendor=vendor;if($("saveVendorMap").checked)state.vendors[vendor]={map:{...map},ignoreZero:state.options.ignoreZero,header:headerSignature(combinedHeader()),cols:maxCols()}}
+  if(!replacing){const rescanned={};Object.values(state.scanned).forEach(sc=>{const key=normalizeCode(sc.code);if(!key)return;if(rescanned[key])rescanned[key].recv+=Number(sc.recv)||0;else rescanned[key]={...sc}});state.scanned=rescanned}
+  markReportDirty();selectedFiles=[];save();renderEverything();goView("recon");const st=stats();toast("ok",isMerge?t("merged",{i:fmt(st.invoiceItems),q:fmt(st.expectedQty)}):t("loaded",{i:fmt(st.invoiceItems),q:fmt(st.expectedQty)}));if(invalid)toast("warn",`${t("invalid_file_rows")}: ${fmt(invalid)}`);
 }
 
 function detailRows(){
-  const rows=[["Session",state.sessionName,"Vendor",state.vendor,"Exported",new Date().toLocaleString()],[]];
-  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","Status","LastCounted"]);
-  sortKeys(allKeys()).forEach(k=>{
-    const inv=invoiceItem(k), sc=scannedItem(k), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:"", diff=inv?recv-Number(inv.exp):"", st=getStatus(k).label;
-    rows.push([itemCode(k), itemName(k), exp, recv, diff, st, sc?.last?new Date(sc.last).toLocaleString():""]);
-  });
-  return rows;
+  ensureReportId();const cfg=cloudCfg(),rows=[["Session",state.sessionName,"Vendor",state.vendor,"Employee",cfg.staff||"","Report ID",state.reportId,"Exported",new Date().toLocaleString()],[]];
+  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","StatusCode","Status","LastCounted"]);
+  sortKeys(allKeys()).forEach(k=>{const inv=invoiceItem(k),sc=scannedItem(k),recv=sc?Number(sc.recv)||0:0,exp=inv?Number(inv.exp)||0:"",diff=inv?recv-Number(inv.exp):"",st=getStatus(k);rows.push([itemCode(k),itemName(k),exp,recv,diff,st.kind,st.label,sc?.last?new Date(sc.last).toLocaleString():""])});return rows;
 }
 function downloadBlob(filename, data, type){
   const blob=data instanceof Blob?data:new Blob([data],{type}); const a=document.createElement("a");
@@ -893,23 +1017,21 @@ function downloadBlob(filename, data, type){
 }
 function safeName(){return `${state.vendor||state.sessionName||"checkin"}`.replace(/[^\w가-힣-]+/g,"_").slice(0,48);}
 function exportCSV(){
-  if(!allKeys().length){toast("warn",t("no_export"));return;}
-  const csv="\uFEFF"+detailRows().map(r=>r.map(c=>{c=String(c??"");return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c}).join(",")).join("\r\n");
-  downloadBlob(`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.csv`, csv, "text/csv;charset=utf-8");
+  if(!allKeys().length){toast("warn",t("no_export"));return}
+  const cell=v=>{const wasText=typeof v==="string";let c=String(v??"");if(wasText&&/^[=+@-]/.test(c))c=`'${c}`;return /[",\n\r]/.test(c)?`"${c.replace(/"/g,'""')}"`:c};
+  const csv="\uFEFF"+detailRows().map(r=>r.map(cell).join(",")).join("\r\n");downloadBlob(`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.csv`,csv,"text/csv;charset=utf-8");
 }
 function exportXLSX(){
-  if(!allKeys().length){toast("warn",t("no_export"));return;}
-  if(typeof XLSX==="undefined"){toast("warn",t("xlsx_missing"));exportCSV();return;}
-  const wb=XLSX.utils.book_new();
-  const s=stats();
-  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Expected Qty",s.expectedQty],["Counted On Invoice",s.receivedOnInvoice],["All Counted",s.receivedAll],["Match",s.ok],["Short",s.short],["Over",s.over],["Missing",s.missing],["Extra",s.extra],["Exported",new Date().toLocaleString()]];
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),"Summary");
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(detailRows()),"Details");
+  if(!allKeys().length){toast("warn",t("no_export"));return}if(typeof XLSX==="undefined"){toast("warn",t("xlsx_missing"));exportCSV();return}
+  const wb=XLSX.utils.book_new(),s=stats(),cfg=cloudCfg();ensureReportId();
+  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Employee",cfg.staff||""],["Report ID",state.reportId],["Expected Qty",s.expectedQty],["Scanned On Invoice",s.receivedOnInvoice],["Matched Progress Qty",s.matchedQty],["All Scanned",s.receivedAll],["Short Qty",s.shortQty],["Over Qty",s.overQty],["Extra Qty",s.extraQty],["Matched Items",s.ok],["Problem Items",s.problem],["Item Accuracy",`${s.itemAccuracy}%`],["Quantity Progress",`${s.progress}%`],["Exported",new Date().toLocaleString()]];
+  const sws=XLSX.utils.aoa_to_sheet(summary);sws["!cols"]=[{wch:24},{wch:34}];XLSX.utils.book_append_sheet(wb,sws,"Summary");
+  const rows=detailRows(),dws=XLSX.utils.aoa_to_sheet(rows);dws["!cols"]=[{wch:18},{wch:42},{wch:12},{wch:12},{wch:10},{wch:14},{wch:18},{wch:22}];if(rows.length>3)dws["!autofilter"]={ref:`A3:H${rows.length}`};XLSX.utils.book_append_sheet(wb,dws,"Details");
   XLSX.writeFile(wb,`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 function backupJSON(){downloadBlob(`checkin_backup_${safeName()}_${Date.now()}.json`, JSON.stringify(state,null,2), "application/json");toast("ok",t("backup_saved"));}
 function restoreJSONFile(file){
-  const r=new FileReader(); r.onload=()=>{try{state=normalizeState(JSON.parse(r.result));save();closeModal("menuModal");renderEverything();toast("ok",t("restored"));}catch(e){toast("bad",t("file_error"));}}; r.readAsText(file,"utf-8");
+  const r=new FileReader();r.onload=()=>{try{state=normalizeState(JSON.parse(r.result));if(state.reportQueued&&!outbox().some(p=>p?.session?.reportId===state.reportId)){state.reportQueued=false;state.reportQueuedSignature=""}save();closeModal("menuModal");renderEverything();renderQueue();toast("ok",t("restored"))}catch(e){toast("bad",t("file_error"))}};r.readAsText(file,"utf-8");
 }
 
 function openModal(id){$(id).classList.add("on")}
@@ -924,34 +1046,25 @@ function goView(view){
 /* ═════════════════════════════════════════════════════════
    대기목록 · 다중세션 · 오프라인 · 리포트 전송
    ═════════════════════════════════════════════════════════ */
-const CLOUD_KEY="recv_cloud_v1", SESSIONS_KEY="recv_sessions_v1",
-      QCACHE_KEY="recv_qcache_v1", OUTBOX_KEY="recv_outbox_v1";
+const CLOUD_KEY="recv_cloud_v1",SESSIONS_KEY="recv_sessions_v1",QCACHE_KEY="recv_qcache_v1",OUTBOX_KEY="recv_outbox_v1",DEVICE_KEY="recv_device_id_v1";
 
 const readJSON=(k,d)=>{try{return JSON.parse(storage.get(k))??d}catch(e){return d}};
 const writeJSON=(k,v)=>storage.set(k,JSON.stringify(v));
 
 const DEFAULT_URL="https://script.google.com/macros/s/AKfycbwcx18jaHCSb_zDwR6fhT4XrISdLMyVwRMfuwS0IXKxQ0pRxWFDnMH-VkWDTBpXtrg/exec";
-function cloudCfg(){const c=readJSON(CLOUD_KEY,{});return {url:c.url||DEFAULT_URL,token:c.token||""}}
+function cloudCfg(){const c=readJSON(CLOUD_KEY,{});return {url:c.url||DEFAULT_URL,token:c.token||"",staff:c.staff||"",updatedAt:Number(c.updatedAt||0)}}
 function cloudReady(){const c=cloudCfg();return !!(c.url&&c.token)}
-
-async function cloudGet(action, extra){
-  const c=cloudCfg(); if(!cloudReady()) throw new Error(t("cloud_need"));
-  const u=new URL(c.url);
-  u.searchParams.set("action",action); u.searchParams.set("token",c.token);
-  Object.entries(extra||{}).forEach(([k,v])=>u.searchParams.set(k,v));
-  const r=await fetch(u.toString(),{method:"GET",redirect:"follow"});
-  const j=await r.json();
-  if(!j.ok) throw new Error(j.error||"ERROR");
-  return j;
+function deviceId(){let id=storage.get(DEVICE_KEY);if(!id){id=`d_${Date.now().toString(36)}${Math.random().toString(36).slice(2,8)}`;storage.set(DEVICE_KEY,id)}return id}
+async function fetchJSON(url,options={},timeout=15000){
+  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),timeout);
+  try{const r=await fetch(url,{...options,signal:ctrl.signal});const text=await r.text();let j;try{j=JSON.parse(text)}catch(e){throw new Error(`Invalid server response (${r.status})`)}if(!r.ok)throw new Error(j.error||`HTTP ${r.status}`);return j}finally{clearTimeout(timer)}
+}
+async function cloudGet(action,extra){
+  const c=cloudCfg();if(!cloudReady())throw new Error(t("cloud_need"));const u=new URL(c.url);u.searchParams.set("action",action);u.searchParams.set("token",c.token);Object.entries(extra||{}).forEach(([k,v])=>u.searchParams.set(k,String(v)));
+  const j=await fetchJSON(u.toString(),{method:"GET",redirect:"follow"});if(!j.ok)throw new Error(j.error||"ERROR");return j;
 }
 async function cloudPost(payload){
-  const c=cloudCfg(); if(!cloudReady()) throw new Error(t("cloud_need"));
-  const r=await fetch(c.url,{method:"POST",redirect:"follow",
-    headers:{"Content-Type":"text/plain;charset=utf-8"},
-    body:JSON.stringify(Object.assign({token:c.token},payload))});
-  const j=await r.json();
-  if(!j.ok) throw new Error(j.error||"ERROR");
-  return j;
+  const c=cloudCfg();if(!cloudReady())throw new Error(t("cloud_need"));const j=await fetchJSON(c.url,{method:"POST",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({token:c.token},payload))});if(!j.ok)throw new Error(j.error||"ERROR");return j;
 }
 
 /* ── 세션 보관함 ── */
@@ -966,16 +1079,13 @@ function stashCurrent(){
   writeJSON(SESSIONS_KEY,all);
 }
 function openSession(sid){
-  const all=sessionsAll(); if(!all[sid]) return;
-  stashCurrent();
-  state=normalizeState(all[sid].state);
-  save(); renderEverything(); renderQueue(); goView("scan");
+  if(!sid)return;if(sid===state.sid){goView("scan");renderQueue();return}
+  const before=sessionsAll(),target=before[sid]?.state?JSON.parse(JSON.stringify(before[sid].state)):null;if(!target)return;
+  stashCurrent();state=normalizeState(target);save();renderEverything();renderQueue();goView("scan");
 }
 function deleteSession(sid){
-  if(!confirm(t("sess_del_confirm"))) return;
-  const all=sessionsAll(); delete all[sid]; writeJSON(SESSIONS_KEY,all);
-  if(state.sid===sid){state=blankState();save();renderEverything();}
-  renderQueue();
+  if(!confirm(t("sess_del_confirm")))return;const all=sessionsAll(),reportId=all[sid]?.state?.reportId||(state.sid===sid?state.reportId:"");delete all[sid];writeJSON(SESSIONS_KEY,all);if(reportId)removeQueuedReport(reportId);
+  if(state.sid===sid){state=blankState();selectedFiles=[];save();renderEverything()}renderQueue();
 }
 
 /* ── 대기목록 ── */
@@ -1049,183 +1159,132 @@ function renderQueue(){
 }
 
 async function startFromQueue(id){
-  const all=sessionsAll();
-  const found=Object.entries(all).find(([sid,v])=>v.queueId===id);
-  if(found){openSession(found[0]);return;}
-
-  toast("warn",t("q_loading"));
-  let inv;
-  try{inv=(await cloudGet("invoice",{id:id})).invoice;}
-  catch(e){toast("bad",String(e.message||e));return;}
-
-  stashCurrent();
-  state=blankState();
-  state.sid="s"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
-  state.queueId=inv.id;
-  state.vendor=inv.vendorName||inv.vendor||"";
-  state.invoiceNo=inv.invoiceNo||"";
-  state.invoiceDate=inv.date||"";
-  state.backorderQty=inv.backorderQty||0;
-  state.unresolved=inv.unresolved||[];
-  state.sessionName=`${inv.vendor||""} ${inv.invoiceNo||""} ${inv.date||""}`.trim();
-
-  const invoice={};
-  (inv.items||[]).forEach(it=>{
-    const key=normalizeCode(it.barcode); if(!key) return;
-    if(invoice[key]) invoice[key].exp+=Number(it.qty)||0;
-    else invoice[key]={code:String(it.barcode),name:it.name||"",exp:Number(it.qty)||0};
-  });
-  state.invoice=invoice; state.invCount=1;
-
-  save(); stashCurrent(); renderEverything(); renderQueue(); goView("scan");
-  toast("ok",t("q_loaded",{v:inv.vendor||"",no:inv.invoiceNo||"",
-        i:fmt(Object.keys(invoice).length),q:fmt(inv.totalQty||0)}));
+  if(!id)return;if(state.queueId===id){goView("scan");renderQueue();return}
+  const found=Object.entries(sessionsAll()).find(([sid,v])=>v.queueId===id);if(found){openSession(found[0]);return}
+  toast("warn",t("q_loading"));let inv;try{inv=(await cloudGet("invoice",{id})).invoice}catch(e){toast("bad",String(e.message||e));return}if(!inv){toast("bad",t("cloud_bad"));return}
+  stashCurrent();state=blankState();state.sid=`s${Date.now().toString(36)}${Math.random().toString(36).slice(2,5)}`;state.queueId=inv.id||id;state.vendor=inv.vendorName||inv.vendor||"";state.invoiceNo=inv.invoiceNo||"";state.invoiceDate=inv.date||"";state.backorderQty=Number(inv.backorderQty)||0;state.unresolved=Array.isArray(inv.unresolved)?inv.unresolved:[];state.sessionName=`${inv.vendorName||inv.vendor||""} ${inv.invoiceNo||""} ${inv.date||""}`.trim();
+  const invoice={};(inv.items||[]).forEach(it=>{const raw=cleanCode(it.barcode);if(!raw)return;const key=normalizeCode(raw),qty=parsePositiveInt(it.qty);if(!key||qty==null)return;if(invoice[key])invoice[key].exp+=qty;else invoice[key]={code:raw,name:it.name||"",exp:qty}});state.invoice=invoice;state.invCount=1;state.invoiceSources=[`queue:${state.queueId}`];ensureReportId();save();stashCurrent();renderEverything();renderQueue();goView("scan");toast("ok",t("q_loaded",{v:inv.vendorName||inv.vendor||"",no:inv.invoiceNo||"",i:fmt(Object.keys(invoice).length),q:fmt(stats().expectedQty)}));
 }
 
-/* ── 리포트 전송 (오프라인이면 쌓아뒀다 자동 재시도) ── */
+/* ── 리포트 전송 (중복 방지 + 오프라인 자동 재시도) ── */
 function buildReport(){
-  const st=stats();
-  const items=sortKeys(allKeys()).map(k=>{
-    const inv=invoiceItem(k), sc=scannedItem(k);
-    return {barcode:itemCode(k),name:itemName(k),
-            qty:inv?Number(inv.exp)||0:0,counted:sc?Number(sc.recv)||0:0,
-            status:getStatus(k).label,note:""};
-  });
-  return {id:state.queueId||state.sid||("manual_"+Date.now()),
-          vendor:state.vendor||"",invoiceNo:state.invoiceNo||"",date:state.invoiceDate||"",
-          staff:"",startedAt:new Date(state.createdAt||Date.now()).toISOString(),
-          finishedAt:new Date().toISOString(),
-          itemCount:st.invoiceItems,totalQty:st.expectedQty,countedQty:st.receivedAll,
-          accuracy:st.expectedQty?Math.round(st.receivedOnInvoice/st.expectedQty*100)+"%":"",
-          boxCount:state.boxCount||"",backorderQty:state.backorderQty||0,
-          unresolved:state.unresolved||[],items:items};
+  ensureReportId();const st=stats(),cfg=cloudCfg();
+  const items=sortKeys(allKeys()).map(k=>{const inv=invoiceItem(k),sc=scannedItem(k),status=getStatus(k);return {barcode:itemCode(k),name:itemName(k),qty:inv?Number(inv.exp)||0:0,counted:sc?Number(sc.recv)||0:0,statusCode:status.kind,status:status.label,note:""}});
+  return {id:state.queueId||state.sid||state.reportId,reportId:state.reportId,revision:Number(state.reportRevision)||0,deviceId:deviceId(),vendor:state.vendor||"",invoiceNo:state.invoiceNo||"",date:state.invoiceDate||"",staff:cfg.staff||"",startedAt:new Date(state.createdAt||Date.now()).toISOString(),finishedAt:state.finishedAt||new Date().toISOString(),itemCount:st.invoiceItems,totalQty:st.expectedQty,countedQty:st.receivedAll,matchedQty:st.matchedQty,shortQty:st.shortQty,overQty:st.overQty,extraQty:st.extraQty,accuracy:st.invoiceItems?`${st.itemAccuracy}%`:"",quantityProgress:st.expectedQty?`${st.progress}%`:"",boxCount:state.boxCount||"",backorderQty:Number(state.backorderQty)||0,unresolved:Array.isArray(state.unresolved)?state.unresolved:[],items};
 }
-
-function outbox(){return readJSON(OUTBOX_KEY,[])}
-
+function reportSignature(session){
+  const canonical={id:session.id,reportId:session.reportId,deviceId:session.deviceId,vendor:session.vendor,invoiceNo:session.invoiceNo,date:session.date,staff:session.staff,itemCount:session.itemCount,totalQty:session.totalQty,countedQty:session.countedQty,matchedQty:session.matchedQty,shortQty:session.shortQty,overQty:session.overQty,extraQty:session.extraQty,backorderQty:session.backorderQty,unresolved:session.unresolved,items:session.items.map(x=>({barcode:x.barcode,qty:x.qty,counted:x.counted,statusCode:x.statusCode}))};
+  return hashText(JSON.stringify(canonical));
+}
+function outbox(){const v=readJSON(OUTBOX_KEY,[]);return Array.isArray(v)?v:[]}
+function reconcileReportQueueState(){if(!state.reportId)return;const p=outbox().find(x=>x?.session?.reportId===state.reportId);if(p){state.reportQueued=true;state.reportQueuedSignature=p.clientSignature||""}else if(state.reportQueued){state.reportQueued=false;state.reportQueuedSignature=""}}
+function queueReport(payload,signature){
+  const id=payload.session.reportId,ob=outbox().filter(p=>p?.session?.reportId!==id);ob.push({...payload,clientSignature:signature,queuedAt:Date.now()});writeJSON(OUTBOX_KEY,ob);return ob.length;
+}
+function removeQueuedReport(reportId){const ob=outbox(),next=ob.filter(p=>p?.session?.reportId!==reportId);if(next.length!==ob.length)writeJSON(OUTBOX_KEY,next)}
+function markReportDelivered(reportId,signature,sentAt=new Date().toISOString(),forceActive=false){
+  if(state.reportId===reportId&&(forceActive||state.reportQueuedSignature===signature)){state.reportQueued=false;state.reportQueuedSignature="";state.reportSentAt=sentAt;state.reportSignature=signature;state.completed=true;save();renderSendState()}
+  const all=sessionsAll();let changed=false;Object.values(all).forEach(v=>{const st=v?.state;if(st?.reportId===reportId&&(forceActive||st.reportQueuedSignature===signature)){st.reportQueued=false;st.reportQueuedSignature="";st.reportSentAt=sentAt;st.reportSignature=signature;st.completed=true;v.updatedAt=Date.now();changed=true}});if(changed)writeJSON(SESSIONS_KEY,all);
+}
 async function sendReport(){
-  if(!allKeys().length){toast("warn",t("send_none"));return;}
-  const payload={session:buildReport()};
-  try{
-    await cloudPost(payload);
-    toast("ok",t("send_ok"));
-    refreshQueue(true);
-  }catch(e){
-    const ob=outbox(); ob.push(payload); writeJSON(OUTBOX_KEY,ob);
-    toast("bad",t("send_fail")+" ("+t("send_queued",{n:ob.length})+")");
-  }
+  if(reportSending)return;if(!allKeys().length){toast("warn",t("send_none"));return}
+  state.finishedAt=new Date().toISOString();const session=buildReport(),signature=reportSignature(session);
+  if(state.reportSentAt&&state.reportSignature===signature){toast("info",t("send_already"));renderSendState();return}
+  reportSending=true;renderSendState();const payload={session,clientSignature:signature};
+  try{await cloudPost(payload);removeQueuedReport(session.reportId);markReportDelivered(session.reportId,signature,new Date().toISOString(),true);toast("ok",t("send_ok"));refreshQueue(true)}
+  catch(e){const n=queueReport(payload,signature);state.reportQueued=true;state.reportQueuedSignature=signature;state.reportSentAt="";save();toast("bad",`${t("send_fail")} (${t("send_queued",{n})})`)}
+  finally{reportSending=false;renderSendState()}
 }
-
 async function flushOutbox(){
-  let ob=outbox(); if(!ob.length||!cloudReady()) return;
-  const left=[];
-  for(const p of ob){
-    try{await cloudPost(p);}catch(e){left.push(p);}
-  }
-  writeJSON(OUTBOX_KEY,left);
-  if(left.length<ob.length) toast("ok",t("send_ok"));
+  if(outboxFlushing||!cloudReady())return;const ob=outbox();if(!ob.length)return;outboxFlushing=true;const left=[];let sent=0;
+  try{for(const p of ob){try{await cloudPost(p);markReportDelivered(p.session?.reportId,p.clientSignature||reportSignature(p.session),new Date().toISOString(),false);sent++}catch(e){left.push(p)}}writeJSON(OUTBOX_KEY,left);if(sent)toast("ok",t("send_ok"))}finally{outboxFlushing=false;renderSendState()}
 }
 
 /* ── 설정 모달 ── */
 function openCloudSettings(){
-  const c=cloudCfg();
-  $("cloudUrl").value=c.url||DEFAULT_URL; $("cloudToken").value=c.token||"";
-  $("cloudTestMsg").textContent="";
-  openModal("cloudModal");
+  const c=cloudCfg();$("cloudUrl").value=c.url||DEFAULT_URL;$("cloudToken").value=c.token||"";$("cloudStaff").value=c.staff||"";$("cloudTestMsg").textContent="";openModal("cloudModal");
 }
 async function testCloud(){
-  const msg=$("cloudTestMsg"); msg.textContent=t("q_loading");
-  const url=$("cloudUrl").value.trim();
-  try{
-    const r=await fetch(url,{method:"GET",redirect:"follow"});
-    const j=await r.json();
-    msg.textContent=j.ok?("✅ "+t("cloud_ok")):("❌ "+t("cloud_bad"));
-  }catch(e){msg.textContent="❌ "+t("cloud_bad")+" — "+(e.message||e);}
+  const msg=$("cloudTestMsg"),url=$("cloudUrl").value.trim(),token=$("cloudToken").value.trim();msg.textContent=t("q_loading");
+  try{if(!url||!token)throw new Error(t("cloud_need"));const u=new URL(url);u.searchParams.set("action","list");u.searchParams.set("token",token);const j=await fetchJSON(u.toString(),{method:"GET",redirect:"follow"});msg.textContent=j.ok?`✅ ${t("cloud_ok")}`:`❌ ${t("cloud_bad")}`}
+  catch(e){msg.textContent=`❌ ${t("cloud_bad")} — ${e.message||e}`}
 }
 function saveCloud(){
-  writeJSON(CLOUD_KEY,{url:$("cloudUrl").value.trim(),token:$("cloudToken").value.trim()});
-  closeModal("cloudModal"); refreshQueue();
+  const old=cloudCfg(),url=$("cloudUrl").value.trim(),token=$("cloudToken").value.trim(),staff=$("cloudStaff").value.trim();
+  try{if(url)new URL(url)}catch(e){$("cloudTestMsg").textContent=`❌ ${t("cloud_bad")}`;return}
+  writeJSON(CLOUD_KEY,{url,token,staff,updatedAt:Date.now()});if(hasWork(state)&&old.staff!==staff){markReportDirty();save()}updateStaffStatus();closeModal("cloudModal");refreshQueue();flushOutbox();
 }
 
 function initQueue(){
-  $("queueRefreshBtn").onclick=()=>refreshQueue();
-  $("queueSettingsBtn").onclick=openCloudSettings;
-  $("cloudTestBtn").onclick=testCloud;
-  $("cloudSaveBtn").onclick=saveCloud;
-  $("cloudCloseBtn").onclick=()=>closeModal("cloudModal");
-  const sb=$("sendReportBtn"); if(sb) sb.onclick=sendReport;
-  window.addEventListener("online",()=>{flushOutbox();refreshQueue(true);});
-  renderQueue();
-  if(cloudReady()) refreshQueue(true);
-  if(cloudReady() && !Object.keys(state.invoice||{}).length) goView("queue");
+  $("queueRefreshBtn").onclick=()=>refreshQueue();$("queueSettingsBtn").onclick=openCloudSettings;$("cloudTestBtn").onclick=testCloud;$("cloudSaveBtn").onclick=saveCloud;$("cloudCloseBtn").onclick=()=>closeModal("cloudModal");
+  const sb=$("sendReportBtn");if(sb)sb.onclick=sendReport;
+  window.addEventListener("online",()=>{updateNetworkStatus();refreshQueue(true)});window.addEventListener("offline",updateNetworkStatus);
+  renderQueue();updateNetworkStatus();updateStaffStatus();if(cloudReady())refreshQueue(true);if(cloudReady()&&!Object.keys(state.invoice||{}).length)goView("queue");
 }
 
 function initEvents(){
-
-
-  $$("nav button").forEach(b=>b.onclick=()=>goView(b.dataset.view));
-  initQueue();
-  $$("#langSw button").forEach(b=>b.onclick=()=>{state.lang=b.dataset.lang;save();applyLang();});
-  $("themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save();applyTheme();};
-  $("barcodeInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const v=e.target.value;e.target.value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual");}});
-  $("manualAddBtn").onclick=()=>{const v=$("barcodeInput").value;$("barcodeInput").value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual");};
-  $("scannerModeBtn").onclick=()=>{state.options.scannerMode=!state.options.scannerMode;if(state.options.scannerMode&&camOn)stopCamera();save();renderEverything();focusBarcode();};
-  $("quickModeBtn").onclick=()=>{state.options.quickMode=!state.options.quickMode;save();renderEverything();focusBarcode();};
-  $("undoBtn").onclick=undoLast;
-  $("jumpRecon").onclick=()=>goView("recon");
-  $("pendingCancel").onclick=()=>{closePending();focusBarcode();};
-  $("pendingSave").onclick=()=>{if(pending)addQty(pending.key,pending.code,$("qtyInput").value,"manual")};
-  $("qtyInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("pendingSave").click();}});
-  $("qtyPlus").onclick=()=>$("qtyInput").value=(parseInt($("qtyInput").value,10)||0)+1;
-  $("qtyMinus").onclick=()=>$("qtyInput").value=Math.max(1,(parseInt($("qtyInput").value,10)||1)-1);
-  $("editPlus").onclick=()=>$("editQty").value=(parseInt($("editQty").value,10)||0)+1;
-  $("editMinus").onclick=()=>$("editQty").value=Math.max(0,(parseInt($("editQty").value,10)||0)-1);
-  $("editSave").onclick=saveEdit;
-  $("editDelete").onclick=()=>{if(editKey){delete state.scanned[editKey];save();closeModal("editModal");renderEverything();}};
-  $("searchInput").addEventListener("input",renderList); $("sortSelect").addEventListener("change",renderList);
-  $("invoiceFiles").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";for(const file of files){const data=await readOneFile(file);if(data)selectedFiles.push(data);}renderFileList();});
-  $("vendorSelect").addEventListener("change",()=>{const isNew=$("vendorSelect").value==="__new";$("newVendorName").disabled=!isNew;if(isNew)$("newVendorName").focus();const v=$("vendorSelect").value;if(v&&state.vendors[v])$("ignoreZero").checked=state.vendors[v].ignoreZero!==false;renderMapping();});
-  $("clearFilesBtn").onclick=()=>{selectedFiles=[];renderFileList();};
-  $("loadInvoiceBtn").onclick=loadInvoice;
-  $("exportCsvBtn").onclick=exportCSV; $("exportXlsxBtn").onclick=exportXLSX;
-  $("menuBtn").onclick=()=>{renderDashboard();openModal("menuModal")}; $("menuCloseBtn").onclick=()=>closeModal("menuModal");
-  $("renameSessionBtn").onclick=()=>{const n=prompt(t("rename_prompt"),state.sessionName);if(n){state.sessionName=n.trim()||state.sessionName;save();renderEverything();}};
-  $("backupBtn").onclick=backupJSON; $("restoreBtn").onclick=()=>$("restoreFile").click(); $("restoreFile").onchange=e=>{const f=e.target.files[0];e.target.value="";if(f)restoreJSONFile(f)};
-  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];save();closeModal("menuModal");renderEverything();}};
-  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){const vendors=state.vendors, lang=state.lang, theme=state.theme;state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");}};
-  $("cameraBtn").onclick=()=>camOn?stopCamera():startCamera();
-  $$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
-  window.addEventListener("popstate",()=>{if(anyModalOpen())$$(".modal-bg").forEach(m=>m.classList.remove("on"));else if(camOn)stopCamera();else if(pending)closePending();else goView("scan");try{history.pushState({app:1},"")}catch(e){}});
-  try{history.pushState({app:1},"")}catch(e){}
+  $$("nav button").forEach(b=>b.onclick=()=>goView(b.dataset.view));initQueue();
+  $("ignoreZero").checked=state.options.ignoreZero!==false;$("checkDigit").checked=state.options.checkDigit!==false;
+  $$("#langSw button").forEach(b=>b.onclick=()=>{state.lang=b.dataset.lang;save();applyLang()});$("themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save();applyTheme()};
+  $("barcodeInput").addEventListener("keydown",e=>{if(e.key==="Enter"||(state.options.scannerMode&&e.key==="Tab")){e.preventDefault();const v=e.target.value;e.target.value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual")}});$("manualAddBtn").onclick=()=>{const v=$("barcodeInput").value;$("barcodeInput").value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual")};
+  $("scannerModeBtn").onclick=()=>{state.options.scannerMode=!state.options.scannerMode;if(state.options.scannerMode&&camOn)stopCamera();save();renderDashboard();focusBarcode()};$("quickModeBtn").onclick=()=>{state.options.quickMode=!state.options.quickMode;save();renderDashboard();focusBarcode()};$("undoBtn").onclick=undoLast;$("jumpRecon").onclick=()=>goView("recon");
+  $("pendingCancel").onclick=()=>{closePending();focusBarcode()};$("pendingSave").onclick=()=>{if(pending)addQty(pending.key,pending.code,$("qtyInput").value,"manual")};$("qtyInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("pendingSave").click()}});$("qtyPlus").onclick=()=>$("qtyInput").value=(parseInt($("qtyInput").value,10)||0)+1;$("qtyMinus").onclick=()=>$("qtyInput").value=Math.max(1,(parseInt($("qtyInput").value,10)||1)-1);
+  $("editPlus").onclick=()=>$("editQty").value=(parseInt($("editQty").value,10)||0)+1;$("editMinus").onclick=()=>$("editQty").value=Math.max(0,(parseInt($("editQty").value,10)||0)-1);$("editSave").onclick=saveEdit;$("editDelete").onclick=()=>{if(editKey){const changed=setCountWithAudit(editKey,0,"delete");closeModal("editModal");if(changed)renderAfterCountChange()}};
+  $("searchInput").addEventListener("input",renderList);$("sortSelect").addEventListener("change",renderList);
+  $("invoiceFiles").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";for(const file of files){const data=await readOneFile(file);if(!data)continue;if(selectedFiles.some(f=>f.fingerprint===data.fingerprint)){toast("warn",`${t("duplicate_file")}: ${file.name}`);continue}selectedFiles.push(data)}renderFileList()});
+  $("vendorSelect").addEventListener("change",()=>{const isNew=$("vendorSelect").value==="__new";$("newVendorName").disabled=!isNew;if(isNew)$("newVendorName").focus();const v=$("vendorSelect").value;if(v&&state.vendors[v])$("ignoreZero").checked=state.vendors[v].ignoreZero!==false;renderMapping()});$("clearFilesBtn").onclick=()=>{selectedFiles=[];renderFileList()};$("loadInvoiceBtn").onclick=loadInvoice;
+  $("exportCsvBtn").onclick=exportCSV;$("exportXlsxBtn").onclick=exportXLSX;$("menuBtn").onclick=()=>{renderDashboard();openModal("menuModal")};$("menuCloseBtn").onclick=()=>closeModal("menuModal");
+  $("renameSessionBtn").onclick=()=>{const n=prompt(t("rename_prompt"),state.sessionName);if(n){state.sessionName=n.trim()||state.sessionName;save();renderDashboard();renderQueue()}};$("backupBtn").onclick=backupJSON;$("storageBackupBtn").onclick=backupJSON;$("restoreBtn").onclick=()=>$("restoreFile").click();$("restoreFile").onchange=e=>{const f=e.target.files[0];e.target.value="";if(f)restoreJSONFile(f)};
+  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];markReportDirty();save();closeModal("menuModal");renderEverything()}};
+  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){const vendors=state.vendors,lang=state.lang,theme=state.theme,oldSid=state.sid,oldReport=state.reportId;if(oldReport)removeQueuedReport(oldReport);if(oldSid){const all=sessionsAll();delete all[oldSid];writeJSON(SESSIONS_KEY,all)}state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");renderQueue()}};
+  $("cameraBtn").onclick=()=>camOn?stopCamera():startCamera();$$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
+  window.addEventListener("popstate",()=>{if(anyModalOpen())$$(".modal-bg").forEach(m=>m.classList.remove("on"));else if(camOn)stopCamera();else if(pending)closePending();else goView("scan");try{history.pushState({app:1},"")}catch(e){}});window.addEventListener("pagehide",()=>{try{save();stashCurrent()}catch(e){}});document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"){try{save()}catch(e){}}});try{history.pushState({app:1},"")}catch(e){}
 }
 async function startCamera(){
-  if(typeof Html5Qrcode==="undefined"){toast("bad","Camera library not loaded");return;}
-  try{
-    if(state.options.scannerMode){state.options.scannerMode=false;save();}
-    const reader=$("reader"); reader.classList.add("on"); cam=new Html5Qrcode("reader");
+  if(typeof Html5Qrcode==="undefined"){toast("info",t("camera_loading"));await waitForGlobal("Html5Qrcode",5000)}if(typeof Html5Qrcode==="undefined"){toast("bad",t("library_missing"));return}
+  try{if(state.options.scannerMode){state.options.scannerMode=false;save()}const reader=$("reader");reader.classList.add("on");cam=new Html5Qrcode("reader");cameraLatchCode="";cameraMisses=0;cameraLastSuccessAt=0;
     const formats=typeof Html5QrcodeSupportedFormats!=="undefined"?[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.CODE_39,Html5QrcodeSupportedFormats.ITF,Html5QrcodeSupportedFormats.CODABAR]:undefined;
-    await cam.start({facingMode:"environment"},{fps:10,qrbox:{width:270,height:160},formatsToSupport:formats},txt=>handleBarcode(txt,"cam"),()=>{});
-    camOn=true;$("cameraBtn").classList.add("on");$("cameraBtn").querySelector("span:last-child").textContent=t("camera_stop");renderEverything();
-  }catch(e){$("reader").classList.remove("on");toast("bad",String(e).slice(0,120));}
+    await cam.start({facingMode:"environment"},{fps:10,qrbox:{width:270,height:160},formatsToSupport:formats},txt=>{const code=cleanCode(txt);if(!code)return;if(code===cameraLatchCode){cameraLastSuccessAt=Date.now();cameraMisses=0;return}cameraLatchCode=code;cameraLastSuccessAt=Date.now();cameraMisses=0;handleBarcode(code,"cam")},()=>{if(!cameraLatchCode||Date.now()-cameraLastSuccessAt<900)return;cameraMisses++;if(cameraMisses>=4){cameraLatchCode="";cameraMisses=0;cameraLastSuccessAt=0}});camOn=true;$("cameraBtn").classList.add("on");$("cameraBtn").querySelector("span:last-child").textContent=t("camera_stop");renderDashboard();
+  }catch(e){$("reader").classList.remove("on");cam=null;toast("bad",String(e).slice(0,120))}
 }
 function stopCamera(){
-  const done=()=>{$("reader").classList.remove("on");$("cameraBtn").classList.remove("on");$("cameraBtn").querySelector("span:last-child").textContent=t("camera");camOn=false;focusBarcode();};
-  if(cam){cam.stop().then(()=>cam.clear()).then(done).catch(done);cam=null;}else done();
+  const done=()=>{$("reader").classList.remove("on");$("cameraBtn").classList.remove("on");$("cameraBtn").querySelector("span:last-child").textContent=t("camera");camOn=false;cameraLatchCode="";cameraMisses=0;cameraLastSuccessAt=0;focusBarcode()};if(cam){cam.stop().then(()=>cam.clear()).then(done).catch(done);cam=null}else done();
+}
+function setStaff(name){
+  const c=cloudCfg(); const nm=String(name||"");
+  if(c.staff===nm)return;
+  writeJSON(CLOUD_KEY,{url:c.url,token:c.token,staff:nm,updatedAt:Date.now()});
+  if(hasWork(state))markReportDirty();
+  save(); updateStaffStatus();
+}
+function lockApp(){
+  if(camOn)stopCamera();
+  $("app").hidden=true; $("pinInput").value=""; $("pinErr").textContent="";
+  $("pinGate").classList.add("on");
+  setTimeout(()=>$("pinInput").focus(),120);
 }
 function initPin(){
   applyTheme(); applyLang();
-  if(!STORE_PIN){$("app").hidden=false;renderEverything();focusBarcode();return;}
+  const gateOn = !!STORE_PIN || Object.keys(STAFF_PINS).length>0;
+  if(!gateOn){$("app").hidden=false;renderEverything();focusBarcode();return;}
   $("pinGate").classList.add("on");
-  const submit=()=>{if($("pinInput").value===STORE_PIN){$("pinGate").classList.remove("on");$("app").hidden=false;renderEverything();focusBarcode();save();}else{$("pinErr").textContent=t("pin_wrong");$("pinInput").value="";$("pinInput").focus();vibrate([40,40,40]);}};
+  const enter=(name)=>{setStaff(name);$("pinGate").classList.remove("on");$("app").hidden=false;renderEverything();focusBarcode();save();};
+  const submit=()=>{const v=$("pinInput").value.trim();
+    if(Object.prototype.hasOwnProperty.call(STAFF_PINS,v))return enter(STAFF_PINS[v]);
+    if(STORE_PIN&&v===STORE_PIN)return enter("");
+    $("pinErr").textContent=t("pin_wrong");$("pinInput").value="";$("pinInput").focus();vibrate([40,40,40]);};
   $("pinBtn").onclick=submit; $("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter")submit()});
+  const ss=$("staffStatus");
+  if(ss){ss.style.cursor="pointer";ss.title=t("switch_user");ss.onclick=lockApp;}
   setTimeout(()=>$("pinInput").focus(),120);
 }
 function createManifest(){
   try{
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" fill="#0f172a"/><path d="M113 148h286v64H113zM113 244h196v52H113zM113 328h286v36H113z" fill="#60a5fa"/><circle cx="360" cy="280" r="58" fill="#7c3aed"/><path d="M336 278l20 20 42-48" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const icon="data:image/svg+xml,"+encodeURIComponent(svg);
-    const mf={name:"901 Check-In Pro",short_name:"Check-In",start_url:".",scope:".",display:"standalone",orientation:"portrait",background_color:"#0f172a",theme_color:"#0f172a",icons:[{src:icon,sizes:"any",type:"image/svg+xml",purpose:"any maskable"}]};
-    const link=document.createElement("link"); link.rel="manifest"; link.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:"application/manifest+json"})); document.head.appendChild(link);
+    const startUrl=location.href.split(/[?#]/)[0],scopeUrl=(()=>{try{return new URL(".",startUrl).href}catch(e){return startUrl}})();
+    const mf={name:"901 Check-In Pro",short_name:"Check-In",start_url:startUrl,scope:scopeUrl,display:"standalone",orientation:"portrait",background_color:"#0f172a",theme_color:"#0f172a",icons:[{src:icon,sizes:"any",type:"image/svg+xml",purpose:"any maskable"}]};
+    const link=document.createElement("link");link.rel="manifest";link.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:"application/manifest+json"}));document.head.appendChild(link);const fav=document.createElement("link");fav.rel="icon";fav.href=icon;document.head.appendChild(fav);const apple=document.createElement("link");apple.rel="apple-touch-icon";apple.href=icon;document.head.appendChild(apple);
   }catch(e){}
 }
 /* ── 라이브러리 비동기 로더: 화면 로딩을 절대 막지 않음.
@@ -1235,10 +1294,13 @@ function __loadLib(src){try{var s=document.createElement("script");s.async=true;
 __loadLib("https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js");
 __loadLib("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
 
-/* ── 부팅: 라이브러리 도착 여부와 무관하게 즉시 실행 */
-function __boot(){try{createManifest();}catch(e){}try{initEvents();}catch(e){}try{initPin();}catch(e){}}
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__boot);
-else __boot();
+/* ── 부팅: IndexedDB의 최신 상태를 먼저 복원한 뒤 화면 시작 */
+async function __boot(){
+  try{await hydrateStorageFromIDB();state=loadState();reconcileReportQueueState()}catch(e){}
+  try{createManifest()}catch(e){}try{initEvents()}catch(e){console.error(e)}try{initPin()}catch(e){console.error(e)}
+  if(storageHealth.local===false&&storageHealth.idb===false){setSaveIndicator("error");showStorageAlert(storageHealth.lastError)}else setSaveIndicator(storageHealth.idb?"saved":"local");
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",__boot);else __boot();
 </script>
 </body>
 </html>
