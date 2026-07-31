@@ -75,8 +75,7 @@
   .pending.on{display:block;animation:rise .18s ease-out}
   @keyframes rise{from{transform:translateY(7px);opacity:.5}to{transform:translateY(0);opacity:1}}
   .p-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.p-name{font-weight:900;font-size:17px;line-height:1.25}.p-code{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace;margin-top:3px}
-  .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;white-space:nowrap}.chip.ok{background:var(--green-bg);color:var(--green)}.chip.warn{background:var(--amber-bg);color:var(--amber)}.chip.over{background:var(--purple-bg);color:var(--purple)}.chip.bad{background:var(--red-bg);color:var(--red)}.chip.extra{background:var(--cyan-bg);color:var(--cyan)}.chip.neutral{background:var(--surface-2);color:var(--muted)}.chip.back{background:var(--surface-2);color:var(--text);border:1px dashed var(--muted)}
-  .vault-card{border:1px solid var(--line);background:var(--surface-2);border-radius:16px;padding:12px;margin-bottom:10px}.vault-card.cur{border-color:var(--accent);background:var(--accent-soft)}.vault-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.vault-name{font-weight:900;font-size:15px;line-height:1.25;min-width:0;overflow:hidden;text-overflow:ellipsis}.vault-meta{color:var(--muted);font-size:12px;margin-top:3px;line-height:1.45}.vault-bar{height:7px;border-radius:999px;background:var(--line);overflow:hidden;margin:9px 0 10px}.vault-bar span{display:block;height:100%;background:var(--accent);border-radius:999px}.vault-acts{display:flex;gap:7px}
+  .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;white-space:nowrap}.chip.ok{background:var(--green-bg);color:var(--green)}.chip.warn{background:var(--amber-bg);color:var(--amber)}.chip.over{background:var(--purple-bg);color:var(--purple)}.chip.bad{background:var(--red-bg);color:var(--red)}.chip.extra{background:var(--cyan-bg);color:var(--cyan)}.chip.neutral{background:var(--surface-2);color:var(--muted)}
   .qty-panel{display:grid;grid-template-columns:54px 1fr 54px;gap:10px;align-items:center;margin-top:10px}.qty-panel button{height:54px;border-radius:16px;border:1px solid var(--line);background:var(--surface-2);font-size:26px;font-weight:900}.qty-panel input{text-align:center;border:2px solid var(--line);border-radius:16px;background:var(--surface);padding:10px;font-size:27px;font-weight:900;outline:none}.qty-panel input:focus{border-color:var(--accent)}
   .actions{display:flex;gap:9px;margin-top:10px}.btn{border:none;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:900;background:var(--surface-2);color:var(--text);flex:1}.btn.primary{background:var(--accent);color:#fff}.btn.danger{background:var(--red-bg);color:var(--red)}.btn.green{background:var(--green-bg);color:var(--green)}.btn.line{border:1px solid var(--line);background:var(--surface)}.btn.small{padding:9px 12px;border-radius:12px;font-size:12px;flex:0 0 auto}
   .section-title{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:16px 2px 8px}
@@ -88,7 +87,7 @@
   .form-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.field label{display:block;font-size:12px;color:var(--muted);font-weight:900;margin:0 0 5px}.field input,.field select{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:13px;padding:12px;font-size:14px;outline:none}.checkline{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.35;color:var(--text);font-weight:750}.checkline input{width:18px;height:18px;flex:0 0 auto;margin-top:0}
   .detect{display:none;margin:10px 0}.detect.on{display:block}.map-table{display:grid;gap:6px;margin-top:10px}.map-row{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;padding:8px;border-bottom:1px solid var(--line)}.map-sample{min-width:0;font-size:12px;line-height:1.35}.map-sample b{display:block;color:var(--accent);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-sample span{font-family:ui-monospace,monospace;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-row select{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px;font-size:12px}
   .toast-wrap{position:fixed;left:12px;right:12px;bottom:calc(78px + var(--safe-bottom));z-index:90;display:grid;gap:8px;pointer-events:none}.toast{pointer-events:auto;max-width:980px;width:100%;margin:0 auto;border-radius:16px;padding:13px 14px;color:#fff;background:#1f2937;box-shadow:var(--shadow);font-weight:850;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}.toast.ok{background:#166534}.toast.warn{background:#92400e}.toast.bad{background:#991b1b}.toast.info{background:#1e40af}.toast button{border:none;background:rgba(255,255,255,.16);color:#fff;border-radius:10px;padding:7px 9px;font-size:12px;font-weight:900}
-  nav{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:5px 6px calc(7px + var(--safe-bottom));z-index:20}nav button{position:relative;border:none;background:transparent;border-radius:14px;padding:8px 2px 6px;color:var(--muted);font-size:11px;font-weight:850}nav button .ico{display:block;font-size:20px;margin-bottom:2px}nav button.active{background:var(--accent-soft);color:var(--accent)}.nav-dot{display:none;position:absolute;top:5px;left:50%;margin-left:9px;min-width:17px;height:17px;border-radius:999px;background:var(--red);color:#fff;font-size:9px;line-height:17px;font-weight:900;padding:0 3px}.nav-dot.on{display:block}
+  nav{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:5px 6px calc(7px + var(--safe-bottom));z-index:20}nav button{position:relative;border:none;background:transparent;border-radius:14px;padding:8px 2px 6px;color:var(--muted);font-size:11px;font-weight:850}nav button .ico{display:block;font-size:20px;margin-bottom:2px}nav button.active{background:var(--accent-soft);color:var(--accent)}.nav-dot{display:none;position:absolute;top:5px;left:50%;margin-left:9px;min-width:17px;height:17px;border-radius:999px;background:var(--red);color:#fff;font-size:9px;line-height:17px;font-weight:900;padding:0 3px}.nav-dot.on{display:block}
   .modal-bg{position:fixed;inset:0;background:rgba(4,10,20,.62);z-index:60;display:none;align-items:flex-end}.modal-bg.on{display:flex}.modal{background:var(--surface);border-radius:22px 22px 0 0;width:100%;max-height:88dvh;overflow:auto;padding:18px 16px calc(18px + var(--safe-bottom));box-shadow:var(--shadow)}.modal h2{margin:0 0 4px;font-size:18px}.modal .hint{margin-bottom:12px}.modal-menu button.item{width:100%;display:flex;align-items:center;gap:10px;background:transparent;border:none;border-bottom:1px solid var(--line);padding:15px 4px;text-align:left;font-weight:850}.modal-menu button.item span{font-size:20px}.modal-menu button.item.danger{color:var(--red)}
   .pin-gate{position:fixed;inset:0;background:radial-gradient(circle at top,#1e3a8a 0,#0f172a 45%,#020617 100%);z-index:200;color:#fff;display:none;align-items:center;justify-content:center;padding:24px}.pin-gate.on{display:flex}.pin-card{width:min(360px,100%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);border-radius:28px;padding:26px 22px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.36)}.pin-logo{width:60px;height:60px;border-radius:20px;display:grid;place-items:center;margin:0 auto 12px;background:linear-gradient(135deg,#60a5fa,#2563eb 55%,#7c3aed);font-size:22px;font-weight:900}.pin-card h1{margin:0;font-size:24px;letter-spacing:-.5px}.pin-card p{margin:7px 0 18px;color:#cbd5e1;font-size:13px}.pin-card input{width:100%;border:2px solid rgba(255,255,255,.18);background:rgba(0,0,0,.28);color:#fff;border-radius:17px;text-align:center;padding:13px;font-size:28px;font-family:ui-monospace,monospace;letter-spacing:8px;outline:none}.pin-card input:focus{border-color:#60a5fa}.pin-err{height:20px;margin-top:9px;color:#fecaca;font-size:13px}.pin-card .btn{margin-top:7px}.copyright{margin-top:16px;color:#94a3b8;font-size:10px;line-height:1.45}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -128,6 +127,25 @@
   </header>
 
   <main>
+    <section class="view" id="view-queue">
+      <div class="card">
+        <div class="card-title">
+          <h2 data-i18n="queue_title">대기 인보이스</h2>
+          <div style="display:flex;gap:6px">
+            <button class="btn line sm" id="queueSettingsBtn">⚙</button>
+            <button class="btn line sm" id="queueRefreshBtn" data-i18n="refresh">새로고침</button>
+          </div>
+        </div>
+        <p class="hint" id="queueStatus" data-i18n="queue_hint">인보이스를 탭하면 검수가 시작됩니다.</p>
+        <div id="queueList" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card" id="sessionCard">
+        <div class="card-title"><h2 data-i18n="sessions_title">진행 중인 검수</h2></div>
+        <div id="sessionList"></div>
+      </div>
+    </section>
+
     <section class="view active" id="view-scan">
       <div class="two-col">
         <div>
@@ -252,7 +270,6 @@
           <div class="mini"><b id="rOver">0</b><span data-i18n="over">초과</span></div>
           <div class="mini"><b id="rMiss">0</b><span data-i18n="missing">누락</span></div>
           <div class="mini"><b id="rExtra">0</b><span data-i18n="extra">외품</span></div>
-          <div class="mini"><b id="rBack">0</b><span data-i18n="backorder">미도착</span></div>
           <div class="mini"><b id="rTotal">0</b><span data-i18n="total">전체</span></div>
         </div>
       </div>
@@ -260,6 +277,7 @@
         <div class="actions" style="margin-top:0">
           <button class="btn primary" id="exportCsvBtn" data-i18n="export_csv">CSV 내보내기</button>
           <button class="btn green" id="exportXlsxBtn" data-i18n="export_xlsx">Excel 내보내기</button>
+          <button class="btn line" id="sendReportBtn" data-i18n="send_report">검수 결과 전송</button>
         </div>
       </div>
       <div id="reconRows"></div>
@@ -267,6 +285,7 @@
   </main>
 
   <nav aria-label="Main navigation">
+    <button data-view="queue"><span class="ico">📥</span><span data-i18n="nav_queue">대기</span><span class="nav-dot" id="queueDot"></span></button>
     <button class="active" data-view="scan"><span class="ico">⌕</span><span data-i18n="nav_scan">스캔</span></button>
     <button data-view="invoice"><span class="ico">▤</span><span data-i18n="nav_invoice">인보이스</span></button>
     <button data-view="list"><span class="ico">☷</span><span data-i18n="nav_list">목록</span><span class="nav-dot" id="listDot"></span></button>
@@ -276,30 +295,34 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
+<div class="modal-bg" id="cloudModal">
+  <div class="modal">
+    <h2 data-i18n="cloud_title">서버 연결 설정</h2>
+    <p class="hint" data-i18n="cloud_hint">이 기기에만 저장됩니다. 한 번만 입력하면 됩니다.</p>
+    <label class="field"><span data-i18n="cloud_url">웹앱 주소</span>
+      <input id="cloudUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="off"></label>
+    <label class="field"><span data-i18n="cloud_token">열쇠(TOKEN)</span>
+      <input id="cloudToken" type="password" placeholder="TOKEN" autocomplete="off"></label>
+    <p class="hint" id="cloudTestMsg"></p>
+    <div class="actions">
+      <button class="btn line" id="cloudTestBtn" data-i18n="cloud_test">연결 확인</button>
+      <button class="btn" id="cloudSaveBtn" data-i18n="save">저장</button>
+      <button class="btn line" id="cloudCloseBtn" data-i18n="close">닫기</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-bg" id="menuModal">
   <div class="modal modal-menu">
     <h2 data-i18n="menu">메뉴</h2>
     <p class="hint" id="menuSub">-</p>
     <button class="item" id="renameSessionBtn"><span>✏️</span><div><b data-i18n="rename_session">세션 이름 변경</b><p class="hint" data-i18n="rename_hint">작업일/공급업체명으로 구분하세요.</p></div></button>
-    <button class="item" id="vaultBtn"><span>📂</span><div><b data-i18n="vault">세션 보관함</b><p class="hint" data-i18n="vault_hint">검수 중인 작업을 여러 개 저장하고 나중에 이어서 하기.</p></div></button>
     <button class="item" id="backupBtn"><span>⬇️</span><div><b data-i18n="backup_json">백업 파일 저장</b><p class="hint" data-i18n="backup_hint">현재 세션 전체를 JSON으로 저장합니다.</p></div></button>
     <button class="item" id="restoreBtn"><span>⬆️</span><div><b data-i18n="restore_json">백업 불러오기</b><p class="hint" data-i18n="restore_hint">저장했던 JSON 세션을 복원합니다.</p></div></button>
     <input id="restoreFile" type="file" accept="application/json,.json" style="display:none">
     <button class="item" id="clearCountsBtn"><span>🧹</span><div><b data-i18n="clear_counts">검수 수량만 초기화</b><p class="hint" data-i18n="clear_counts_hint">인보이스는 유지됩니다.</p></div></button>
     <button class="item danger" id="newSessionBtn"><span>🗑️</span><div><b data-i18n="new_session">새 세션 시작</b><p class="hint" data-i18n="new_session_hint">현재 검수/인보이스를 비웁니다. 업체 설정은 유지됩니다.</p></div></button>
     <div class="actions"><button class="btn line" id="menuCloseBtn" data-i18n="close">닫기</button></div>
-  </div>
-</div>
-
-<div class="modal-bg" id="vaultModal">
-  <div class="modal">
-    <div class="card-title" style="margin-bottom:2px"><h2 data-i18n="vault_title">세션 보관함</h2><span class="chip neutral" id="vaultCountChip">0</span></div>
-    <p class="hint" data-i18n="vault_hint">검수 중인 작업을 여러 개 저장하고 나중에 이어서 하기.</p>
-    <div id="vaultRows"></div>
-    <div class="actions">
-      <button class="btn line" id="vaultSaveBtn" data-i18n="vault_save_now">💾 현재 작업 저장</button>
-      <button class="btn primary" id="vaultCloseBtn" data-i18n="close">닫기</button>
-    </div>
   </div>
 </div>
 
@@ -312,8 +335,6 @@
       <input id="editQty" type="number" min="0" inputmode="numeric" value="0">
       <button id="editPlus">+</button>
     </div>
-    <button class="btn line" id="editBackorder" style="width:100%;margin-top:10px">🚚 미도착(백오더)으로 표시</button>
-    <p class="hint" id="editBackorderHint" style="margin:7px 0 0">벤더가 이번에 안 보낸 물건이면 표시하세요.</p>
     <div class="actions">
       <button class="btn danger" id="editDelete" data-i18n="delete">삭제</button>
       <button class="btn primary" id="editSave" data-i18n="save">저장</button>
@@ -331,54 +352,10 @@ const KEY = "recv_pro_session_v2";
 const OLD_KEY = "recv_session_v4";
 
 const I18N = {
-  ko:{app_title:"입고 검수 Pro",pin_sub:"US BEAUTY LLC · 직원 전용",pin_enter:"입장",pin_wrong:"코드가 틀려요",today_progress:"오늘 진행률",recv:"검수",expected:"예정",short:"부족",over:"초과",extra:"외품",match:"일치",missing:"누락",total:"전체",scan_title:"바코드 스캔",scanner_mode:"스캐너 모드",quick_mode:"연속 추가",camera:"카메라",camera_stop:"카메라 끄기",undo:"마지막 취소",scan_hint:"핸드 스캐너는 “스캐너 모드 + 연속 추가”로 두면 스캔마다 자동으로 1개씩 누적됩니다.",invoice_qty:"인보이스",counted_qty:"현재",remain_qty:"남음",cancel:"취소",add_qty:"수량 추가",recent_scans:"최근 스캔",review:"대조 보기",invoice_title:"인보이스 불러오기",invoice_hint:"CSV, TSV, TXT, XLS, XLSX 파일을 여러 개 한 번에 넣을 수 있습니다. 같은 바코드는 자동 합산됩니다.",pick_invoice:"📎 파일 선택 / 추가",pick_invoice_sub:"여러 장의 인보이스도 한 번에 선택하세요.",vendor:"공급업체",new_vendor:"새 업체명",merge_invoice:"현재 인보이스에 합치기",ignore_zero:"바코드 앞자리 0 무시",check_digit:"UPC/EAN 체크디지트 검증",save_vendor_map:"업체별 칸 설정 저장",clear_files:"파일 비우기",load_invoice:"인보이스 적용",list_title:"전체 목록",sort_problem:"문제 우선",sort_name:"이름순",sort_recent:"최근순",recon_title:"대조 리포트",export_csv:"CSV 내보내기",export_xlsx:"Excel 내보내기",nav_scan:"스캔",nav_invoice:"인보이스",nav_list:"목록",nav_recon:"대조",menu:"메뉴",rename_session:"세션 이름 변경",rename_hint:"작업일/공급업체명으로 구분하세요.",backup_json:"백업 파일 저장",backup_hint:"현재 세션 전체를 JSON으로 저장합니다.",restore_json:"백업 불러오기",restore_hint:"저장했던 JSON 세션을 복원합니다.",clear_counts:"검수 수량만 초기화",clear_counts_hint:"인보이스는 유지됩니다.",new_session:"새 세션 시작",new_session_hint:"현재 검수/인보이스를 비웁니다. 업체 설정은 유지됩니다.",close:"닫기",delete:"삭제",save:"저장",go:"확인",manual:"수동",scanner:"스캐너",quick:"연속 +1",detected:"감지됨",not_detected:"자동 감지 안됨 — 아래 칸을 확인하세요",barcode:"바코드",name:"품목명",qty:"수량",ignore:"무시",rows:"{n}줄",files_rows:"파일 {f}개 · {r}줄",custom_vendor:"직접 지정",add_vendor:"+ 새 업체 추가…",empty_recent:"아직 스캔한 품목이 없어요.<br>바코드를 스캔하거나 입력해 보세요.",empty_list:"목록이 비어 있어요.<br>인보이스를 불러오거나 스캔을 시작하세요.",empty_recon:"대조할 내용이 없어요.<br>인보이스를 불러오고 스캔을 시작하세요.",need_review:"확인 필요",matched_items:"일치 품목",all:"전체",problem:"문제",status_ok:"일치",status_short:"부족 {n}",status_over:"초과 +{n}",status_missing:"누락",status_extra:"인보이스외",not_on_invoice:"인보이스에 없음",new_item:"새 품목",toast_added:"+{a} · 누적 {n}",toast_match:"✓ 일치 ({n}/{e})",toast_short:"부족 {n}/{e} ({r}개 남음)",toast_over:"초과 {n}/{e} (+{d})",toast_extra:"인보이스외 · 누적 {n}",bad_barcode:"바코드 오독 의심 — 무시됨",duplicate:"중복 스캔 무시",undo_done:"마지막 스캔을 취소했습니다",nothing_undo:"취소할 스캔이 없습니다",choose_barcode:"바코드 칸을 지정하세요",choose_qty:"수량 칸을 지정하세요",no_rows:"읽을 수 있는 행이 없습니다. 칸 설정을 확인하세요.",loaded:"인보이스 적용 완료 · {i}품목 {q}개",merged:"인보이스 합치기 완료 · {i}품목 {q}개",no_export:"내보낼 내용이 없습니다",xlsx_missing:"Excel 라이브러리를 불러오지 못해 CSV로 저장합니다",rename_prompt:"세션 이름",confirm_clear:"검수 수량만 초기화할까요? 인보이스는 유지됩니다.",confirm_new:"새 세션을 시작할까요? 현재 인보이스와 검수 기록은 비워집니다.",restored:"백업을 복원했습니다",backup_saved:"백업 파일을 저장했습니다",file_error:"파일을 읽지 못했습니다",progress_none:"인보이스를 불러오고 스캔을 시작하세요.",progress_text:"{recv}/{exp}개 검수 · 확인 필요 {p}품목",problem_sub:"확인이 필요한 품목",all_clear:"모든 품목이 일치합니다",session_default:"입고 {d}"},
-  en:{app_title:"Receiving Pro",pin_sub:"US BEAUTY LLC · Staff only",pin_enter:"Enter",pin_wrong:"Wrong code",today_progress:"Today's progress",recv:"Counted",expected:"Expected",short:"Short",over:"Over",extra:"Extra",match:"Match",missing:"Missing",total:"Total",scan_title:"Barcode Scan",scanner_mode:"Scanner mode",quick_mode:"Quick add",camera:"Camera",camera_stop:"Stop camera",undo:"Undo last",scan_hint:"For handheld scanners, turn on Scanner Mode + Quick Add to add 1 automatically per scan.",invoice_qty:"Invoice",counted_qty:"Counted",remain_qty:"Left",cancel:"Cancel",add_qty:"Add qty",recent_scans:"Recent scans",review:"Review",invoice_title:"Load Invoice",invoice_hint:"Load CSV, TSV, TXT, XLS, or XLSX files. Multiple invoices are supported and duplicate barcodes are summed.",pick_invoice:"📎 Choose / add files",pick_invoice_sub:"Select multiple invoice files at once.",vendor:"Supplier",new_vendor:"New supplier",merge_invoice:"Merge into current invoice",ignore_zero:"Ignore leading zeros",check_digit:"UPC/EAN check digit validation",save_vendor_map:"Save vendor column map",clear_files:"Clear files",load_invoice:"Apply invoice",list_title:"All items",sort_problem:"Problems first",sort_name:"Name",sort_recent:"Recent",recon_title:"Reconciliation",export_csv:"Export CSV",export_xlsx:"Export Excel",nav_scan:"Scan",nav_invoice:"Invoice",nav_list:"List",nav_recon:"Verify",menu:"Menu",rename_session:"Rename session",rename_hint:"Use date/vendor to identify this job.",backup_json:"Save backup",backup_hint:"Download the full session as JSON.",restore_json:"Restore backup",restore_hint:"Restore a saved JSON session.",clear_counts:"Clear counted qty",clear_counts_hint:"Invoice stays loaded.",new_session:"New session",new_session_hint:"Clear current invoice and counts. Vendor settings stay.",close:"Close",delete:"Delete",save:"Save",go:"Go",manual:"Manual",scanner:"Scanner",quick:"Quick +1",detected:"Detected",not_detected:"Not detected — review columns below",barcode:"Barcode",name:"Name",qty:"Qty",ignore:"Ignore",rows:"{n} rows",files_rows:"{f} files · {r} rows",custom_vendor:"Custom",add_vendor:"+ Add supplier…",empty_recent:"No scans yet.<br>Scan or type a barcode.",empty_list:"The list is empty.<br>Load an invoice or start scanning.",empty_recon:"Nothing to verify.<br>Load an invoice and start scanning.",need_review:"Needs review",matched_items:"Matched items",all:"All",problem:"Problems",status_ok:"Match",status_short:"Short {n}",status_over:"Over +{n}",status_missing:"Missing",status_extra:"Not on invoice",not_on_invoice:"Not on invoice",new_item:"New item",toast_added:"+{a} · total {n}",toast_match:"✓ Match ({n}/{e})",toast_short:"Short {n}/{e} ({r} left)",toast_over:"Over {n}/{e} (+{d})",toast_extra:"Not on invoice · total {n}",bad_barcode:"Suspicious barcode — ignored",duplicate:"Duplicate scan ignored",undo_done:"Last scan undone",nothing_undo:"Nothing to undo",choose_barcode:"Choose the barcode column",choose_qty:"Choose the qty column",no_rows:"No readable rows. Check the columns.",loaded:"Invoice applied · {i} items {q} pcs",merged:"Invoice merged · {i} items {q} pcs",no_export:"Nothing to export",xlsx_missing:"Excel library missing; saving CSV instead",rename_prompt:"Session name",confirm_clear:"Clear counted quantities only? Invoice stays.",confirm_new:"Start a new session? Current invoice and counts will be cleared.",restored:"Backup restored",backup_saved:"Backup saved",file_error:"Could not read file",progress_none:"Load an invoice and start scanning.",progress_text:"{recv}/{exp} counted · {p} items need review",problem_sub:"Items needing review",all_clear:"All items match",session_default:"Receiving {d}"},
-  es:{app_title:"Recepción Pro",pin_sub:"US BEAUTY LLC · Solo personal",pin_enter:"Entrar",pin_wrong:"Código incorrecto",today_progress:"Progreso de hoy",recv:"Contado",expected:"Esperado",short:"Falta",over:"Sobra",extra:"Extra",match:"Coincide",missing:"Ausente",total:"Total",scan_title:"Escanear código",scanner_mode:"Modo escáner",quick_mode:"Añadir rápido",camera:"Cámara",camera_stop:"Apagar cámara",undo:"Deshacer",scan_hint:"Con escáner manual, usa Modo escáner + Añadir rápido para sumar 1 por lectura.",invoice_qty:"Factura",counted_qty:"Contado",remain_qty:"Falta",cancel:"Cancelar",add_qty:"Añadir",recent_scans:"Recientes",review:"Revisar",invoice_title:"Cargar factura",invoice_hint:"Carga CSV, TSV, TXT, XLS o XLSX. Varias facturas OK; códigos iguales se suman.",pick_invoice:"📎 Elegir / añadir archivos",pick_invoice_sub:"Puedes seleccionar varios archivos.",vendor:"Proveedor",new_vendor:"Nuevo proveedor",merge_invoice:"Unir a factura actual",ignore_zero:"Ignorar ceros iniciales",check_digit:"Validar UPC/EAN",save_vendor_map:"Guardar mapeo",clear_files:"Vaciar archivos",load_invoice:"Aplicar factura",list_title:"Lista completa",sort_problem:"Problemas primero",sort_name:"Nombre",sort_recent:"Reciente",recon_title:"Verificación",export_csv:"Exportar CSV",export_xlsx:"Exportar Excel",nav_scan:"Escanear",nav_invoice:"Factura",nav_list:"Lista",nav_recon:"Verificar",menu:"Menú",rename_session:"Renombrar sesión",rename_hint:"Usa fecha/proveedor.",backup_json:"Guardar respaldo",backup_hint:"Descarga la sesión en JSON.",restore_json:"Restaurar respaldo",restore_hint:"Restaura un JSON guardado.",clear_counts:"Limpiar conteos",clear_counts_hint:"La factura se mantiene.",new_session:"Nueva sesión",new_session_hint:"Borra factura y conteos. Mantiene proveedores.",close:"Cerrar",delete:"Borrar",save:"Guardar",go:"OK",manual:"Manual",scanner:"Escáner",quick:"Rápido +1",detected:"Detectado",not_detected:"No detectado — revisa columnas",barcode:"Código",name:"Nombre",qty:"Cant.",ignore:"Ignorar",rows:"{n} filas",files_rows:"{f} archivos · {r} filas",custom_vendor:"Personalizado",add_vendor:"+ Añadir proveedor…",empty_recent:"Aún no hay escaneos.<br>Escanea o escribe un código.",empty_list:"La lista está vacía.<br>Carga una factura o empieza.",empty_recon:"Nada que verificar.<br>Carga una factura y empieza.",need_review:"Revisar",matched_items:"Coinciden",all:"Todo",problem:"Problemas",status_ok:"Coincide",status_short:"Falta {n}",status_over:"Sobra +{n}",status_missing:"Ausente",status_extra:"Fuera factura",not_on_invoice:"Fuera factura",new_item:"Nuevo artículo",toast_added:"+{a} · total {n}",toast_match:"✓ Coincide ({n}/{e})",toast_short:"Falta {n}/{e} ({r})",toast_over:"Sobra {n}/{e} (+{d})",toast_extra:"Fuera factura · total {n}",bad_barcode:"Código sospechoso — ignorado",duplicate:"Duplicado ignorado",undo_done:"Último escaneo deshecho",nothing_undo:"Nada que deshacer",choose_barcode:"Elige columna de código",choose_qty:"Elige columna de cantidad",no_rows:"No hay filas legibles. Revisa columnas.",loaded:"Factura aplicada · {i} art. {q} pzs",merged:"Factura unida · {i} art. {q} pzs",no_export:"Nada que exportar",xlsx_missing:"Falta librería Excel; guardando CSV",rename_prompt:"Nombre de sesión",confirm_clear:"¿Limpiar conteos? La factura queda.",confirm_new:"¿Nueva sesión? Se borran factura y conteos.",restored:"Respaldo restaurado",backup_saved:"Respaldo guardado",file_error:"No se pudo leer archivo",progress_none:"Carga una factura y empieza.",progress_text:"{recv}/{exp} contado · {p} por revisar",problem_sub:"Artículos por revisar",all_clear:"Todo coincide",session_default:"Recepción {d}"}
+  ko:{app_title:"입고 검수 Pro",pin_sub:"US BEAUTY LLC · 직원 전용",pin_enter:"입장",pin_wrong:"코드가 틀려요",today_progress:"오늘 진행률",recv:"검수",expected:"예정",short:"부족",over:"초과",extra:"외품",match:"일치",missing:"누락",total:"전체",scan_title:"바코드 스캔",scanner_mode:"스캐너 모드",quick_mode:"연속 추가",camera:"카메라",camera_stop:"카메라 끄기",undo:"마지막 취소",scan_hint:"핸드 스캐너는 “스캐너 모드 + 연속 추가”로 두면 스캔마다 자동으로 1개씩 누적됩니다.",invoice_qty:"인보이스",counted_qty:"현재",remain_qty:"남음",cancel:"취소",add_qty:"수량 추가",recent_scans:"최근 스캔",review:"대조 보기",invoice_title:"인보이스 불러오기",invoice_hint:"CSV, TSV, TXT, XLS, XLSX 파일을 여러 개 한 번에 넣을 수 있습니다. 같은 바코드는 자동 합산됩니다.",pick_invoice:"📎 파일 선택 / 추가",pick_invoice_sub:"여러 장의 인보이스도 한 번에 선택하세요.",vendor:"공급업체",new_vendor:"새 업체명",merge_invoice:"현재 인보이스에 합치기",ignore_zero:"바코드 앞자리 0 무시",check_digit:"UPC/EAN 체크디지트 검증",save_vendor_map:"업체별 칸 설정 저장",clear_files:"파일 비우기",load_invoice:"인보이스 적용",list_title:"전체 목록",sort_problem:"문제 우선",sort_name:"이름순",sort_recent:"최근순",recon_title:"대조 리포트",export_csv:"CSV 내보내기",export_xlsx:"Excel 내보내기",nav_scan:"스캔",nav_invoice:"인보이스",nav_list:"목록",nav_recon:"대조",menu:"메뉴",rename_session:"세션 이름 변경",rename_hint:"작업일/공급업체명으로 구분하세요.",backup_json:"백업 파일 저장",backup_hint:"현재 세션 전체를 JSON으로 저장합니다.",restore_json:"백업 불러오기",restore_hint:"저장했던 JSON 세션을 복원합니다.",clear_counts:"검수 수량만 초기화",clear_counts_hint:"인보이스는 유지됩니다.",new_session:"새 세션 시작",new_session_hint:"현재 검수/인보이스를 비웁니다. 업체 설정은 유지됩니다.",close:"닫기",delete:"삭제",save:"저장",go:"확인",manual:"수동",scanner:"스캐너",quick:"연속 +1",detected:"감지됨",not_detected:"자동 감지 안됨 — 아래 칸을 확인하세요",barcode:"바코드",name:"품목명",qty:"수량",ignore:"무시",rows:"{n}줄",files_rows:"파일 {f}개 · {r}줄",custom_vendor:"직접 지정",add_vendor:"+ 새 업체 추가…",empty_recent:"아직 스캔한 품목이 없어요.<br>바코드를 스캔하거나 입력해 보세요.",empty_list:"목록이 비어 있어요.<br>인보이스를 불러오거나 스캔을 시작하세요.",empty_recon:"대조할 내용이 없어요.<br>인보이스를 불러오고 스캔을 시작하세요.",need_review:"확인 필요",matched_items:"일치 품목",all:"전체",problem:"문제",status_ok:"일치",status_short:"부족 {n}",status_over:"초과 +{n}",status_missing:"누락",status_extra:"인보이스외",not_on_invoice:"인보이스에 없음",new_item:"새 품목",toast_added:"+{a} · 누적 {n}",toast_match:"✓ 일치 ({n}/{e})",toast_short:"부족 {n}/{e} ({r}개 남음)",toast_over:"초과 {n}/{e} (+{d})",toast_extra:"인보이스외 · 누적 {n}",bad_barcode:"바코드 오독 의심 — 무시됨",duplicate:"중복 스캔 무시",undo_done:"마지막 스캔을 취소했습니다",nothing_undo:"취소할 스캔이 없습니다",choose_barcode:"바코드 칸을 지정하세요",choose_qty:"수량 칸을 지정하세요",no_rows:"읽을 수 있는 행이 없습니다. 칸 설정을 확인하세요.",loaded:"인보이스 적용 완료 · {i}품목 {q}개",merged:"인보이스 합치기 완료 · {i}품목 {q}개",no_export:"내보낼 내용이 없습니다",xlsx_missing:"Excel 라이브러리를 불러오지 못해 CSV로 저장합니다",rename_prompt:"세션 이름",confirm_clear:"검수 수량만 초기화할까요? 인보이스는 유지됩니다.",confirm_new:"새 세션을 시작할까요? 현재 인보이스와 검수 기록은 비워집니다.",restored:"백업을 복원했습니다",backup_saved:"백업 파일을 저장했습니다",file_error:"파일을 읽지 못했습니다",progress_none:"인보이스를 불러오고 스캔을 시작하세요.",progress_text:"{recv}/{exp}개 검수 · 확인 필요 {p}품목",problem_sub:"확인이 필요한 품목",all_clear:"모든 품목이 일치합니다",session_default:"입고 {d}",nav_queue:"대기",queue_title:"대기 인보이스",queue_hint:"인보이스를 탭하면 검수가 시작됩니다.",refresh:"새로고침",sessions_title:"진행 중인 검수",cloud_title:"서버 연결 설정",cloud_hint:"이 기기에만 저장됩니다. 한 번만 입력하면 됩니다.",cloud_url:"웹앱 주소",cloud_token:"열쇠(TOKEN)",cloud_test:"연결 확인",cloud_ok:"연결 성공",cloud_bad:"연결 실패",cloud_need:"⚙ 를 눌러 열쇠(TOKEN)를 입력해주세요.",q_loading:"불러오는 중…",q_empty:"대기 중인 인보이스가 없습니다.",q_cached:"오프라인 — 마지막으로 받은 목록입니다 ({t})",q_updated:"{n}건 · {t} 기준",q_start:"검수 시작",q_resume:"이어서 검수",q_done:"검수 완료",q_items:"{i}품목 {q}개",q_backorder:"미도착 {n}개",q_loaded:"{v} {no} 불러왔습니다 · {i}품목 {q}개",no_session:"진행 중인 검수가 없습니다.",sess_switch:"열기",sess_del:"삭제",sess_del_confirm:"이 검수 기록을 지울까요?",send_report:"검수 결과 전송",send_hint:"완료된 검수를 서버로 보냅니다.",send_ok:"전송 완료",send_fail:"전송 실패 — 나중에 자동으로 다시 시도합니다",send_queued:"대기 중인 전송 {n}건",send_none:"보낼 내용이 없습니다"},
+  en:{app_title:"Receiving Pro",pin_sub:"US BEAUTY LLC · Staff only",pin_enter:"Enter",pin_wrong:"Wrong code",today_progress:"Today's progress",recv:"Counted",expected:"Expected",short:"Short",over:"Over",extra:"Extra",match:"Match",missing:"Missing",total:"Total",scan_title:"Barcode Scan",scanner_mode:"Scanner mode",quick_mode:"Quick add",camera:"Camera",camera_stop:"Stop camera",undo:"Undo last",scan_hint:"For handheld scanners, turn on Scanner Mode + Quick Add to add 1 automatically per scan.",invoice_qty:"Invoice",counted_qty:"Counted",remain_qty:"Left",cancel:"Cancel",add_qty:"Add qty",recent_scans:"Recent scans",review:"Review",invoice_title:"Load Invoice",invoice_hint:"Load CSV, TSV, TXT, XLS, or XLSX files. Multiple invoices are supported and duplicate barcodes are summed.",pick_invoice:"📎 Choose / add files",pick_invoice_sub:"Select multiple invoice files at once.",vendor:"Supplier",new_vendor:"New supplier",merge_invoice:"Merge into current invoice",ignore_zero:"Ignore leading zeros",check_digit:"UPC/EAN check digit validation",save_vendor_map:"Save vendor column map",clear_files:"Clear files",load_invoice:"Apply invoice",list_title:"All items",sort_problem:"Problems first",sort_name:"Name",sort_recent:"Recent",recon_title:"Reconciliation",export_csv:"Export CSV",export_xlsx:"Export Excel",nav_scan:"Scan",nav_invoice:"Invoice",nav_list:"List",nav_recon:"Verify",menu:"Menu",rename_session:"Rename session",rename_hint:"Use date/vendor to identify this job.",backup_json:"Save backup",backup_hint:"Download the full session as JSON.",restore_json:"Restore backup",restore_hint:"Restore a saved JSON session.",clear_counts:"Clear counted qty",clear_counts_hint:"Invoice stays loaded.",new_session:"New session",new_session_hint:"Clear current invoice and counts. Vendor settings stay.",close:"Close",delete:"Delete",save:"Save",go:"Go",manual:"Manual",scanner:"Scanner",quick:"Quick +1",detected:"Detected",not_detected:"Not detected — review columns below",barcode:"Barcode",name:"Name",qty:"Qty",ignore:"Ignore",rows:"{n} rows",files_rows:"{f} files · {r} rows",custom_vendor:"Custom",add_vendor:"+ Add supplier…",empty_recent:"No scans yet.<br>Scan or type a barcode.",empty_list:"The list is empty.<br>Load an invoice or start scanning.",empty_recon:"Nothing to verify.<br>Load an invoice and start scanning.",need_review:"Needs review",matched_items:"Matched items",all:"All",problem:"Problems",status_ok:"Match",status_short:"Short {n}",status_over:"Over +{n}",status_missing:"Missing",status_extra:"Not on invoice",not_on_invoice:"Not on invoice",new_item:"New item",toast_added:"+{a} · total {n}",toast_match:"✓ Match ({n}/{e})",toast_short:"Short {n}/{e} ({r} left)",toast_over:"Over {n}/{e} (+{d})",toast_extra:"Not on invoice · total {n}",bad_barcode:"Suspicious barcode — ignored",duplicate:"Duplicate scan ignored",undo_done:"Last scan undone",nothing_undo:"Nothing to undo",choose_barcode:"Choose the barcode column",choose_qty:"Choose the qty column",no_rows:"No readable rows. Check the columns.",loaded:"Invoice applied · {i} items {q} pcs",merged:"Invoice merged · {i} items {q} pcs",no_export:"Nothing to export",xlsx_missing:"Excel library missing; saving CSV instead",rename_prompt:"Session name",confirm_clear:"Clear counted quantities only? Invoice stays.",confirm_new:"Start a new session? Current invoice and counts will be cleared.",restored:"Backup restored",backup_saved:"Backup saved",file_error:"Could not read file",progress_none:"Load an invoice and start scanning.",progress_text:"{recv}/{exp} counted · {p} items need review",problem_sub:"Items needing review",all_clear:"All items match",session_default:"Receiving {d}",nav_queue:"Queue",queue_title:"Pending invoices",queue_hint:"Tap an invoice to start checking in.",refresh:"Refresh",sessions_title:"In progress",cloud_title:"Server settings",cloud_hint:"Saved on this device only. Enter once.",cloud_url:"Web app URL",cloud_token:"Token",cloud_test:"Test",cloud_ok:"Connected",cloud_bad:"Connection failed",cloud_need:"Tap ⚙ and enter the token.",q_loading:"Loading…",q_empty:"No pending invoices.",q_cached:"Offline — showing last saved list ({t})",q_updated:"{n} items · as of {t}",q_start:"Start",q_resume:"Resume",q_done:"Done",q_items:"{i} items {q} pcs",q_backorder:"{n} backordered",q_loaded:"Loaded {v} {no} · {i} items {q} pcs",no_session:"No sessions in progress.",sess_switch:"Open",sess_del:"Delete",sess_del_confirm:"Delete this session?",send_report:"Send report",send_hint:"Upload the finished check-in.",send_ok:"Sent",send_fail:"Send failed — will retry automatically",send_queued:"{n} waiting to send",send_none:"Nothing to send"},
+  es:{app_title:"Recepción Pro",pin_sub:"US BEAUTY LLC · Solo personal",pin_enter:"Entrar",pin_wrong:"Código incorrecto",today_progress:"Progreso de hoy",recv:"Contado",expected:"Esperado",short:"Falta",over:"Sobra",extra:"Extra",match:"Coincide",missing:"Ausente",total:"Total",scan_title:"Escanear código",scanner_mode:"Modo escáner",quick_mode:"Añadir rápido",camera:"Cámara",camera_stop:"Apagar cámara",undo:"Deshacer",scan_hint:"Con escáner manual, usa Modo escáner + Añadir rápido para sumar 1 por lectura.",invoice_qty:"Factura",counted_qty:"Contado",remain_qty:"Falta",cancel:"Cancelar",add_qty:"Añadir",recent_scans:"Recientes",review:"Revisar",invoice_title:"Cargar factura",invoice_hint:"Carga CSV, TSV, TXT, XLS o XLSX. Varias facturas OK; códigos iguales se suman.",pick_invoice:"📎 Elegir / añadir archivos",pick_invoice_sub:"Puedes seleccionar varios archivos.",vendor:"Proveedor",new_vendor:"Nuevo proveedor",merge_invoice:"Unir a factura actual",ignore_zero:"Ignorar ceros iniciales",check_digit:"Validar UPC/EAN",save_vendor_map:"Guardar mapeo",clear_files:"Vaciar archivos",load_invoice:"Aplicar factura",list_title:"Lista completa",sort_problem:"Problemas primero",sort_name:"Nombre",sort_recent:"Reciente",recon_title:"Verificación",export_csv:"Exportar CSV",export_xlsx:"Exportar Excel",nav_scan:"Escanear",nav_invoice:"Factura",nav_list:"Lista",nav_recon:"Verificar",menu:"Menú",rename_session:"Renombrar sesión",rename_hint:"Usa fecha/proveedor.",backup_json:"Guardar respaldo",backup_hint:"Descarga la sesión en JSON.",restore_json:"Restaurar respaldo",restore_hint:"Restaura un JSON guardado.",clear_counts:"Limpiar conteos",clear_counts_hint:"La factura se mantiene.",new_session:"Nueva sesión",new_session_hint:"Borra factura y conteos. Mantiene proveedores.",close:"Cerrar",delete:"Borrar",save:"Guardar",go:"OK",manual:"Manual",scanner:"Escáner",quick:"Rápido +1",detected:"Detectado",not_detected:"No detectado — revisa columnas",barcode:"Código",name:"Nombre",qty:"Cant.",ignore:"Ignorar",rows:"{n} filas",files_rows:"{f} archivos · {r} filas",custom_vendor:"Personalizado",add_vendor:"+ Añadir proveedor…",empty_recent:"Aún no hay escaneos.<br>Escanea o escribe un código.",empty_list:"La lista está vacía.<br>Carga una factura o empieza.",empty_recon:"Nada que verificar.<br>Carga una factura y empieza.",need_review:"Revisar",matched_items:"Coinciden",all:"Todo",problem:"Problemas",status_ok:"Coincide",status_short:"Falta {n}",status_over:"Sobra +{n}",status_missing:"Ausente",status_extra:"Fuera factura",not_on_invoice:"Fuera factura",new_item:"Nuevo artículo",toast_added:"+{a} · total {n}",toast_match:"✓ Coincide ({n}/{e})",toast_short:"Falta {n}/{e} ({r})",toast_over:"Sobra {n}/{e} (+{d})",toast_extra:"Fuera factura · total {n}",bad_barcode:"Código sospechoso — ignorado",duplicate:"Duplicado ignorado",undo_done:"Último escaneo deshecho",nothing_undo:"Nada que deshacer",choose_barcode:"Elige columna de código",choose_qty:"Elige columna de cantidad",no_rows:"No hay filas legibles. Revisa columnas.",loaded:"Factura aplicada · {i} art. {q} pzs",merged:"Factura unida · {i} art. {q} pzs",no_export:"Nada que exportar",xlsx_missing:"Falta librería Excel; guardando CSV",rename_prompt:"Nombre de sesión",confirm_clear:"¿Limpiar conteos? La factura queda.",confirm_new:"¿Nueva sesión? Se borran factura y conteos.",restored:"Respaldo restaurado",backup_saved:"Respaldo guardado",file_error:"No se pudo leer archivo",progress_none:"Carga una factura y empieza.",progress_text:"{recv}/{exp} contado · {p} por revisar",problem_sub:"Artículos por revisar",all_clear:"Todo coincide",session_default:"Recepción {d}",nav_queue:"Cola",queue_title:"Facturas pendientes",queue_hint:"Toca una factura para empezar.",refresh:"Actualizar",sessions_title:"En progreso",cloud_title:"Ajustes del servidor",cloud_hint:"Se guarda solo en este dispositivo.",cloud_url:"URL de la app web",cloud_token:"Token",cloud_test:"Probar",cloud_ok:"Conectado",cloud_bad:"Fallo de conexión",cloud_need:"Toca ⚙ e ingresa el token.",q_loading:"Cargando…",q_empty:"No hay facturas pendientes.",q_cached:"Sin conexión — última lista guardada ({t})",q_updated:"{n} · {t}",q_start:"Empezar",q_resume:"Continuar",q_done:"Hecho",q_items:"{i} art. {q} pzs",q_backorder:"{n} pendientes",q_loaded:"Cargado {v} {no} · {i} art. {q} pzs",no_session:"Sin sesiones en progreso.",sess_switch:"Abrir",sess_del:"Borrar",sess_del_confirm:"¿Borrar esta sesión?",send_report:"Enviar reporte",send_hint:"Sube la recepción terminada.",send_ok:"Enviado",send_fail:"Error — se reintentará",send_queued:"{n} por enviar",send_none:"Nada que enviar"}
 };
-
-/* ── 2026-07 추가: 세션 보관함(Sessions) + 미도착(백오더) 표시 ── */
-Object.assign(I18N.ko, {
-  vault:"세션 보관함", vault_hint:"검수 중인 작업을 여러 개 저장하고 나중에 이어서 하기.",
-  vault_title:"세션 보관함", vault_empty:"보관된 작업이 없어요.<br>검수를 시작하면 자동으로 저장됩니다.",
-  vault_save_now:"💾 현재 작업 저장", vault_current:"지금 작업 중", vault_open:"이어하기",
-  vault_done:"완료", vault_inprogress:"진행중", vault_mark_done:"완료로 표시", vault_mark_open:"진행중으로",
-  vault_delete_confirm:"이 저장된 작업을 삭제할까요? 되돌릴 수 없습니다.",
-  vault_opened:"이어서 시작합니다", vault_saved:"현재 작업을 보관함에 저장했습니다",
-  vault_nothing:"저장할 작업이 없습니다", vault_full:"저장 공간이 부족합니다. 보관함에서 오래된 작업을 삭제하세요.",
-  vault_count:"보관 {n}개", vault_items:"{i}품목 · 검수 {r}/{e}개", vault_problem:"확인 {p}",
-  backorder:"미도착", status_backorder:"미도착", status_backorder_partial:"미도착 {n}",
-  mark_backorder:"🚚 미도착(백오더)으로 표시", unmark_backorder:"✓ 미도착 표시 해제",
-  backorder_hint:"벤더가 이번에 안 보낸 물건이면 표시하세요. 부족/누락에서 빠지고 리포트에 따로 나옵니다.",
-  backorder_section:"미도착 (백오더)", progress_back:" · 미도착 {b}개"
-});
-Object.assign(I18N.en, {
-  vault:"Sessions", vault_hint:"Save several receiving jobs and continue later.",
-  vault_title:"Saved sessions", vault_empty:"No saved sessions yet.<br>Jobs are saved automatically once you start.",
-  vault_save_now:"💾 Save current job", vault_current:"Working on this", vault_open:"Resume",
-  vault_done:"Done", vault_inprogress:"In progress", vault_mark_done:"Mark done", vault_mark_open:"Reopen",
-  vault_delete_confirm:"Delete this saved session? This cannot be undone.",
-  vault_opened:"Resumed", vault_saved:"Current job saved to Sessions",
-  vault_nothing:"Nothing to save yet", vault_full:"Storage is full. Delete old sessions.",
-  vault_count:"{n} saved", vault_items:"{i} items · {r}/{e} counted", vault_problem:"review {p}",
-  backorder:"Backorder", status_backorder:"Not delivered", status_backorder_partial:"Backorder {n}",
-  mark_backorder:"🚚 Mark as backorder (not delivered)", unmark_backorder:"✓ Remove backorder mark",
-  backorder_hint:"Use this when the vendor did not ship it. It leaves Short/Missing and is listed separately in the report.",
-  backorder_section:"Backorder (not delivered)", progress_back:" · {b} on backorder"
-});
-Object.assign(I18N.es, {
-  vault:"Sesiones", vault_hint:"Guarda varios trabajos y continúa después.",
-  vault_title:"Sesiones guardadas", vault_empty:"No hay sesiones guardadas.<br>Se guardan solas al empezar.",
-  vault_save_now:"💾 Guardar trabajo actual", vault_current:"Trabajo actual", vault_open:"Continuar",
-  vault_done:"Listo", vault_inprogress:"En curso", vault_mark_done:"Marcar listo", vault_mark_open:"Reabrir",
-  vault_delete_confirm:"¿Borrar esta sesión guardada? No se puede deshacer.",
-  vault_opened:"Continuando", vault_saved:"Trabajo guardado en Sesiones",
-  vault_nothing:"Nada que guardar", vault_full:"Sin espacio. Borra sesiones antiguas.",
-  vault_count:"{n} guardadas", vault_items:"{i} art. · {r}/{e} contado", vault_problem:"revisar {p}",
-  backorder:"No llegó", status_backorder:"No llegó", status_backorder_partial:"No llegó {n}",
-  mark_backorder:"🚚 Marcar como no enviado", unmark_backorder:"✓ Quitar marca",
-  backorder_hint:"Úsalo si el proveedor no lo envió. Sale de Falta/Ausente y aparece aparte en el reporte.",
-  backorder_section:"No enviado (backorder)", progress_back:" · {b} no llegó"
-});
 
 const VENDOR_PROFILES = [
   {name:"Shake-N-Go", map:{b:0,n:3,q:1}, group:"sng_mm"},
@@ -387,6 +364,7 @@ const VENDOR_PROFILES = [
   {name:"RED", map:{b:3,n:5,q:9}, group:"kiss_red"},
   {name:"Outre", map:{b:8,n:1,q:3}, group:"outre"},
   {name:"Global Beauty", map:{b:8,n:6,q:10}, group:"gb"},
+  {name:"Annie", map:{b:2,n:1,q:3}, group:"annie"},
   {name:"Motown Tress", map:{b:14,n:0,q:12}, group:"mt"}
 ];
 
@@ -410,13 +388,12 @@ function t(key, vars={}){
   Object.entries(vars).forEach(([k,v])=>{s=s.replaceAll(`{${k}}`, v)});
   return s;
 }
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 function todayLabel(){return new Date().toLocaleDateString(undefined,{year:"numeric",month:"2-digit",day:"2-digit"});}
 function blankState(){
   const vendors = {};
   VENDOR_PROFILES.forEach(v=>vendors[v.name]={map:{...v.map}, ignoreZero:true});
   const lang = storage.get("recv_lang") || "ko";
-  return {version:2, id:uid(), done:false, backorder:{}, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now()};
+  return {version:2, lang, theme:storage.get("recv_theme")||"light", sessionName:(I18N[lang]?.session_default||I18N.ko.session_default).replace("{d}",todayLabel()), vendor:"", vendors, invoice:{}, scanned:{}, history:[], options:{ignoreZero:true, checkDigit:true, quickMode:true, scannerMode:false}, invCount:0, createdAt:Date.now(), updatedAt:Date.now()};
 }
 function migrateOld(old){
   const fresh = blankState();
@@ -448,14 +425,11 @@ function normalizeState(s){
   s.invoice = s.invoice || {};
   s.scanned = s.scanned || {};
   s.history = Array.isArray(s.history) ? s.history : [];
-  s.backorder = (s.backorder && typeof s.backorder==="object") ? s.backorder : {};
-  if(!s.id) s.id = uid();
-  s.done = !!s.done;
   if(!I18N[s.lang]) s.lang = "ko";
   return s;
 }
 let state = loadState();
-function save(){state.updatedAt=Date.now();storage.set(KEY, JSON.stringify(state));storage.set("recv_lang", state.lang);storage.set("recv_theme", state.theme || "light");scheduleArchive();}
+function save(){state.updatedAt=Date.now();storage.set(KEY, JSON.stringify(state));storage.set("recv_lang", state.lang);storage.set("recv_theme", state.theme || "light");}
 
 function applyTheme(){
   document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
@@ -497,125 +471,6 @@ function toast(type, msg, action){
   setTimeout(()=>{el.style.opacity="0";el.style.transform="translateY(8px)";el.style.transition=".25s";setTimeout(()=>el.remove(),260)}, type==="bad"?3600:2600);
 }
 
-/* ─────────────── 세션 보관함 (Sessions vault) ─────────────── */
-const VAULT_KEY = "recv_pro_vault_v1";
-const VAULT_MAX = 12;
-let archiveTimer = null;
-
-function loadVault(){
-  try{const raw=storage.get(VAULT_KEY); const arr=raw?JSON.parse(raw):[]; return Array.isArray(arr)?arr:[];}
-  catch(e){return [];}
-}
-function saveVault(list){
-  try{storage.set(VAULT_KEY, JSON.stringify(list)); return true;}
-  catch(e){toast("bad", t("vault_full")); return false;}
-}
-function sessionHasWork(s){
-  return Object.keys(s?.invoice||{}).length>0 || Object.keys(s?.scanned||{}).length>0;
-}
-function snapshotOf(s){
-  const c = JSON.parse(JSON.stringify(s));
-  c.history = (c.history||[]).slice(-60);   /* 용량 절약: 최근 스캔 60건만 보관 */
-  c.updatedAt = Date.now();
-  return c;
-}
-function archiveCurrent(){
-  clearTimeout(archiveTimer); archiveTimer=null;
-  if(!sessionHasWork(state)) return false;
-  const list = loadVault();
-  const snap = snapshotOf(state);
-  const i = list.findIndex(x=>x && x.id===state.id);
-  if(i>=0) list[i]=snap; else list.push(snap);
-  list.sort((a,b)=>(b?.updatedAt||0)-(a?.updatedAt||0));
-  return saveVault(list.slice(0, VAULT_MAX));
-}
-function scheduleArchive(){
-  clearTimeout(archiveTimer);
-  archiveTimer = setTimeout(archiveCurrent, 4000);
-}
-function sessionSummary(s){
-  const inv=s?.invoice||{}, sc=s?.scanned||{}, bo=s?.backorder||{};
-  let exp=0, recv=0, problem=0, back=0;
-  const keys=new Set([...Object.keys(inv), ...Object.keys(sc)]);
-  keys.forEach(k=>{
-    const e=Number(inv[k]?.exp)||0, r=Number(sc[k]?.recv)||0;
-    if(inv[k]){exp+=e; recv+=r;}
-    if(!inv[k]){problem++; return;}
-    if(r===e) return;
-    if(r<e && bo[k]){back++; return;}
-    problem++;
-  });
-  return {items:keys.size, invoiceItems:Object.keys(inv).length, exp, recv, problem, back,
-          pct: exp?Math.min(100, Math.round(recv/exp*100)):0};
-}
-function vaultRowHTML(s){
-  const sm=sessionSummary(s), cur=(s.id===state.id);
-  const when=new Date(s.updatedAt||s.createdAt||Date.now()).toLocaleString([], {month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
-  const badge = cur ? `<span class="chip ok">${t("vault_current")}</span>`
-                    : (s.done ? `<span class="chip neutral">${t("vault_done")}</span>`
-                              : `<span class="chip warn">${t("vault_inprogress")}</span>`);
-  const bits = [t("vault_items",{i:fmt(sm.invoiceItems),r:fmt(sm.recv),e:fmt(sm.exp)})];
-  if(sm.problem) bits.push(t("vault_problem",{p:fmt(sm.problem)}));
-  if(sm.back) bits.push(`${t("backorder")} ${fmt(sm.back)}`);
-  return `<div class="vault-card ${cur?"cur":""}">
-    <div class="vault-top">
-      <div style="min-width:0">
-        <div class="vault-name">${esc(s.vendor?s.vendor+" · ":"")}${esc(s.sessionName||"-")}</div>
-        <div class="vault-meta">${when} · ${bits.join(" · ")}</div>
-      </div>${badge}
-    </div>
-    <div class="vault-bar"><span style="width:${sm.pct}%"></span></div>
-    <div class="vault-acts">
-      <button class="btn primary small" style="flex:1" data-vopen="${esc(s.id)}">${cur?t("close"):t("vault_open")}</button>
-      <button class="btn line small" data-vdone="${esc(s.id)}">${s.done?t("vault_mark_open"):t("vault_mark_done")}</button>
-      <button class="btn danger small" data-vdel="${esc(s.id)}">${t("delete")}</button>
-    </div>
-  </div>`;
-}
-function renderVault(){
-  archiveCurrent();
-  const list = loadVault();
-  $("vaultCountChip").textContent = t("vault_count",{n:fmt(list.length)});
-  $("vaultRows").innerHTML = list.length ? list.map(vaultRowHTML).join("") : `<div class="empty">${t("vault_empty")}</div>`;
-  $$("#vaultRows [data-vopen]").forEach(b=>b.onclick=()=>openSession(b.dataset.vopen));
-  $$("#vaultRows [data-vdone]").forEach(b=>b.onclick=()=>toggleSessionDone(b.dataset.vdone));
-  $$("#vaultRows [data-vdel]").forEach(b=>b.onclick=()=>deleteSession(b.dataset.vdel));
-}
-function openSession(id){
-  if(id===state.id){closeModal("vaultModal");return;}
-  archiveCurrent();
-  const found = loadVault().find(x=>x && x.id===id);
-  if(!found) return;
-  state = normalizeState(JSON.parse(JSON.stringify(found)));
-  selectedFiles=[]; activeFilter="all";
-  save(); closeModal("vaultModal"); closeModal("menuModal");
-  applyLang(); goView("scan");
-  toast("ok", `${state.sessionName} — ${t("vault_opened")}`);
-}
-function toggleSessionDone(id){
-  const list=loadVault(); const i=list.findIndex(x=>x && x.id===id);
-  if(i<0) return;
-  list[i].done = !list[i].done;
-  if(id===state.id) state.done = list[i].done;
-  saveVault(list); renderVault();
-}
-function deleteSession(id){
-  if(!confirm(t("vault_delete_confirm"))) return;
-  saveVault(loadVault().filter(x=>x && x.id!==id));
-  renderVault();
-}
-function saveCurrentToVault(){
-  if(!sessionHasWork(state)){toast("warn", t("vault_nothing")); return;}
-  if(archiveCurrent()){toast("ok", t("vault_saved")); renderVault();}
-}
-function isBackorder(key){return !!(state.backorder && state.backorder[key]);}
-function toggleBackorder(key){
-  if(!key) return;
-  if(state.backorder[key]) delete state.backorder[key];
-  else state.backorder[key]=true;
-  save(); renderEverything();
-}
-
 function invoiceItem(key){return state.invoice[key] || null}
 function scannedItem(key){return state.scanned[key] || null}
 function itemName(key){return scannedItem(key)?.name || invoiceItem(key)?.name || t("new_item")}
@@ -624,25 +479,19 @@ function getStatus(key){
   const inv=invoiceItem(key), sc=scannedItem(key), recv=sc?Number(sc.recv)||0:0;
   if(!inv) return {kind:"extra", cls:"extra", label:t("status_extra"), diff:""};
   const exp=Number(inv.exp)||0;
-  if(recv===exp) return {kind:"ok", cls:"ok", label:t("status_ok"), diff:0};
-  if(recv>exp) return {kind:"over", cls:"over", label:t("status_over",{n:recv-exp}), diff:recv-exp};
-  /* 여기부터는 recv < exp. 미도착(백오더) 표시가 있으면 부족/누락이 아니라 별도 상태로 분리한다. */
-  if(isBackorder(key)) return {kind:"backorder", cls:"back",
-      label: recv ? t("status_backorder_partial",{n:exp-recv}) : t("status_backorder"), diff:recv-exp};
   if(recv===0) return {kind:"missing", cls:"bad", label:t("status_missing"), diff:-exp};
-  return {kind:"short", cls:"warn", label:t("status_short",{n:exp-recv}), diff:recv-exp};
+  if(recv===exp) return {kind:"ok", cls:"ok", label:t("status_ok"), diff:0};
+  if(recv<exp) return {kind:"short", cls:"warn", label:t("status_short",{n:exp-recv}), diff:recv-exp};
+  return {kind:"over", cls:"over", label:t("status_over",{n:recv-exp}), diff:recv-exp};
 }
 function allKeys(){return [...new Set([...Object.keys(state.invoice), ...Object.keys(state.scanned)])];}
 function stats(){
   const keys=allKeys();
-  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,receivedAll:0,ok:0,short:0,over:0,missing:0,extra:0,backorder:0,backorderQty:0,problem:0};
+  const out={invoiceItems:Object.keys(state.invoice).length,totalItems:keys.length,expectedQty:0,receivedOnInvoice:0,receivedAll:0,ok:0,short:0,over:0,missing:0,extra:0,problem:0};
   Object.entries(state.invoice).forEach(([k,v])=>{out.expectedQty += Number(v.exp)||0; if(state.scanned[k]) out.receivedOnInvoice += Number(state.scanned[k].recv)||0;});
   Object.values(state.scanned).forEach(v=>out.receivedAll += Number(v.recv)||0);
-  keys.forEach(k=>{const kind=getStatus(k).kind; if(kind==="ok")out.ok++; else if(kind==="short")out.short++; else if(kind==="over")out.over++; else if(kind==="missing")out.missing++; else if(kind==="extra")out.extra++;
-    else if(kind==="backorder"){out.backorder++; out.backorderQty += Math.max(0,(Number(state.invoice[k]?.exp)||0)-(Number(state.scanned[k]?.recv)||0));}
-    if(kind!=="ok" && kind!=="backorder")out.problem++;});
-  /* 미도착으로 확정한 수량은 진행률에 포함 → 남은 물건 없이 작업을 끝낼 수 있음 */
-  out.progress = out.expectedQty ? Math.min(100, Math.round(((out.receivedOnInvoice + out.backorderQty) / out.expectedQty)*100)) : 0;
+  keys.forEach(k=>{const kind=getStatus(k).kind; if(kind==="ok")out.ok++; else if(kind==="short")out.short++; else if(kind==="over")out.over++; else if(kind==="missing")out.missing++; else if(kind==="extra")out.extra++; if(kind!=="ok")out.problem++;});
+  out.progress = out.expectedQty ? Math.min(100, Math.round((out.receivedOnInvoice / out.expectedQty)*100)) : 0;
   return out;
 }
 function barcodeWasDuplicate(code){
@@ -725,7 +574,7 @@ function recentHTML(){
 }
 function sortKeys(keys){
   const sort=$("sortSelect")?.value || "problem";
-  const order={missing:0,short:1,over:2,extra:3,backorder:4,ok:5};
+  const order={missing:0,short:1,over:2,extra:3,ok:4};
   if(sort==="name") return keys.sort((a,b)=>itemName(a).localeCompare(itemName(b)));
   if(sort==="recent") return keys.sort((a,b)=>(scannedItem(b)?.last||0)-(scannedItem(a)?.last||0));
   return keys.sort((a,b)=>order[getStatus(a).kind]-order[getStatus(b).kind] || itemName(a).localeCompare(itemName(b)));
@@ -735,7 +584,7 @@ function filteredKeys(){
   const q=($("searchInput")?.value||"").trim().toLowerCase();
   if(q) keys=keys.filter(k=>`${itemName(k)} ${itemCode(k)}`.toLowerCase().includes(q));
   if(activeFilter!=="all"){
-    if(activeFilter==="problem") keys=keys.filter(k=>{const kd=getStatus(k).kind; return kd!=="ok" && kd!=="backorder";});
+    if(activeFilter==="problem") keys=keys.filter(k=>getStatus(k).kind!=="ok");
     else keys=keys.filter(k=>getStatus(k).kind===activeFilter);
   }
   return sortKeys(keys);
@@ -743,7 +592,7 @@ function filteredKeys(){
 function renderStatusFilters(){
   const s=stats();
   const filters=[
-    ["all",t("all"),s.totalItems],["problem",t("problem"),s.problem],["missing",t("missing"),s.missing],["short",t("short"),s.short],["over",t("over"),s.over],["extra",t("extra"),s.extra],["backorder",t("backorder"),s.backorder],["ok",t("match"),s.ok]
+    ["all",t("all"),s.totalItems],["problem",t("problem"),s.problem],["missing",t("missing"),s.missing],["short",t("short"),s.short],["over",t("over"),s.over],["extra",t("extra"),s.extra],["ok",t("match"),s.ok]
   ];
   $("statusFilters").innerHTML=filters.map(([k,l,n])=>`<button class="filter ${activeFilter===k?"on":""}" data-filter="${k}">${l} ${fmt(n)}</button>`).join("");
   $$("#statusFilters .filter").forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;renderList();});
@@ -758,13 +607,11 @@ function renderList(){
 function renderRecon(){
   const keys=allKeys();
   if(!keys.length){$("reconRows").innerHTML=`<div class="card empty">${t("empty_recon")}</div>`;return;}
-  const problems=sortKeys(keys.filter(k=>{const kd=getStatus(k).kind; return kd!=="ok" && kd!=="backorder";}));
-  const backs=sortKeys(keys.filter(k=>getStatus(k).kind==="backorder"));
+  const problems=sortKeys(keys.filter(k=>getStatus(k).kind!=="ok"));
   const good=sortKeys(keys.filter(k=>getStatus(k).kind==="ok"));
   let html="";
   if(problems.length) html += `<div class="section-title">${t("need_review")} (${fmt(problems.length)})</div>${problems.map(rowHTML).join("")}`;
   else html += `<div class="card empty"><b>${t("all_clear")}</b></div>`;
-  if(backs.length) html += `<div class="section-title">${t("backorder_section")} (${fmt(backs.length)})</div>${backs.map(rowHTML).join("")}`;
   if(good.length) html += `<div class="section-title">${t("matched_items")} (${fmt(good.length)})</div>${good.map(rowHTML).join("")}`;
   $("reconRows").innerHTML=html; attachRowClicks($("reconRows"));
 }
@@ -772,9 +619,9 @@ function renderDashboard(){
   const s=stats();
   $("progressPct").textContent=s.progress;
   $("progressBar").style.width=s.progress+"%";
-  $("progressSub").textContent=s.expectedQty?(t("progress_text",{recv:fmt(s.receivedOnInvoice),exp:fmt(s.expectedQty),p:fmt(s.problem)})+(s.backorder?t("progress_back",{b:fmt(s.backorderQty)}):"")):t("progress_none");
+  $("progressSub").textContent=s.expectedQty?t("progress_text",{recv:fmt(s.receivedOnInvoice),exp:fmt(s.expectedQty),p:fmt(s.problem)}):t("progress_none");
   $("miniReceived").textContent=fmt(s.receivedOnInvoice);$("miniExpected").textContent=fmt(s.expectedQty);$("miniShort").textContent=fmt(s.short);$("miniOver").textContent=fmt(s.over);$("miniExtra").textContent=fmt(s.extra);$("miniOk").textContent=fmt(s.ok);
-  $("rOk").textContent=fmt(s.ok);$("rShort").textContent=fmt(s.short);$("rOver").textContent=fmt(s.over);$("rMiss").textContent=fmt(s.missing);$("rExtra").textContent=fmt(s.extra);$("rBack").textContent=fmt(s.backorder);$("rTotal").textContent=fmt(s.totalItems);
+  $("rOk").textContent=fmt(s.ok);$("rShort").textContent=fmt(s.short);$("rOver").textContent=fmt(s.over);$("rMiss").textContent=fmt(s.missing);$("rExtra").textContent=fmt(s.extra);$("rTotal").textContent=fmt(s.totalItems);
   $("problemCountBig").textContent=fmt(s.problem);$("problemSub").textContent=s.problem?t("problem_sub"):t("all_clear");
   $("scanBadge").textContent=fmt(Object.keys(state.scanned).length);
   $("sessionLine").textContent=`${state.vendor?state.vendor+" · ":""}${state.sessionName}`;
@@ -800,15 +647,7 @@ function openEdit(key){
   const inv=invoiceItem(key), st=getStatus(key);
   $("editCode").textContent=`${itemCode(key)} · ${inv?`${t("invoice_qty")}: ${fmt(inv.exp)}`:t("not_on_invoice")} · ${st.label}`;
   $("editQty").value=scannedItem(key)?.recv || 0;
-  renderBackorderBtn();
   openModal("editModal");
-}
-function renderBackorderBtn(){
-  const on=isBackorder(editKey);
-  const b=$("editBackorder");
-  b.textContent = on ? t("unmark_backorder") : t("mark_backorder");
-  b.classList.toggle("green", on);
-  $("editBackorderHint").textContent = t("backorder_hint");
 }
 function saveEdit(){
   if(!editKey) return;
@@ -955,9 +794,6 @@ function detectVendor(){
       if(_fracQty(rows,10)>0.5) sc-=6;   // col10 is qty -> it's Global Beauty, not Outre
     } else if(p.group==="gb"){
       if(_fracQty(rows,10)>0.5) sc+=2; else continue;  // GB must have qty in col10
-    } else if(p.group==="mt"){
-      if(!(hjoin.includes("outstanding qty")&&hjoin.includes("po line qty"))) continue;  // MT (Motown Tress/Oradell) fingerprint
-      sc+=3;
     }
     if(sc>bestScore){bestScore=sc;best=p;}
   }
@@ -1044,11 +880,10 @@ function loadInvoice(){
 
 function detailRows(){
   const rows=[["Session",state.sessionName,"Vendor",state.vendor,"Exported",new Date().toLocaleString()],[]];
-  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","Status","LastCounted","Backorder"]);
+  rows.push(["Barcode","Name","InvoiceQty","CountedQty","Diff","Status","LastCounted"]);
   sortKeys(allKeys()).forEach(k=>{
-    const inv=invoiceItem(k), sc=scannedItem(k), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:"", diff=inv?recv-Number(inv.exp):"", stt=getStatus(k);
-    const label = stt.kind==="backorder" ? "BACKORDER" : stt.label;
-    rows.push([itemCode(k), itemName(k), exp, recv, diff, label, sc?.last?new Date(sc.last).toLocaleString():"", isBackorder(k)?"YES":""]);
+    const inv=invoiceItem(k), sc=scannedItem(k), recv=sc?Number(sc.recv)||0:0, exp=inv?Number(inv.exp)||0:"", diff=inv?recv-Number(inv.exp):"", st=getStatus(k).label;
+    rows.push([itemCode(k), itemName(k), exp, recv, diff, st, sc?.last?new Date(sc.last).toLocaleString():""]);
   });
   return rows;
 }
@@ -1067,7 +902,7 @@ function exportXLSX(){
   if(typeof XLSX==="undefined"){toast("warn",t("xlsx_missing"));exportCSV();return;}
   const wb=XLSX.utils.book_new();
   const s=stats();
-  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Expected Qty",s.expectedQty],["Counted On Invoice",s.receivedOnInvoice],["All Counted",s.receivedAll],["Match",s.ok],["Short",s.short],["Over",s.over],["Missing",s.missing],["Extra",s.extra],["Backorder items",s.backorder],["Backorder qty",s.backorderQty],["Exported",new Date().toLocaleString()]];
+  const summary=[["Session",state.sessionName],["Vendor",state.vendor],["Expected Qty",s.expectedQty],["Counted On Invoice",s.receivedOnInvoice],["All Counted",s.receivedAll],["Match",s.ok],["Short",s.short],["Over",s.over],["Missing",s.missing],["Extra",s.extra],["Exported",new Date().toLocaleString()]];
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),"Summary");
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(detailRows()),"Details");
   XLSX.writeFile(wb,`checkin_${safeName()}_${new Date().toISOString().slice(0,10)}.xlsx`);
@@ -1086,8 +921,250 @@ function goView(view){
   if(view==="list")renderList(); if(view==="recon")renderRecon(); if(view==="invoice")renderFileList(); focusBarcode();
 }
 
+/* ═════════════════════════════════════════════════════════
+   대기목록 · 다중세션 · 오프라인 · 리포트 전송
+   ═════════════════════════════════════════════════════════ */
+const CLOUD_KEY="recv_cloud_v1", SESSIONS_KEY="recv_sessions_v1",
+      QCACHE_KEY="recv_qcache_v1", OUTBOX_KEY="recv_outbox_v1";
+
+const readJSON=(k,d)=>{try{return JSON.parse(storage.get(k))??d}catch(e){return d}};
+const writeJSON=(k,v)=>storage.set(k,JSON.stringify(v));
+
+const DEFAULT_URL="https://script.google.com/macros/s/AKfycbwcx18jaHCSb_zDwR6fhT4XrISdLMyVwRMfuwS0IXKxQ0pRxWFDnMH-VkWDTBpXtrg/exec";
+function cloudCfg(){const c=readJSON(CLOUD_KEY,{});return {url:c.url||DEFAULT_URL,token:c.token||""}}
+function cloudReady(){const c=cloudCfg();return !!(c.url&&c.token)}
+
+async function cloudGet(action, extra){
+  const c=cloudCfg(); if(!cloudReady()) throw new Error(t("cloud_need"));
+  const u=new URL(c.url);
+  u.searchParams.set("action",action); u.searchParams.set("token",c.token);
+  Object.entries(extra||{}).forEach(([k,v])=>u.searchParams.set(k,v));
+  const r=await fetch(u.toString(),{method:"GET",redirect:"follow"});
+  const j=await r.json();
+  if(!j.ok) throw new Error(j.error||"ERROR");
+  return j;
+}
+async function cloudPost(payload){
+  const c=cloudCfg(); if(!cloudReady()) throw new Error(t("cloud_need"));
+  const r=await fetch(c.url,{method:"POST",redirect:"follow",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify(Object.assign({token:c.token},payload))});
+  const j=await r.json();
+  if(!j.ok) throw new Error(j.error||"ERROR");
+  return j;
+}
+
+/* ── 세션 보관함 ── */
+function sessionsAll(){return readJSON(SESSIONS_KEY,{})}
+function hasWork(st){return Object.keys(st.invoice||{}).length||Object.keys(st.scanned||{}).length}
+function ensureSid(){if(!state.sid)state.sid="s"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);return state.sid}
+function stashCurrent(){
+  if(!hasWork(state)) return;
+  const all=sessionsAll();
+  all[ensureSid()]={name:state.sessionName,vendor:state.vendor,queueId:state.queueId||"",
+                    updatedAt:Date.now(),state:JSON.parse(JSON.stringify(state))};
+  writeJSON(SESSIONS_KEY,all);
+}
+function openSession(sid){
+  const all=sessionsAll(); if(!all[sid]) return;
+  stashCurrent();
+  state=normalizeState(all[sid].state);
+  save(); renderEverything(); renderQueue(); goView("scan");
+}
+function deleteSession(sid){
+  if(!confirm(t("sess_del_confirm"))) return;
+  const all=sessionsAll(); delete all[sid]; writeJSON(SESSIONS_KEY,all);
+  if(state.sid===sid){state=blankState();save();renderEverything();}
+  renderQueue();
+}
+
+/* ── 대기목록 ── */
+function qcache(){return readJSON(QCACHE_KEY,{invoices:[],at:0})}
+
+async function refreshQueue(silent){
+  const st=$("queueStatus"); if(!st) return;
+  if(!cloudReady()){st.textContent=t("cloud_need");renderQueue();return;}
+  if(!silent) st.textContent=t("q_loading");
+  try{
+    const j=await cloudGet("list");
+    writeJSON(QCACHE_KEY,{invoices:j.invoices||[],at:Date.now()});
+    st.textContent=t("q_updated",{n:(j.invoices||[]).length,t:new Date().toLocaleTimeString()});
+  }catch(e){
+    const c=qcache();
+    st.textContent=c.at?t("q_cached",{t:new Date(c.at).toLocaleString()})
+                       :(t("cloud_bad")+" — "+(e.message||e));
+  }
+  renderQueue();
+  flushOutbox();
+}
+
+function sessionsForDisplay(){
+  const all=sessionsAll();
+  if(hasWork(state)){
+    all[ensureSid()]={name:state.sessionName,vendor:state.vendor,queueId:state.queueId||"",
+                      updatedAt:state.updatedAt||Date.now(),current:true};
+  }
+  return all;
+}
+function renderQueue(){
+  const box=$("queueList"); if(!box) return;
+  const list=qcache().invoices||[];
+  const all=sessionsForDisplay();
+  const started={}; Object.entries(all).forEach(([sid,v])=>{if(v.queueId)started[v.queueId]=sid;});
+
+  if(!list.length){box.innerHTML=`<p class="empty">${esc(t("q_empty"))}</p>`;}
+  else{
+    box.innerHTML=list.map(i=>{
+      const inProg=started[i.id], done=i.completed;
+      const badge=done?`<span class="chip ok">${esc(t("q_done"))}</span>`
+                : inProg?`<span class="chip warn">${esc(t("q_resume"))}</span>`:"";
+      const bo=i.backorderQty?`<span class="chip warn">${esc(t("q_backorder",{n:fmt(i.backorderQty)}))}</span>`:"";
+      return `<button class="item q-item" data-qid="${esc(i.id)}" style="width:100%;text-align:left">
+        <div style="flex:1">
+          <b>${esc(i.vendorName||i.vendor)} ${esc(i.invoiceNo||"")}</b> ${badge} ${bo}
+          <p class="hint">${esc(i.date||"")} · ${esc(t("q_items",{i:fmt(i.itemCount),q:fmt(i.totalQty)}))}</p>
+        </div><span>›</span></button>`;
+    }).join("");
+    $$(".q-item",box).forEach(b=>b.onclick=()=>startFromQueue(b.dataset.qid));
+  }
+
+  const sbox=$("sessionList");
+  if(sbox){
+    const entries=Object.entries(all).sort((a,b)=>b[1].updatedAt-a[1].updatedAt);
+    sbox.innerHTML=entries.length?entries.map(([sid,v])=>`
+      <div class="item" style="justify-content:space-between">
+        <div style="flex:1"><b>${esc(v.name||sid)}</b>
+          <p class="hint">${esc(v.vendor||"")} · ${new Date(v.updatedAt).toLocaleString()}</p></div>
+        ${v.current?`<span class="chip ok">●</span>`
+                   :`<button class="btn line sm sess-open" data-sid="${esc(sid)}">${esc(t("sess_switch"))}</button>`}
+        <button class="btn line sm sess-del" data-sid="${esc(sid)}">${esc(t("sess_del"))}</button>
+      </div>`).join(""):`<p class="empty">${esc(t("no_session"))}</p>`;
+    $$(".sess-open",sbox).forEach(b=>b.onclick=()=>openSession(b.dataset.sid));
+    $$(".sess-del",sbox).forEach(b=>b.onclick=()=>deleteSession(b.dataset.sid));
+  }
+
+  const dot=$("queueDot");
+  if(dot){const n=list.filter(i=>!i.completed).length;
+          dot.textContent=n>99?"99+":n; dot.classList.toggle("on",n>0);}
+}
+
+async function startFromQueue(id){
+  const all=sessionsAll();
+  const found=Object.entries(all).find(([sid,v])=>v.queueId===id);
+  if(found){openSession(found[0]);return;}
+
+  toast("warn",t("q_loading"));
+  let inv;
+  try{inv=(await cloudGet("invoice",{id:id})).invoice;}
+  catch(e){toast("bad",String(e.message||e));return;}
+
+  stashCurrent();
+  state=blankState();
+  state.sid="s"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+  state.queueId=inv.id;
+  state.vendor=inv.vendorName||inv.vendor||"";
+  state.invoiceNo=inv.invoiceNo||"";
+  state.invoiceDate=inv.date||"";
+  state.backorderQty=inv.backorderQty||0;
+  state.unresolved=inv.unresolved||[];
+  state.sessionName=`${inv.vendor||""} ${inv.invoiceNo||""} ${inv.date||""}`.trim();
+
+  const invoice={};
+  (inv.items||[]).forEach(it=>{
+    const key=normalizeCode(it.barcode); if(!key) return;
+    if(invoice[key]) invoice[key].exp+=Number(it.qty)||0;
+    else invoice[key]={code:String(it.barcode),name:it.name||"",exp:Number(it.qty)||0};
+  });
+  state.invoice=invoice; state.invCount=1;
+
+  save(); stashCurrent(); renderEverything(); renderQueue(); goView("scan");
+  toast("ok",t("q_loaded",{v:inv.vendor||"",no:inv.invoiceNo||"",
+        i:fmt(Object.keys(invoice).length),q:fmt(inv.totalQty||0)}));
+}
+
+/* ── 리포트 전송 (오프라인이면 쌓아뒀다 자동 재시도) ── */
+function buildReport(){
+  const st=stats();
+  const items=sortKeys(allKeys()).map(k=>{
+    const inv=invoiceItem(k), sc=scannedItem(k);
+    return {barcode:itemCode(k),name:itemName(k),
+            qty:inv?Number(inv.exp)||0:0,counted:sc?Number(sc.recv)||0:0,
+            status:getStatus(k).label,note:""};
+  });
+  return {id:state.queueId||state.sid||("manual_"+Date.now()),
+          vendor:state.vendor||"",invoiceNo:state.invoiceNo||"",date:state.invoiceDate||"",
+          staff:"",startedAt:new Date(state.createdAt||Date.now()).toISOString(),
+          finishedAt:new Date().toISOString(),
+          itemCount:st.invoiceItems,totalQty:st.expectedQty,countedQty:st.receivedAll,
+          accuracy:st.expectedQty?Math.round(st.receivedOnInvoice/st.expectedQty*100)+"%":"",
+          boxCount:state.boxCount||"",backorderQty:state.backorderQty||0,
+          unresolved:state.unresolved||[],items:items};
+}
+
+function outbox(){return readJSON(OUTBOX_KEY,[])}
+
+async function sendReport(){
+  if(!allKeys().length){toast("warn",t("send_none"));return;}
+  const payload={session:buildReport()};
+  try{
+    await cloudPost(payload);
+    toast("ok",t("send_ok"));
+    refreshQueue(true);
+  }catch(e){
+    const ob=outbox(); ob.push(payload); writeJSON(OUTBOX_KEY,ob);
+    toast("bad",t("send_fail")+" ("+t("send_queued",{n:ob.length})+")");
+  }
+}
+
+async function flushOutbox(){
+  let ob=outbox(); if(!ob.length||!cloudReady()) return;
+  const left=[];
+  for(const p of ob){
+    try{await cloudPost(p);}catch(e){left.push(p);}
+  }
+  writeJSON(OUTBOX_KEY,left);
+  if(left.length<ob.length) toast("ok",t("send_ok"));
+}
+
+/* ── 설정 모달 ── */
+function openCloudSettings(){
+  const c=cloudCfg();
+  $("cloudUrl").value=c.url||DEFAULT_URL; $("cloudToken").value=c.token||"";
+  $("cloudTestMsg").textContent="";
+  openModal("cloudModal");
+}
+async function testCloud(){
+  const msg=$("cloudTestMsg"); msg.textContent=t("q_loading");
+  const url=$("cloudUrl").value.trim();
+  try{
+    const r=await fetch(url,{method:"GET",redirect:"follow"});
+    const j=await r.json();
+    msg.textContent=j.ok?("✅ "+t("cloud_ok")):("❌ "+t("cloud_bad"));
+  }catch(e){msg.textContent="❌ "+t("cloud_bad")+" — "+(e.message||e);}
+}
+function saveCloud(){
+  writeJSON(CLOUD_KEY,{url:$("cloudUrl").value.trim(),token:$("cloudToken").value.trim()});
+  closeModal("cloudModal"); refreshQueue();
+}
+
+function initQueue(){
+  $("queueRefreshBtn").onclick=()=>refreshQueue();
+  $("queueSettingsBtn").onclick=openCloudSettings;
+  $("cloudTestBtn").onclick=testCloud;
+  $("cloudSaveBtn").onclick=saveCloud;
+  $("cloudCloseBtn").onclick=()=>closeModal("cloudModal");
+  const sb=$("sendReportBtn"); if(sb) sb.onclick=sendReport;
+  window.addEventListener("online",()=>{flushOutbox();refreshQueue(true);});
+  renderQueue();
+  if(cloudReady()) refreshQueue(true);
+  if(cloudReady() && !Object.keys(state.invoice||{}).length) goView("queue");
+}
+
 function initEvents(){
+
+
   $$("nav button").forEach(b=>b.onclick=()=>goView(b.dataset.view));
+  initQueue();
   $$("#langSw button").forEach(b=>b.onclick=()=>{state.lang=b.dataset.lang;save();applyLang();});
   $("themeBtn").onclick=()=>{state.theme=state.theme==="dark"?"light":"dark";save();applyTheme();};
   $("barcodeInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const v=e.target.value;e.target.value="";handleBarcode(v,state.options.scannerMode?"scanner":"manual");}});
@@ -1104,8 +1181,7 @@ function initEvents(){
   $("editPlus").onclick=()=>$("editQty").value=(parseInt($("editQty").value,10)||0)+1;
   $("editMinus").onclick=()=>$("editQty").value=Math.max(0,(parseInt($("editQty").value,10)||0)-1);
   $("editSave").onclick=saveEdit;
-  $("editDelete").onclick=()=>{if(editKey){delete state.scanned[editKey];if(!state.invoice[editKey])delete state.backorder[editKey];save();closeModal("editModal");renderEverything();}};
-  $("editBackorder").onclick=()=>{toggleBackorder(editKey);renderBackorderBtn();};
+  $("editDelete").onclick=()=>{if(editKey){delete state.scanned[editKey];save();closeModal("editModal");renderEverything();}};
   $("searchInput").addEventListener("input",renderList); $("sortSelect").addEventListener("change",renderList);
   $("invoiceFiles").addEventListener("change",async e=>{const files=[...e.target.files];e.target.value="";for(const file of files){const data=await readOneFile(file);if(data)selectedFiles.push(data);}renderFileList();});
   $("vendorSelect").addEventListener("change",()=>{const isNew=$("vendorSelect").value==="__new";$("newVendorName").disabled=!isNew;if(isNew)$("newVendorName").focus();const v=$("vendorSelect").value;if(v&&state.vendors[v])$("ignoreZero").checked=state.vendors[v].ignoreZero!==false;renderMapping();});
@@ -1114,17 +1190,12 @@ function initEvents(){
   $("exportCsvBtn").onclick=exportCSV; $("exportXlsxBtn").onclick=exportXLSX;
   $("menuBtn").onclick=()=>{renderDashboard();openModal("menuModal")}; $("menuCloseBtn").onclick=()=>closeModal("menuModal");
   $("renameSessionBtn").onclick=()=>{const n=prompt(t("rename_prompt"),state.sessionName);if(n){state.sessionName=n.trim()||state.sessionName;save();renderEverything();}};
-  $("vaultBtn").onclick=()=>{renderVault();openModal("vaultModal");};
-  $("vaultCloseBtn").onclick=()=>closeModal("vaultModal");
-  $("vaultSaveBtn").onclick=saveCurrentToVault;
   $("backupBtn").onclick=backupJSON; $("restoreBtn").onclick=()=>$("restoreFile").click(); $("restoreFile").onchange=e=>{const f=e.target.files[0];e.target.value="";if(f)restoreJSONFile(f)};
-  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];state.backorder={};save();closeModal("menuModal");renderEverything();}};
-  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){archiveCurrent();const vendors=state.vendors, lang=state.lang, theme=state.theme;state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");}};
+  $("clearCountsBtn").onclick=()=>{if(confirm(t("confirm_clear"))){state.scanned={};state.history=[];save();closeModal("menuModal");renderEverything();}};
+  $("newSessionBtn").onclick=()=>{if(confirm(t("confirm_new"))){const vendors=state.vendors, lang=state.lang, theme=state.theme;state=blankState();state.vendors=vendors;state.lang=lang;state.theme=theme;selectedFiles=[];save();closeModal("menuModal");applyLang();goView("scan");}};
   $("cameraBtn").onclick=()=>camOn?stopCamera():startCamera();
   $$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
   window.addEventListener("popstate",()=>{if(anyModalOpen())$$(".modal-bg").forEach(m=>m.classList.remove("on"));else if(camOn)stopCamera();else if(pending)closePending();else goView("scan");try{history.pushState({app:1},"")}catch(e){}});
-  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")archiveCurrent();});
-  window.addEventListener("pagehide",archiveCurrent);
   try{history.pushState({app:1},"")}catch(e){}
 }
 async function startCamera(){
