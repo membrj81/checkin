@@ -162,6 +162,7 @@
     </section>
 
     <section class="view active" id="view-scan">
+      <div id="syncBanner" style="display:none"></div>
       <div class="two-col">
         <div>
           <div class="hero">
@@ -548,6 +549,7 @@ function normalizeState(s){
 let state = loadState();
 function save(){
   state.updatedAt=Date.now();
+  if(typeof markSyncDirty==="function")markSyncDirty();
   storage.set(KEY,JSON.stringify(state));
   if(storage.get("recv_lang")!==state.lang)storage.set("recv_lang",state.lang);
   if(storage.get("recv_theme")!==(state.theme||"light"))storage.set("recv_theme",state.theme||"light");
@@ -1108,6 +1110,86 @@ async function refreshQueue(silent){
   flushOutbox();
 }
 
+/* ═════════════════════════════════════════════════════════
+   기기간 동기화 — 같은 인보이스를 여러 기기에서 검수할 때
+   · 로컬 우선: 통신 실패해도 스캔은 계속된다
+   · 기기별로 따로 세고 화면에서 합산 (덮어쓰기 없음)
+   · 혼자면 5분, 둘 이상이면 30초 간격 (Apps Script 할당량 절약)
+   ═════════════════════════════════════════════════════════ */
+const SYNC_SOLO_MS=300000, SYNC_PAIR_MS=30000, SYNC_TICK_MS=10000, SYNC_STALE_MS=900000;
+let syncPeers=[], syncLast=0, syncQid="", syncBusy=false, syncDirty=false, syncOffline=false;
+
+function syncCounts(){const o={};Object.entries(state.scanned).forEach(([k,v])=>{const n=Math.max(0,Number(v.recv)||0);if(n>0)o[k]=n});return o}
+function syncInterval(){return syncPeers.length?SYNC_PAIR_MS:SYNC_SOLO_MS}
+function markSyncDirty(){syncDirty=true}
+function syncAgo(ms){const m=Math.max(0,Math.round((Date.now()-ms)/60000));return m<1?t("sync_now"):t("sync_min",{n:m})}
+
+async function syncPush(force){
+  if(syncBusy||!cloudReady()||!state.queueId)return;
+  /* 간격은 무조건 지킨다. 스캔이 많아도 전송 횟수는 늘지 않는다. */
+  if(!force&&Date.now()-syncLast<syncInterval())return;
+  syncBusy=true;
+  try{
+    const j=await cloudPost({type:"progress",invoiceId:state.queueId,device:deviceId(),
+                             staff:cloudCfg().staff||"",counts:syncCounts()});
+    syncLast=Date.now();syncDirty=false;syncOffline=false;
+    syncPeers=(Array.isArray(j.peers)?j.peers:[]).filter(p=>p&&p.device&&p.device!==deviceId()&&(Date.now()-Number(p.at||0))<SYNC_STALE_MS);
+  }catch(e){syncOffline=true}
+  finally{syncBusy=false;renderSyncBanner()}
+}
+
+function syncLoop(){
+  const qid=state.queueId||"";
+  if(qid!==syncQid){syncQid=qid;syncPeers=[];syncLast=0;syncOffline=false;
+    if(qid){syncPush(true)}else{renderSyncBanner()}return}
+  if(syncQid)syncPush(false);
+}
+/* 앱을 다시 열었을 때 한 번 갱신 — 너무 잦은 호출은 막는다 */
+function syncOnForeground(){
+  if(!state.queueId)return;
+  if(Date.now()-syncLast<20000)return;
+  syncPush(true);
+}
+
+function peerQty(p){return Object.values(p.counts||{}).reduce((a,b)=>a+(Number(b)||0),0)}
+function peerNew(p){
+  const seen=(state.peerImported||{})[p.device]||{};let n=0;
+  Object.entries(p.counts||{}).forEach(([k,v])=>{const d=(Number(v)||0)-(Number(seen[k])||0);if(d>0)n+=d});
+  return n;
+}
+function importPeer(device){
+  const p=syncPeers.find(x=>x.device===device);if(!p)return;
+  if(!state.peerImported)state.peerImported={};
+  const seen=state.peerImported[device]||{};let added=0;
+  Object.entries(p.counts||{}).forEach(([k,v])=>{
+    const d=(Number(v)||0)-(Number(seen[k])||0);if(d<=0)return;
+    const inv=state.invoice[k];
+    if(!state.scanned[k])state.scanned[k]={code:inv?.code||k,name:inv?.name||"",recv:0,last:0};
+    state.scanned[k].recv+=d;state.scanned[k].last=Date.now();added+=d;
+  });
+  state.peerImported[device]=JSON.parse(JSON.stringify(p.counts||{}));
+  markReportDirty();save();renderEverything();renderSyncBanner();
+  toast(added?"ok":"info",t("sync_merged",{n:fmt(added)}));
+  markSyncDirty();
+}
+
+function renderSyncBanner(){
+  const box=$("syncBanner");if(!box)return;
+  if(!state.queueId||(!syncPeers.length&&!syncOffline)){box.style.display="none";box.innerHTML="";return}
+  const rows=syncPeers.map(p=>{
+    const who=esc(p.staff||p.device.slice(-4)),tot=fmt(peerQty(p)),fresh=peerNew(p);
+    const btn=fresh>0?`<button class="btn line sm sync-merge" data-dev="${esc(p.device)}">${esc(t("sync_merge",{n:fmt(fresh)}))}</button>`:"";
+    return `<div class="item" style="justify-content:space-between;gap:8px">
+      <div style="flex:1"><b>${who}</b> <span class="chip warn">${esc(syncAgo(Number(p.at||0)))}</span>
+      <p class="hint">${esc(t("sync_counted",{n:tot}))}</p></div>${btn}</div>`;
+  }).join("");
+  const off=syncOffline?`<p class="hint">⚠ ${esc(t("sync_offline"))}</p>`:"";
+  box.innerHTML=`<div class="card" style="margin-bottom:10px">
+      <div class="card-title"><h3>⚠️ ${esc(t("sync_title"))}</h3></div>${rows}${off}</div>`;
+  box.style.display="";
+  $$(".sync-merge",box).forEach(b=>b.onclick=()=>importPeer(b.dataset.dev));
+}
+
 function sessionsForDisplay(){
   const all=sessionsAll();
   if(hasWork(state)){
@@ -1191,7 +1273,9 @@ async function sendReport(){
   state.finishedAt=new Date().toISOString();const session=buildReport(),signature=reportSignature(session);
   if(state.reportSentAt&&state.reportSignature===signature){toast("info",t("send_already"));renderSendState();return}
   reportSending=true;renderSendState();const payload={session,clientSignature:signature};
-  try{await cloudPost(payload);removeQueuedReport(session.reportId);markReportDelivered(session.reportId,signature,new Date().toISOString(),true);toast("ok",t("send_ok"));refreshQueue(true)}
+  try{await cloudPost(payload);removeQueuedReport(session.reportId);markReportDelivered(session.reportId,signature,new Date().toISOString(),true);toast("ok",t("send_ok"));
+       if(state.queueId){try{await cloudPost({type:"finish",invoiceId:state.queueId})}catch(e){}syncPeers=[];renderSyncBanner()}
+       refreshQueue(true)}
   catch(e){const n=queueReport(payload,signature);state.reportQueued=true;state.reportQueuedSignature=signature;state.reportSentAt="";save();toast("bad",`${t("send_fail")} (${t("send_queued",{n})})`)}
   finally{reportSending=false;renderSendState()}
 }
@@ -1294,10 +1378,17 @@ function __loadLib(src){try{var s=document.createElement("script");s.async=true;
 __loadLib("https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js");
 __loadLib("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
 
+/* ── 기기간 동기화 문구 (기존 I18N에 덧붙임) ── */
+Object.assign(I18N.ko,{sync_title:"다른 기기에서 같은 인보이스 작업 중",sync_counted:"{n}개 검수됨",sync_merge:"{n}개 가져오기",sync_merged:"{n}개를 합쳤습니다",sync_now:"방금 전",sync_min:"{n}분 전",sync_offline:"오프라인 — 로컬에 저장 중입니다"});
+Object.assign(I18N.en,{sync_title:"Another device is working on this invoice",sync_counted:"{n} counted",sync_merge:"Merge {n}",sync_merged:"Merged {n} items",sync_now:"just now",sync_min:"{n} min ago",sync_offline:"Offline — saving locally"});
+Object.assign(I18N.es,{sync_title:"Otro dispositivo trabaja en esta factura",sync_counted:"{n} contados",sync_merge:"Unir {n}",sync_merged:"{n} unidades unidas",sync_now:"ahora mismo",sync_min:"hace {n} min",sync_offline:"Sin conexión — guardando local"});
+
 /* ── 부팅: IndexedDB의 최신 상태를 먼저 복원한 뒤 화면 시작 */
 async function __boot(){
   try{await hydrateStorageFromIDB();state=loadState();reconcileReportQueueState()}catch(e){}
   try{createManifest()}catch(e){}try{initEvents()}catch(e){console.error(e)}try{initPin()}catch(e){console.error(e)}
+  try{setInterval(syncLoop,SYNC_TICK_MS);syncLoop();
+      document.addEventListener("visibilitychange",()=>{if(!document.hidden)syncOnForeground()})}catch(e){console.error(e)}
   if(storageHealth.local===false&&storageHealth.idb===false){setSaveIndicator("error");showStorageAlert(storageHealth.lastError)}else setSaveIndicator(storageHealth.idb?"saved":"local");
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",__boot);else __boot();
